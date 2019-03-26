@@ -1,4 +1,4 @@
-mailparser
+mail-parser
 beautifulsoup4>=4.6.3
 html5lib
 lxml
