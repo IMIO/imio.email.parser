@@ -11,6 +11,14 @@ setup(
     author_email='support@imio.be',
     description='',
     install_requires=[
-        'mailparser',
+        'mail-parser',
+        'beautifulsoup4>=4.6.3',
+        'html5lib',
+        'lxml',
+        'pdfminer3k',
+        'pypdf2',
+        'python-magic',
+        'reportlab',
+        'requests',
     ],
 )
