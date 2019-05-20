@@ -34,6 +34,7 @@ class Parser:
         return {
             "From": self.parsed_message.from_,
             "To": self.parsed_message.to,
+            "Cc": self.parsed_message.cc,
             "Subject": self.parsed_message.subject,
         }
 
