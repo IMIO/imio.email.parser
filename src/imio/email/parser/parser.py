@@ -26,17 +26,23 @@ class Parser:
                 if (
                     part.get_content_type() == "message/rfc822"
                 ):  # maybe also check for attachment filename ?
+                    self.origin = "Agent forward"
                     return part.get_payload()[0]
+        self.origin = "Generic inbox"
         return message
 
     @property
     def headers(self):
-        return {
+        headers = {
             "From": self.parsed_message.from_,
             "To": self.parsed_message.to,
             "Cc": self.parsed_message.cc,
             "Subject": self.parsed_message.subject,
+            "Origin": self.origin,
         }
+        if self.origin == 'Agent forward':
+            headers['Agent'] = MailParser(self.initial_message).from_
+        return headers
 
     @property
     def attachments(self):
