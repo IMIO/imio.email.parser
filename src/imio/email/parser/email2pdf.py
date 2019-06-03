@@ -20,10 +20,10 @@ import os.path
 import pprint
 import re
 import shutil
+import six
 import sys
 import tempfile
 import traceback
-
 from PyPDF2 import PdfFileReader, PdfFileWriter
 from PyPDF2.generic import NameObject, createStringObject
 from bs4 import BeautifulSoup
@@ -31,8 +31,6 @@ from requests.exceptions import RequestException
 import magic
 import requests
 import chardet
-
-assert sys.version_info >= (3, 4)
 
 mimetypes.init()
 
@@ -411,7 +409,7 @@ def handle_plain_message_body(part):
             logger.info("Determined email is plain text with charset " + str(charset))
 
         if isinstance(payload, bytes):
-            payload = str(payload, charset)
+            payload = payload.decode(charset) if six.PY3 else payload
 
         payload = html.escape(payload)
         payload = "<html><body><pre>\n" + payload + "\n</pre></body></html>"
@@ -429,10 +427,10 @@ def handle_html_message_body(input_email, part):
     if not charset:
         charset = "utf-8"
     try:
-        payload_str = str(payload, charset)
+        payload_str = payload = payload.decode(charset) if six.PY3 else payload
     except UnicodeDecodeError:
         charset = chardet.detect(payload)["encoding"]
-        payload_str = str(payload, charset)
+        payload_str = payload = payload.decode(charset) if six.PY3 else payload
     logger.info("Determined email is HTML with encoding charset " + str(charset))
 
     def cid_replace(cid_parts_used, matchobj):
@@ -486,7 +484,7 @@ def output_body_pdf(input_email, payload, output_file_name):
     output, error = wkh2p_process.communicate(input=payload)
     assert output == b""
 
-    stripped_error = str(error, "utf-8")
+    stripped_error = error.decode("utf-8") if six.PY3 else error
 
     for error_pattern in WKHTMLTOPDF_ERRORS_IGNORE:
         (stripped_error, number_of_subs_made) = re.subn(
@@ -500,7 +498,7 @@ def output_body_pdf(input_email, payload, output_file_name):
                 + error_pattern
             )
 
-    original_error = str(error, "utf-8").rstrip()
+    original_error = error.decode("utf-8").rstrip() if six.PY3 else error.rstrip()
     stripped_error = stripped_error.rstrip()
 
     if wkh2p_process.returncode > 0 and original_error == "":
@@ -797,7 +795,8 @@ def get_mime_type(buffer_data):
             # Older versions of python-magic seem to output bytes for the
             # mime_type name. As of Python 3.6+, it seems to be outputting
             # strings directly.
-            mime_type = str(magic.from_buffer(buffer_data, mime=True), "utf-8")
+            mime_type = magic.from_buffer(buffer_data, mime=True)
+            mime_type = mime_type.decode("utf-8") if six.PY3 else mime_type
     else:
         m_handle = magic.open(magic.MAGIC_MIME_TYPE)
         m_handle.load()
@@ -819,7 +818,7 @@ def get_utf8_header(header):
     hdr = ""
     for element in decoded_header:
         if isinstance(element[0], bytes):
-            hdr += str(element[0], element[1] or "ASCII")
+            hdr += element[0].decode(element[1] or "ASCII") if six.PY3 else element[0]
         else:
             hdr += element[0]
     return hdr

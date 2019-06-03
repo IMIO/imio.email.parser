@@ -1,5 +1,7 @@
 import base64
 import email
+import six
+
 from mailparser import MailParser
 import imio.email.parser.email2pdf as email2pdf
 
@@ -59,4 +61,6 @@ class Parser:
         proceed, args = email2pdf.handle_args([__file__, "--no-attachments"])
         payload, parts_already_used = email2pdf.handle_message_body(args, self.message)
         payload = email2pdf.remove_invalid_urls(payload)
-        email2pdf.output_body_pdf(self.message, bytes(payload, "UTF-8"), output_path)
+        if six.PY3:
+            payload = payload.encode("UTF-8")
+        email2pdf.output_body_pdf(self.message, payload, output_path)
