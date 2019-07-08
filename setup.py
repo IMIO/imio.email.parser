@@ -17,7 +17,7 @@ setup(
         "beautifulsoup4>=4.6.3",
         "html5lib",
         "lxml",
-        "pdfminer3k",
+#        "pdfminer3k",  not sure it's needed. Or try pdfminer.six for python2
         "pypdf2",
         "python-magic",
         "reportlab",
