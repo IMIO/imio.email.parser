@@ -23,6 +23,9 @@ class Parser:
         :type message: email.message.Message
         """
         payload = message.get_payload()
+        if message.get("X-Forwarded-For") or message.get("X-Forwarded-To"):
+            self.origin = "Server forward"
+            return message
         if type(payload) is list:
             for part in payload:
                 if (
