@@ -1,0 +1,72 @@
+usage: email2pdf [-i INPUT_FILE] [--input-encoding INPUT_ENCODING]
+                 [-o OUTPUT_FILE] [-d OUTPUT_DIRECTORY]
+                 [--no-body | --no-attachments] [--headers]
+                 [--add-prefix-date] [--ignore-floating-attachments]
+                 [--enforce-syslog] [--mostly-hide-warnings | -v] [-h]
+
+Converts emails to PDFs. See https://github.com/andrewferrier/email2pdf for
+more information.
+
+optional arguments:
+  -i INPUT_FILE, --input-file INPUT_FILE
+                        File containing input email you wish to read in raw
+                        form delivered from a MTA. If set to '-' (which is the
+                        default), it reads from stdin.
+  --input-encoding INPUT_ENCODING
+                        Set the expected encoding of the input email (whether
+                        on stdin or specified with the --input-file option).
+                        If not set, defaults to this system's preferred
+                        encoding, which is UTF-8.
+  -o OUTPUT_FILE, --output-file OUTPUT_FILE
+                        Output file you wish to print the body of the email to
+                        as PDF. Should include the complete path, otherwise it
+                        defaults to the current directory. If this option is
+                        not specified, email2pdf picks a date & time-based
+                        filename and puts the file in the directory specified
+                        by --output-directory.
+  -d OUTPUT_DIRECTORY, --output-directory OUTPUT_DIRECTORY
+                        If --output-file is not specified, the value of this
+                        parameter is used as the output directory for the body
+                        PDF, with a date-and-time based filename attached. In
+                        either case, this parameter also specifies the
+                        directory in which attachments are stored. Defaults to
+                        the current directory (i.e. /srv/venv/email2pdf).
+  --no-body             Don't parse the body of the email and print it to PDF,
+                        just detach attachments. The default is to parse both
+                        the body and detach attachments.
+  --no-attachments      Don't detach attachments, just print the body of the
+                        email to PDF.
+  --headers             Add basic email headers (Subject, From, To, Date) to
+                        the first PDF page. The default is not to do this.
+  --add-prefix-date     Prepend an ISO-8601 prefix date (e.g. YYYY-MM-DD-) to
+                        any attachment filename that doesn't have one. Will
+                        search through the whole filename for an existing date
+                        in that format - if not found, it prepends one.
+  --ignore-floating-attachments
+                        Emails sometimes contain attachments that don't have a
+                        filename and aren't embedded in the main HTML body of
+                        the email using a Content-ID either. By default,
+                        email2pdf will detach these and use their Content-ID
+                        as a filename, or autogenerate a filename. If this
+                        option is specified, it will instead ignore them.
+  --enforce-syslog      By default email2pdf will use syslog if available and
+                        just log to stderr if not. If this option is
+                        specified, email2pdf will exit with an error if the
+                        syslog socket can not be located.
+  --mostly-hide-warnings
+                        By default email2pdf will output warnings about
+                        handling emails to stderr and exit with a non-zero
+                        return code if any are encountered, *as well as*
+                        outputting a summary file entitled
+                        <output_PDF_name>_warnings_and_errors.txt and the
+                        original email as <output_PDF_name>_original.eml.
+                        Specifying this option disables the first two, so only
+                        the additional files are produced - this makes it
+                        easier to use email2pdf if it is run on a schedule, as
+                        warnings won't cause the same email to be repeatedly
+                        retried.
+  -v, --verbose         Make the output more verbose. This affects both the
+                        output logged to syslog, as well as output to the
+                        console. Using this twice makes it doubly verbose.
+  -h, --help            Show some basic help information about how to use
+                        email2pdf.
