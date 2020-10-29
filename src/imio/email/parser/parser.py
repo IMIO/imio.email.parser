@@ -64,9 +64,9 @@ class Parser:
         proceed, args = email2pdf.handle_args([__file__, "--no-attachments", '--headers'])
         payload, parts_already_used = email2pdf.handle_message_body(args, self.message)
         payload = email2pdf.remove_invalid_urls(payload)
-        if six.PY3:
-            payload = payload.encode("UTF-8")
         if args.headers:
             header_info = email2pdf.get_formatted_header_info(self.message)
             payload = header_info + payload
+        if six.PY3:
+            payload = payload.encode("UTF-8")
         email2pdf.output_body_pdf(self.message, payload, output_path)
