@@ -35,9 +35,9 @@ def parse_eml():
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print "You have to pass a script choice: 1=emailtopdf, 2=parse_eml"
+        print("You have to pass a script choice: 1=emailtopdf, 2=parse_eml")
         sys.exit(0)
     if sys.argv[1] == '1':
-        print emailtopdf()
+        print(emailtopdf())
     elif sys.argv[1] == '2':
-        print parse_eml()
+        print(parse_eml())
