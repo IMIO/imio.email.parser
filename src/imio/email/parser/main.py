@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import mailparser
 import imio.email.parser.email2pdf as email2pdf
 import os
 import six
@@ -7,9 +8,9 @@ import sys
 
 
 def emailtopdf():
-    if len(sys.argv) < 2:
+    if len(sys.argv) < 3:
         return "You have to pass an eml file"
-    proceed, args = email2pdf.handle_args([__file__, '--no-attachments', '--headers', '-i{}'.format(sys.argv[1])])
+    proceed, args = email2pdf.handle_args([__file__, '--no-attachments', '--headers', '-i{}'.format(sys.argv[2])])
     input_data = email2pdf.get_input_data(args)
     input_email = email2pdf.get_input_email(input_data)
     payload, parts_already_used = email2pdf.handle_message_body(args, input_email)
@@ -22,3 +23,21 @@ def emailtopdf():
     output_directory = os.path.normpath(args.output_directory)
     output_file_name = email2pdf.get_output_file_name(args, output_directory)
     email2pdf.output_body_pdf(input_email, payload, output_file_name)
+
+
+def parse_eml():
+    if len(sys.argv) < 3:
+        return "You have to pass an eml file path"
+    if not os.path.exists(sys.argv[2]):
+        return "The third parameter is not an existing eml file path '{}'".format(sys.argv[2])
+    msg = mailparser.parse_from_file(sys.argv[2])
+
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print "You have to pass a script choice: 1=emailtopdf, 2=parse_eml"
+        sys.exit(0)
+    if sys.argv[1] == '1':
+        print emailtopdf()
+    elif sys.argv[1] == '2':
+        print parse_eml()
