@@ -53,6 +53,9 @@ class Parser:
     def attachments(self):
         files = []
         for attachment in self.parsed_message.attachments:
+            # skip attachment declared as inline (part of message)
+            if attachment.get('content-disposition') and attachment['content-disposition'] == 'inline':
+                continue
             if attachment["binary"]:
                 raw_file = base64.b64decode(attachment["payload"])
             else:
