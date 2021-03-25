@@ -3,7 +3,7 @@ import email
 import six
 
 from mailparser import MailParser
-import imio.email.parser.email2pdf as email2pdf
+import email2pdf
 
 
 class Parser:
@@ -70,6 +70,5 @@ class Parser:
         if args.headers:
             header_info = email2pdf.get_formatted_header_info(self.message)
             payload = header_info + payload
-        if six.PY3:
-            payload = payload.encode("UTF-8")
+        payload = payload.encode("UTF-8")
         email2pdf.output_body_pdf(self.message, payload, output_path)

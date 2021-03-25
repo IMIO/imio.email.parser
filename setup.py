@@ -15,6 +15,7 @@ setup(
     install_requires=[
         "mail-parser",
         "beautifulsoup4>=4.6.3",
+        "email2pdf",
         "html5lib",
         "lxml",
 #        "pdfminer3k",  not sure it's needed. Or try pdfminer.six for python2
