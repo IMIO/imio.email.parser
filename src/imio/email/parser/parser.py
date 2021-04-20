@@ -1,8 +1,7 @@
+from mailparser import MailParser
+
 import base64
 import email
-import six
-
-from mailparser import MailParser
 import email2pdf
 
 

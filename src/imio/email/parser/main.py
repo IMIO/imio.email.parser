@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 
-import mailparser
 import email2pdf
+import mailparser
 import os
-import six
 import sys
 
 
