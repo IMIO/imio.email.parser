@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+from email.mime.text import MIMEText
 from mailparser import MailParser
 
 import base64
@@ -64,7 +67,14 @@ class Parser:
 
     def generate_pdf(self, output_path):
         proceed, args = email2pdf.handle_args([__file__, "--no-attachments", '--headers'])
-        payload, parts_already_used = email2pdf.handle_message_body(args, self.message)
+        try:
+            payload, parts_already_used = email2pdf.handle_message_body(args, self.message)
+        except email2pdf.FatalException as fe:
+            if fe.value == 'No body parts found; aborting.':
+                self.message.attach(MIMEText('<html><body><p></p></body></html>', 'html'))
+                payload, parts_already_used = email2pdf.handle_message_body(args, self.message)
+            else:
+                raise fe
         payload = email2pdf.remove_invalid_urls(payload)
         if args.headers:
             header_info = email2pdf.get_formatted_header_info(self.message)

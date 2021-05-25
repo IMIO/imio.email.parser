@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from email.mime.text import MIMEText
 import email2pdf
 import mailparser
 import os
@@ -17,7 +18,14 @@ def emailtopdf():
     proceed, args = email2pdf.handle_args([__file__, '--no-attachments', '--headers', '-i{}'.format(filename)])
     input_data = email2pdf.get_input_data(args)
     input_email = email2pdf.get_input_email(input_data)
-    payload, parts_already_used = email2pdf.handle_message_body(args, input_email)
+    try:
+        payload, parts_already_used = email2pdf.handle_message_body(args, input_email)
+    except email2pdf.FatalException as fe:
+        if fe.value == 'No body parts found; aborting.':
+            input_email.attach(MIMEText('<html><body><p></p></body></html>', 'html'))
+            payload, parts_already_used = email2pdf.handle_message_body(args, input_email)
+        else:
+            raise fe
     payload = email2pdf.remove_invalid_urls(payload)
     if args.headers:
         header_info = email2pdf.get_formatted_header_info(input_email)
