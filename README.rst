@@ -12,7 +12,7 @@ Features
 
 1. select relevant email messages (e.g. email forwarded as an attachment)
 2. parse emails (headers, attachments, ...)
-3. generate a PDF email preview
+3. generate a PDF email preview with email2pdf package
 
 
 Usage

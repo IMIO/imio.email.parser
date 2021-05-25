@@ -2,6 +2,14 @@
 
 from setuptools import setup
 
+
+long_description = '\n\n'.join([
+    open('README.rst').read(),
+    open('CONTRIBUTORS.rst').read(),
+    open('CHANGES.rst').read(),
+])
+
+
 setup(
     name="imio.email.parser",
     version="0.1.dev0",
@@ -12,6 +20,14 @@ setup(
     author="Nicolas Demonté",
     author_email="support@imio.be",
     description="",
+    long_description=long_description,
+    classifiers=[
+        "Environment :: Web Environment",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3",
+        "Operating System :: OS Independent",
+        "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+    ],
     install_requires=[
         "mail-parser",
         "beautifulsoup4>=4.6.3",
