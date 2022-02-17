@@ -6,6 +6,55 @@ from mailparser import MailParser
 import base64
 import email
 import email2pdf
+import logging
+import re
+
+logger = logging.getLogger('imio.email.parser')
+
+# RFC 2822 local-part: dot-atom or quoted-string
+# characters allowed in atom: A-Za-z0-9!#$%&'*+-/=?^_`{|}~
+# RFC 2821 domain: max 255 characters
+_LOCAL_RE = re.compile(r'([A-Za-z0-9!#$%&\'*+\-/=?^_`{|}~]+'
+                     r'(\.[A-Za-z0-9!#$%&\'*+\-/=?^_`{|}~]+)*|'
+                     r'"[^(\|")]*")@[^@]{3,255}$')
+
+# RFC 2821 local-part: max 64 characters
+# RFC 2821 domain: sequence of dot-separated labels
+# characters allowed in label: A-Za-z0-9-, first is a letter
+# Even though the RFC does not allow it all-numeric domains do exist
+_DOMAIN_RE = re.compile(r'[^@]{1,64}@[A-Za-z0-9][A-Za-z0-9-]*'
+                                r'(\.[A-Za-z0-9][A-Za-z0-9-]*)+$')
+
+
+def is_email_address(address):
+    if _LOCAL_RE.match(address) or _DOMAIN_RE.match(address):
+        return True
+    return False
+
+
+def correct_addresses(lst):
+    """Correct badly handled email. See test_parser..."""
+    if len(lst) == 1:
+        return lst
+    new_lst = []
+    new_parts = []
+    for tup in lst:
+        # not a correct address
+        if is_email_address(tup[1]):
+            if new_parts:
+                if tup[0]:
+                    new_parts.append(tup[0])
+                else:
+                    logger.warning("part 0 not in tup {} for addresses {}".format(tup, lst))
+                new_lst.append((', '.join(new_parts), tup[1]))
+                new_parts = []
+            else:
+                new_lst.append(tup)
+        else:
+            if tup[0]:
+                logger.warning("part 0 in tup {} for addresses {}".format(tup, lst))
+            new_parts.append(tup[1])
+    return new_lst
 
 
 class Parser:
@@ -41,14 +90,14 @@ class Parser:
     @property
     def headers(self):
         headers = {
-            "From": self.parsed_message.from_,
-            "To": self.parsed_message.to,
-            "Cc": self.parsed_message.cc,
+            "From": correct_addresses(self.parsed_message.from_),
+            "To": correct_addresses(self.parsed_message.to),
+            "Cc": correct_addresses(self.parsed_message.cc),
             "Subject": self.parsed_message.subject,
             "Origin": self.origin,
         }
         if self.origin == 'Agent forward':
-            headers['Agent'] = MailParser(self.initial_message).from_
+            headers['Agent'] = correct_addresses(MailParser(self.initial_message).from_)
         return headers
 
     @property

@@ -43,30 +43,30 @@ Subject: TR: Error importing email into iA.docs
 Thread-Topic: Error importing email into iA.docs
 Thread-Index: AQHXDBoAOLOeTFgtj0Sn0zg0CsX576pqHubA
 Date: Fri, 26 Feb 2021 08:44:17 +0000
-Message-ID: 
+Message-ID:
  <AM0PR05MB6481A5DE2C41B22C7C7EF2E9FF9D9@AM0PR05MB6481.eurprd05.prod.outlook.com>
 References: <20210226083302.B305CA0427@smtp.mail.be>
 In-Reply-To: <20210226083302.B305CA0427@smtp.mail.be>
 Accept-Language: fr-BE, en-US
 Content-Language: fr-FR
 X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
+X-MS-TNEF-Correlator:
 authentication-results: mail.be; dkim=none (message not signed)
  header.d=none;mail.be; dmarc=none action=none header.from=ofrom.be;
 x-originating-ip: [81.246.113.218]
 x-ms-publictraffictype: Email
 x-ms-office365-filtering-correlation-id: c8577423-aa34-43f3-2635-08d8da32b51a
 x-ms-traffictypediagnostic: AM8PR05MB7283:
-x-microsoft-antispam-prvs: 
+x-microsoft-antispam-prvs:
  <AM8PR05MB728321F66A06BF2294569644FF9D9@AM8PR05MB7283.eurprd05.prod.outlook.com>
 x-ms-oob-tlc-oobclassifiers: OLM:7691;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
+x-microsoft-antispam-message-info:
  LXbOnOHyKV9fYngBX1mILdQNRS3D3F+oz7pH0upf15KumRgQn+4WfsoLLaN6t/06SH7YZltEEmPnVg3ysXywgZy3lq8zSoJaVRyMP1WKYD7xXqcuFvhwVPF8BWVphAiFEPE/l/UHr/EaBiJDMzBJLa+KHNgiDkzEJpYYTmmApmO8MWv9xK1g5XE5Q4xZ2iaaDjuJXIhlIRwN4YDEW0S2CMRh3mqXArKdb9b8JMp4pkzMzvMe8cTTZzuj7/HhLu6U
-x-forefront-antispam-report: 
+x-forefront-antispam-report:
  CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR05MB6481.eurprd05.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(396003)(346002)(39840400004)(376002)(366004)(52536014)(66946007)(66446008)(64756008)(2906002)(33656002)(66616009)(66476007)(73894004)(66556008)(5660300002)(86362001)(76116006)(44832011)(99936003)(7696005)(26005)(9686003)(316002)(6506007)(71200400001)(478600001)(8936002)(8676002)(6916009)(55016002)(4270600006)(186003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: 
+x-ms-exchange-antispam-messagedata:
  =?us-ascii?Q?VRSZIiPrE9DFuQgSFEk5+kjHVDKIb6dPazJxcLRW1RLInH4qqArbKMEKuH4c?=
  =?us-ascii?Q?L7rMhwz5sb8gVtxutTltADARuU2a55nxygeH021I/UGsFQkPH7LqJTASViar?=
  =?us-ascii?Q?840Saoy6tXZ7SJKoKLrhCm0wUeO4BvsJFErKUHhrZb2PUUP+xPlbznYiwiXW?=
@@ -97,14 +97,14 @@ MIME-Version: 1.0
 X-OriginatorOrg: ofrom.be
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: AM0PR05MB6481.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
+X-MS-Exchange-CrossTenant-Network-Message-Id:
  c8577423-aa34-43f3-2635-08d8da32b51a
 X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Feb 2021 08:44:19.0387
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 8b7b2b25-f0b8-4e88-92bd-5031375992f6
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
+X-MS-Exchange-CrossTenant-userprincipalname:
  f9laqC15DfZ6O+5LscZymnOXY/OHPE01UVBHGw3SezBdh3iobXiSjIrpxAd/HLW1LiPKnkiHJ1CJcZfSuifyFw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR05MB7283
 
@@ -216,13 +216,13 @@ Date: Fri, 26 Feb 2021 08:33:02 +0000
 Message-ID: <20210226083302.B305CA0427@smtp.mail.be>
 Content-Language: fr-BE
 X-MS-Exchange-Organization-AuthAs: Anonymous
-X-MS-Exchange-Organization-AuthSource: 
+X-MS-Exchange-Organization-AuthSource:
  HE1EUR02FT023.eop-EUR02.prod.protection.outlook.com
 X-MS-Has-Attach: yes
-X-MS-Exchange-Organization-Network-Message-Id: 
+X-MS-Exchange-Organization-Network-Message-Id:
  675d8894-6ade-4031-9bf3-08d8da312224
 X-MS-Exchange-Organization-SCL: 1
-X-MS-TNEF-Correlator: 
+X-MS-TNEF-Correlator:
 X-MS-Exchange-Organization-RecordReviewCfmType: 0
 x-ms-publictraffictype: Email
 x-spam-status: No, score=1.6 required=8.0 tests=HTML_MESSAGE,MIME_HTML_MOSTLY,
@@ -230,7 +230,7 @@ x-spam-status: No, score=1.6 required=8.0 tests=HTML_MESSAGE,MIME_HTML_MOSTLY,
 received-spf: Pass (protection.outlook.com: domain of mail.be designates
  188.165.186.184 as permitted sender) receiver=protection.outlook.com;
  client-ip=188.165.186.184; helo=smtp.mail.be;
-x-forefront-antispam-report: 
+x-forefront-antispam-report:
  CIP:188.165.186.184;CTRY:FR;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtp.mail.be;PTR:smtp.mail.be;CAT:NONE;SFS:(6916009)(45080400002)(5660300002)(356005)(83380400001)(1076003)(44144004)(6266002)(1096003)(33656002)(26005)(86362001)(9686003)(336012)(7636003)(8676002)(7596003);DIR:INB;
 authentication-results: spf=pass (sender IP is 188.165.186.184)
  smtp.mailfrom=mail.be; ofrom.be; dkim=none (message not signed)
@@ -249,18 +249,18 @@ x-ms-exchange-crosstenant-fromentityheader: Internet
 x-ms-exchange-crosstenant-id: 8b7b2b25-f0b8-4e88-92bd-5031375992f6
 x-ms-exchange-transport-crosstenantheadersstamped: AM4PR05MB3268
 x-ms-exchange-transport-endtoendlatency: 00:00:02.0693983
-x-ms-exchange-crosstenant-network-message-id: 
+x-ms-exchange-crosstenant-network-message-id:
  675d8894-6ade-4031-9bf3-08d8da312224
 x-ms-oob-tlc-oobclassifiers: OLM:7691;
 x-eopattributedmessage: 0
 x-eoptenantattributedmessage: 8b7b2b25-f0b8-4e88-92bd-5031375992f6:0
 x-ms-exchange-processed-by-bccfoldering: 15.20.3868.035
-x-ms-exchange-crosstenant-authsource: 
+x-ms-exchange-crosstenant-authsource:
  HE1EUR02FT023.eop-EUR02.prod.protection.outlook.com
 x-ms-exchange-crosstenant-authas: Anonymous
-X-Microsoft-Antispam-Mailbox-Delivery: 
+X-Microsoft-Antispam-Mailbox-Delivery:
  ucf:0;jmr:0;auth:0;dest:I;ENG:(20160514016)(750129)(520011016)(944506458)(944626604);
-X-Microsoft-Antispam-Message-Info: 
+X-Microsoft-Antispam-Message-Info:
  =?us-ascii?Q?4VGiFpNumvyU4nm8Z2GESdFbHPNsGoYn/g+SBDQn8IPF109x/hm70KsdpxJl?=
  =?us-ascii?Q?/Ma+TAO6gVVRG9ZMZvT/r8QSwQmcH7dGKH0cgX0n7duZYK05Jh/zssoJya16?=
  =?us-ascii?Q?MQjIdE5wG6PJsx4WpaVBQL2A2adugiDSnZDKNjLMrU1I0uua99+1Vj3z1xqV?=
@@ -296,7 +296,6 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-ID: <1732A9B243648842BC3E2C15CA58330D@eurprd05.prod.outlook.com>
 Content-Transfer-Encoding: quoted-printable
-
 
 Dear user,
 
@@ -384,28 +383,28 @@ Subject: test
 Thread-Topic: test
 Thread-Index: AdcMGc3/dvEdc75QRCmCEvtvlBdd1g==
 Date: Fri, 26 Feb 2021 08:31:57 +0000
-Message-ID: 
+Message-ID:
  <AM0PR05MB6481A3F2FFF9A7FA1E9E24B2FF9D9@AM0PR05MB6481.eurprd05.prod.outlook.com>
 Accept-Language: fr-BE, en-US
 Content-Language: fr-FR
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
 authentication-results: mail.be; dkim=none (message not signed)
  header.d=none;mail.be; dmarc=none action=none header.from=ofrom.be;
 x-originating-ip: [81.246.113.218]
 x-ms-publictraffictype: Email
 x-ms-office365-filtering-correlation-id: a025d8e8-90f7-485b-5e35-08d8da30fb40
 x-ms-traffictypediagnostic: AM0PR0502MB3778:
-x-microsoft-antispam-prvs: 
+x-microsoft-antispam-prvs:
  <AM0PR0502MB37789656700468624225D5CFFF9D9@AM0PR0502MB3778.eurprd05.prod.outlook.com>
 x-ms-oob-tlc-oobclassifiers: OLM:1728;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
+x-microsoft-antispam-message-info:
  7sZB/o5Rwbz+I3rJ4g7S3d8Yz89Ni3bq14LkYyR472N6+XaLBoiu0GGV25eaBC/I6mMVYJpaPC3yYxGEtsH26ZMxmfCWG+tryua/5yENGTDaIKjCTeJFabYMo/8avFz+MDqDw999bApDagjT23DE4zHN2vRZvtH5F0SkbvM/sttkgKTwNBS3NArC1taArTpWAUxbbB7DqqZka/03Yv6xGavMCeDf9QwB1shxZOkR6DX/E/XqEpn1PSscyYsIuTrI3pRBlOCmYUf0alAszadIGEF//jd5MgYIp1QhlHfAZ09RqqJhhOkV/2K1SskIbK2d
-x-forefront-antispam-report: 
+x-forefront-antispam-report:
  CIP:255.255.255.255;CTRY:;LANG:nl;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR05MB6481.eurprd05.prod.outlook.com;PTR:;CAT:NONE;SFS:(376002)(366004)(136003)(396003)(346002)(39840400004)(44832011)(66556008)(316002)(73894004)(5660300002)(76116006)(64756008)(186003)(66446008)(26005)(66476007)(66946007)(71200400001)(7116003)(55016002)(8676002)(9686003)(4270600006)(86362001)(6506007)(478600001)(3480700007)(33656002)(8936002)(6916009)(52536014)(2906002)(7696005)(220243001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: 
+x-ms-exchange-antispam-messagedata:
  =?us-ascii?Q?xIxVjNWVb69q3ALIptbAcXotyjdEbrJJk+Cu6sCBCL8Zru8n6TjcgdCiOmgW?=
  =?us-ascii?Q?cwWdBF35ZTLz2Z2xpNniLsOtHKLMKGkQNClJrhH379gdf9W8ILAQxYYOsD7p?=
  =?us-ascii?Q?Bi0PPg+jhJ0k74xLv49boxKi+XVW3R/0JT1IXKlM92c7S5+4rO8xNQoXXyLn?=
@@ -435,14 +434,14 @@ Content-Type: multipart/alternative;
 X-OriginatorOrg: ofrom.be
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: AM0PR05MB6481.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
+X-MS-Exchange-CrossTenant-Network-Message-Id:
  a025d8e8-90f7-485b-5e35-08d8da30fb40
 X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Feb 2021 08:31:57.9321
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 8b7b2b25-f0b8-4e88-92bd-5031375992f6
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
+X-MS-Exchange-CrossTenant-userprincipalname:
  qXKFt+wOobTn5gbwIsz4ObsoczY/oiTpSqAUpVBabKgoDUPuWW0OH7urfWoyhOYJgtyIn9BfQSDsB36DEv3/QA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR0502MB3778
 MIME-Version: 1.0

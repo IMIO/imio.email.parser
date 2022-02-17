@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+
+from email.utils import getaddresses
+from imio.email.parser.parser import correct_addresses
 from imio.email.parser.parser import Parser
 
 import mailparser
@@ -39,3 +43,20 @@ class TestParser(unittest.TestCase):
             part1 = omsg.get_payload()[1]
             self.assertListEqual([part.get_content_type() for part in part1.get_payload()], dic['opl1'], name)
             self.assertTrue(iparsed.parsed_message.body.startswith(dic['msg_s']), name)
+
+    def test_correct_addresses(self):
+        to_tests = [
+            ('xx.yy@domain.com', [('', 'xx.yy@domain.com')], [('', 'xx.yy@domain.com')]),
+            (' <xx.yy@domain.com>', [('', 'xx.yy@domain.com')], [('', 'xx.yy@domain.com')]),
+            ('"xx yy" <xx.yy@domain.com>', [('xx yy', 'xx.yy@domain.com')], [('xx yy', 'xx.yy@domain.com')]),
+            ("'xx yy' <xx.yy@domain.com>", [("'xx yy'", 'xx.yy@domain.com')], [("'xx yy'", 'xx.yy@domain.com')]),
+            ('"xx, yy" <xx.yy@domain.com>', [('xx, yy', 'xx.yy@domain.com')], [('xx, yy', 'xx.yy@domain.com')]),
+            ('xx, yy <xx.yy@domain.com>', [('', 'xx'), ('yy', 'xx.yy@domain.com')], [('xx, yy', 'xx.yy@domain.com')]),
+            ('xx, yy,  zz <xx.yy@domain.com>', [('', 'xx'), ('', 'yy'), ('zz', 'xx.yy@domain.com')],
+             [('xx, yy, zz', 'xx.yy@domain.com')]),
+        ]
+        for test in to_tests:
+            adr = test[0]
+            addresses = getaddresses([adr])
+            self.assertListEqual(addresses, test[1], adr)
+            self.assertListEqual(correct_addresses(addresses), test[2], adr)
