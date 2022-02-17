@@ -5,7 +5,7 @@ Changelog
 0.2 (unreleased)
 ----------------
 
-- Removed \r\n from attachement filename causing exception when creating file later in Plone.
+- Removed newline characters from attachement filename causing exception when creating file later in Plone.
   [sgeulette]
 
 0.1 (2022-02-17)
