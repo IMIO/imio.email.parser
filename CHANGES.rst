@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-0.1 (unreleased)
-------------------
+0.1 (2022-02-17)
+----------------
 
 - Corrected badly addresses from email.utils.getAddresses
 - Managed email2pdf exception when email body is empty

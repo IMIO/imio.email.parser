@@ -12,7 +12,7 @@ long_description = '\n\n'.join([
 
 setup(
     name="imio.email.parser",
-    version="0.1.dev0",
+    version="0.1",
     packages=["imio", "imio.email", "imio.email.parser"],
     package_dir={"": "src"},
     url="https://pypi.org/project/imio.email.parser",
