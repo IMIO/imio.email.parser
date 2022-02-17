@@ -111,7 +111,8 @@ class Parser:
                 raw_file = base64.b64decode(attachment["payload"])
             else:
                 raw_file = attachment["payload"].encode("utf-8")
-            files.append({"filename": attachment["filename"], "content": raw_file})
+            files.append({"filename": attachment["filename"].replace(u'\r', u'').replace(u'\n', u''),
+                          "content": raw_file})
         return files
 
     def generate_pdf(self, output_path):

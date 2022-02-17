@@ -5,8 +5,8 @@ Changelog
 0.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
-
+- Removed \r\n from attachement filename causing exception when creating file later in Plone.
+  [sgeulette]
 
 0.1 (2022-02-17)
 ----------------
