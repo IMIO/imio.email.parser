@@ -7,6 +7,8 @@ Changelog
 
 - Removed newline characters from attachement filename causing exception when creating file later in Plone.
   [sgeulette]
+- Added attachments information
+  [sgeulette]
 
 0.1 (2022-02-17)
 ----------------

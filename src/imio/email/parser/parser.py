@@ -104,15 +104,18 @@ class Parser:
     def attachments(self):
         files = []
         for attachment in self.parsed_message.attachments:
-            # skip attachment declared as inline (part of message)
-            if attachment.get('content-disposition') and attachment['content-disposition'] == 'inline':
-                continue
+            # 'content-disposition': 'inline; filename="image001.jpg"; size=6577;\r\n\tcreation-date="Mon, 21 Feb
+            # 2022 11:27:26 GMT";\r\n\tmodification-date="Mon, 21 Feb 2022 14:31:06 GMT"'
+            # 'content-disposition': 'attachment; filename="Permis de la Parcelle X00.pdf";\r\n\tsize=433271;
+            # creation-date="Mon, 21 Feb 2022 11:27:26 GMT";\r\n\tmodification-date="Mon, 21 Feb 2022 14:31:06 GMT"'
             if attachment["binary"]:
                 raw_file = base64.b64decode(attachment["payload"])
             else:
                 raw_file = attachment["payload"].encode("utf-8")
-            files.append({"filename": attachment["filename"].replace(u'\r', u'').replace(u'\n', u''),
-                          "content": raw_file})
+            filename = attachment["filename"].replace(u'\r', u'').replace(u'\n', u'')
+            files.append({"filename": filename, "content": raw_file, 'size': len(raw_file),
+                          'disp': attachment.get('content-disposition', '').split(';')[0],
+                          'type': attachment['mail_content_type']})
         return files
 
     def generate_pdf(self, output_path):
