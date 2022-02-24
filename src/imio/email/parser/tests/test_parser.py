@@ -35,9 +35,9 @@ class TestParser(unittest.TestCase):
         for dic in to_tests:
             name = dic['fn']
             # with self.subTest(name=name): errors not returned in zc.recipe.testrunner
-            oparsed = get_eml_message(dic['fn'])
+            oparsed = get_eml_message(name)
             omsg = oparsed.message
-            iparsed = Parser(omsg)
+            iparsed = Parser(omsg, False, '1')
             self.assertEqual(iparsed.origin, dic['orig'], name)
             self.assertListEqual([part.get_content_type() for part in omsg.get_payload()], dic['opl'], name)
             part1 = omsg.get_payload()[1]
@@ -60,3 +60,24 @@ class TestParser(unittest.TestCase):
             addresses = getaddresses([adr])
             self.assertListEqual(addresses, test[1], adr)
             self.assertListEqual(correct_addresses(addresses), test[2], adr)
+
+    def test_attachments(self):
+        to_tests = [{'fn': '01_email_containing_eml.eml',
+                     'disps': ['inline', 'attachment', 'attachment'],
+                     'attachs': ['image.png', 'directory_icon.png', 'accuse.odt'],
+                     },
+                    {'fn': '02_email_containing_eml_containing_eml.eml',
+                     'disps': [],
+                     'attachs': []
+                     },
+                    ]
+        for dic in to_tests:
+            name = dic['fn']
+            # with self.subTest(name=name): errors not returned in zc.recipe.testrunner
+            oparsed = get_eml_message(dic['fn'])
+            omsg = oparsed.message
+            iparsed = Parser(omsg, False, '1')
+            payload, cid_parts_used = iparsed.generate_pdf('/tmp/01.pdf')
+            ats = iparsed.attachments(True, payload, cid_parts_used)
+            self.assertListEqual([at['filename'] for at in ats], dic['attachs'], name)
+            self.assertListEqual([at['disp'] for at in ats], dic['disps'], name)

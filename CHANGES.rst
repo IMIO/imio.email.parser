@@ -9,6 +9,8 @@ Changelog
   [sgeulette]
 - Added attachments information
   [sgeulette]
+- Corrected attachments disposition (check really embedded content ids)
+  [sgeulette]
 
 0.1 (2022-02-17)
 ----------------

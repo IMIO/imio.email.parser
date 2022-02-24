@@ -58,13 +58,15 @@ def correct_addresses(lst):
 
 
 class Parser:
-    def __init__(self, message):
+    def __init__(self, message, dev_mode, mail_id):
         """
         :type message: email.message.Message
         """
         self.initial_message = message
         self.message = self._extract_relevant_message(message)
         self.parsed_message = MailParser(self.message)
+        self.dev_mode = dev_mode
+        self.mail_id = mail_id
 
     def _extract_relevant_message(self, message):
         """
@@ -100,8 +102,14 @@ class Parser:
             headers['Agent'] = correct_addresses(MailParser(self.initial_message).from_)
         return headers
 
-    @property
-    def attachments(self):
+    def get_embedded_images(self, payload):
+        return []
+
+    def attachments(self, pdf_gen, payload, cid_parts_used):
+        if pdf_gen:
+            em_im = [part.get('content-id') for part in cid_parts_used]
+        else:
+            em_im = self.get_emdbeded_images(self.parsed_message.body)
         files = []
         for attachment in self.parsed_message.attachments:
             # 'content-disposition': 'inline; filename="image001.jpg"; size=6577;\r\n\tcreation-date="Mon, 21 Feb
@@ -113,9 +121,16 @@ class Parser:
             else:
                 raw_file = attachment["payload"].encode("utf-8")
             filename = attachment["filename"].replace(u'\r', u'').replace(u'\n', u'')
-            files.append({"filename": filename, "content": raw_file, 'size': len(raw_file),
-                          'disp': attachment.get('content-disposition', '').split(';')[0],
-                          'type': attachment['mail_content_type']})
+            disp = attachment.get('content-disposition', '').split(';')[0]
+            if disp not in ('inline', 'attachment'):
+                logger.error("{}: attachment with filename '{}' with unknown disposition '{}'".format(
+                             self.mail_id, filename, attachment.get('content-disposition', '')))
+            if disp == 'inline' and attachment['content-id'] not in em_im:
+                logger.warning("{}: inline attachment with filename '{}' not found in embedded".format(
+                               self.mail_id, filename))
+                disp = 'inline'
+            files.append({"filename": filename, "content": raw_file, 'size': len(raw_file), 'disp': disp,
+                          'type': attachment['mail_content_type'], 'cid': attachment['content-id']})
         return files
 
     def generate_pdf(self, output_path):
@@ -134,3 +149,4 @@ class Parser:
             payload = header_info + payload
         payload = payload.encode("UTF-8")
         email2pdf.output_body_pdf(self.message, payload, output_path)
+        return payload, parts_already_used
