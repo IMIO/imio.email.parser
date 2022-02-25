@@ -135,8 +135,9 @@ class Parser:
                 logger.error("{}: attachment with filename '{}' with unknown disposition '{}'".format(
                              self.mail_id, filename, attachment.get('content-disposition', '')))
             if disp == 'inline' and attachment['content-id'] not in em_im:
-                logger.warning("{}: inline attachment with filename '{}' not found in embedded".format(
-                               self.mail_id, filename))
+                if self.dev_mode:
+                    logger.warning("{}: inline attachment with filename '{}' not found in embedded".format(
+                                   self.mail_id, filename))
                 disp = 'attachment'
             files.append({"filename": filename, "content": raw_file, 'size': len(raw_file), 'disp': disp,
                           'type': attachment['mail_content_type'], 'cid': attachment['content-id']})
