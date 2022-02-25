@@ -139,8 +139,8 @@ class Parser:
                     logger.warning("{}: inline attachment with filename '{}' not found in embedded".format(
                                    self.mail_id, filename))
                 disp = 'attachment'
-            files.append({"filename": filename, "content": raw_file, 'size': len(raw_file), 'disp': disp,
-                          'type': attachment['mail_content_type'], 'cid': attachment['content-id']})
+            files.append({"filename": filename, "content": raw_file, 'len': len(raw_file), 'disp': disp,
+                          'type': attachment['mail_content_type']})  # , 'cid': attachment['content-id']})
         return files
 
     def generate_pdf(self, output_path):
