@@ -82,6 +82,9 @@ class TestParser(unittest.TestCase):
             omsg = oparsed.message
             iparsed = Parser(omsg, False, '1')
             payload, cid_parts_used = iparsed.generate_pdf('/tmp/01.pdf')
-            ats = iparsed.attachments(True, payload, cid_parts_used)
+            ats = iparsed.attachments(True, cid_parts_used)
+            self.assertListEqual([at['filename'] for at in ats], dic['attachs'], name)
+            self.assertListEqual([at['disp'] for at in ats], dic['disps'], name)
+            ats = iparsed.attachments(False, cid_parts_used)
             self.assertListEqual([at['filename'] for at in ats], dic['attachs'], name)
             self.assertListEqual([at['disp'] for at in ats], dic['disps'], name)

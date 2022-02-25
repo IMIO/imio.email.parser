@@ -102,20 +102,29 @@ class Parser:
             headers['Agent'] = correct_addresses(MailParser(self.initial_message).from_)
         return headers
 
-    def get_embedded_images(self, payload):
-        return []
+    def get_embedded_images(self):
+        payload = self.parsed_message.text_html
+        if not payload:
+            payload = self.parsed_message.text_plain
+        payload = ''.join(payload)
+        ret = []
+        for cid in re.findall(r'cid:([\w_@.-]+)', payload, re.I):
+            image_part = email2pdf.find_part_by_content_id(self.message, cid)
+            if image_part is None:
+                image_part = email2pdf.find_part_by_content_type_name(self.message, cid)
+            if image_part is not None:
+                ret.append(image_part.get('content-id'))
+        return ret
 
-    def attachments(self, pdf_gen, payload, cid_parts_used):
+    def attachments(self, pdf_gen, cid_parts_used):
         if pdf_gen:
             em_im = [part.get('content-id') for part in cid_parts_used]
         else:
-            em_im = self.get_emdbeded_images(self.parsed_message.body)
+            em_im = self.get_embedded_images()
         files = []
         for attachment in self.parsed_message.attachments:
-            # 'content-disposition': 'inline; filename="image001.jpg"; size=6577;\r\n\tcreation-date="Mon, 21 Feb
-            # 2022 11:27:26 GMT";\r\n\tmodification-date="Mon, 21 Feb 2022 14:31:06 GMT"'
-            # 'content-disposition': 'attachment; filename="Permis de la Parcelle X00.pdf";\r\n\tsize=433271;
-            # creation-date="Mon, 21 Feb 2022 11:27:26 GMT";\r\n\tmodification-date="Mon, 21 Feb 2022 14:31:06 GMT"'
+            # 'content-disposition': 'inline; filename="image001.jpg"'
+            # 'content-disposition': 'attachment; filename="Permis de la Parcelle X00.pdf"'
             if attachment["binary"]:
                 raw_file = base64.b64decode(attachment["payload"])
             else:
