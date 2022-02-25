@@ -70,6 +70,10 @@ class TestParser(unittest.TestCase):
                      'disps': [],
                      'attachs': []
                      },
+                    {'fn': '03_email_with_false_inline.eml',
+                     'disps': ['inline', 'attachment', 'attachment'],
+                     'attachs': ['1624352401933.png', 'Erreur 2.jpg', 'Erreur 1.png']
+                     },
                     ]
         for dic in to_tests:
             name = dic['fn']

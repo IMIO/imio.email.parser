@@ -1,0 +1,614 @@
+Return-Path: <agent@ofrom.be>
+X-Original-To: toto@mail.be
+Delivered-To: toto@mail.be
+Received: by mail.mail.be (Postfix, from userid 65534)
+	id 7F649C03C0; Wed, 23 Feb 2022 15:02:40 +0100 (CET)
+Received: from mail-il1-f180.google.com (mail-il1-f180.google.com
+ [209.85.166.180])
+	by mail.mail.be (Postfix) with ESMTPS id 79D4BC00F1
+	for <toto@mail.be>; Wed, 23 Feb 2022 15:02:39 +0100 (CET)
+Received: by mail-il1-f180.google.com with SMTP id v5so5298107ilm.9
+        for <toto@mail.be>; Wed, 23 Feb 2022 06:02:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ofrom.be; s=google;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=K4eDHcuykUlWWSf6MnRTm8CzRwVhEzwBAR0FYX71yjI=;
+        b=AWPFJye4nnIacI6RdYrHq1MXUbu6XigskcotfWLzDaKsoamIS58w0uvwJ4i65pIryg
+         Hww6WqA2Dm55app3sRoalLzgwW9oNf7R37zkO8icrl+bi/Y02p9HvKci8G3B99x39ryB
+         XbvevQ+rEiycuK5bHIkx0vs1KjlFNLQ6DADZ4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=K4eDHcuykUlWWSf6MnRTm8CzRwVhEzwBAR0FYX71yjI=;
+        b=6CZM1NNjQMvv7m3WVO8KevyPnsKF7AdDMtUWpawcxtLX/m3e4H2dY5k2cwjgSt4h1E
+         05HgZ2H5Bv5v7gXHcB18/S3sBD6ZtcQUceB060NlZTUAqsPKMsf24rf/2T2KmMhDn8GX
+         k84GQ8CSTcOJLR5lpKMfruq3liDERBQywZtyyD5IzyXgpiRiyWJkO/HEB2uyg7Vwe3TE
+         xQltDjturvVmpnAmIN43zNBWeFylo05B4BzjxvmPyTKS/ApoyqeZTWV743booXb7QgJF
+         I+vEpvyexM9yV+dIQIEh0QgMsBF57/AZJW6/nHGsjENZhYoAlRj9o/BZHwE4198JK/z5
+         c8yA==
+X-Gm-Message-State: AOAM531y/RVG8THQtoP1GtuswMQivDEHpVXcgrfExVJcLdP6mI2yoRnb
+	My6yvrfN7YKSWnyit+rOrth2HW+Xl4YXlpVSVUCD0kXmJ8Q=
+X-Google-Smtp-Source: 
+ ABdhPJyGUoq2envlw9dTT6gUCTRExzuK084Jeo4he7/Pc+IXbHf+6g1MbZasG5gD9TWQ2Zrx4hnb/dwygX/ExCF6nTc=
+X-Received: by 2002:a92:d242:0:b0:2b9:a33b:9068 with SMTP id
+ v2-20020a92d242000000b002b9a33b9068mr25320015ilg.144.1645624956462; Wed, 23
+ Feb 2022 06:02:36 -0800 (PST)
+MIME-Version: 1.0
+From: =?UTF-8?Q?St=C3=A9phan_Name?= <agent@ofrom.be>
+Date: Wed, 23 Feb 2022 15:02:19 +0100
+Message-ID: 
+ <CAMU0dk445WF_x3dKfrGQzDG3erGUj4Ue8QyqAPjFObpqGi_LVg@mail.gmail.com>
+Subject: 
+To: toto@mail.be
+Content-Type: multipart/mixed; boundary="000000000000f752c605d8afeaa3"
+
+--000000000000f752c605d8afeaa3
+Content-Type: multipart/alternative; boundary="000000000000f752c405d8afeaa1"
+
+--000000000000f752c405d8afeaa1
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+St=C3=A9phan Name
+iA.Docs: 081 586 114
+support-docs@ofrom.be
+Rue L=C3=A9on Morel, 1
+5032 Isnes
+<https://www.google.be/maps/@50.4988874,4.7196311,17z/data=3D!3m1!4b1!4m2!6=
+m1!1s1c2DaVSYUq_r51IQWebuOZPdgVGI>
+<https://www.ofrom.be>
+La mutualisation informatique
+au service des pouvoirs locaux
+
+
+Disclaimer Les informations contenues dans ce courrier =C3=A9lectronique
+(annexes incluses) sont confidentielles et r=C3=A9serv=C3=A9es =C3=A0 l'usa=
+ge exclusif des
+destinataires repris ci-dessus. Si vous n'=C3=AAtes pas le destinataire, so=
+yez
+inform=C3=A9 par la pr=C3=A9sente que vous ne pouvez ni divulguer, ni repro=
+duire, ni
+faire usage de ces informations pour vous-m=C3=AAme ou toute tierce personn=
+e. Si
+vous avez re=C3=A7u ce courrier =C3=A9lectronique par erreur, vous =C3=AAte=
+s pri=C3=A9 d'en
+avertir imm=C3=A9diatement l'exp=C3=A9diteur et d'effacer le message e-mail=
+ de votre
+ordinateur.
+
+--000000000000f752c405d8afeaa1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br clear=3D"all"><div><div dir=3D"ltr" class=3D"gmail_sig=
+nature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><p>
+	<span style=3D"font-size:large;color:rgb(216,41,123);font-family:Quicksand=
+,Arial">St=C3=A9phan Name</span></p>
+<div style=3D"float:left">
+=09
+	<div style=3D"font-size:small;float:left;clear:both;width:350px">
+		iA.Docs: 081 586 114<br>
+		<a href=3D"mailto:support-docs@ofrom.be" target=3D"_blank">support-docs@im=
+io.be</a><br>
+		<span style=3D"display:inline-block;padding-top:0.5em">Rue L=C3=A9on More=
+l, 1</span><br>
+		5032 <a href=3D"https://www.google.be/maps/@50.4988874,4.7196311,17z/data=
+=3D!3m1!4b1!4m2!6m1!1s1c2DaVSYUq_r51IQWebuOZPdgVGI" target=3D"_blank">Isnes=
+</a>
+	</div>
+</div>
+<div style=3D"float:left">
+	<a href=3D"https://www.ofrom.be" target=3D"_blank"><img alt=3D"" src=3D"htt=
+ps://my.ofrom.be/media/uploads/2020/02/13/imio-logo.png"></a><br>
+	<span style=3D"font-size:small">La mutualisation informatique</span><br><s=
+pan style=3D"font-size:small;color:rgb(216,41,123)">au service des pouvoirs=
+ locaux</span></div>
+<br>
+
+<div style=3D"font-size:x-small;color:#424242;clear:both">
+<br>
+	Disclaimer Les informations contenues dans ce courrier =C3=A9lectronique=
+=20
+(annexes incluses) sont confidentielles et r=C3=A9serv=C3=A9es =C3=A0 l&#39=
+;usage exclusif=20
+des destinataires repris ci-dessus. Si vous n&#39;=C3=AAtes pas le destinat=
+aire,=20
+soyez inform=C3=A9 par la pr=C3=A9sente que vous ne pouvez ni divulguer, ni=
+=20
+reproduire, ni faire usage de ces informations pour vous-m=C3=AAme ou toute=
+=20
+tierce personne. Si vous avez re=C3=A7u ce courrier =C3=A9lectronique par e=
+rreur,=20
+vous =C3=AAtes pri=C3=A9 d&#39;en avertir imm=C3=A9diatement l&#39;exp=C3=
+=A9diteur et d&#39;effacer le=20
+message e-mail de votre ordinateur.</div>
+</div></div></div></div>
+
+--000000000000f752c405d8afeaa1--
+
+--000000000000f752c605d8afeaa3
+Content-Type: message/rfc822;
+	name="Messages d'erreur site web commune.eml"
+Content-Disposition: attachment;
+	filename="Messages d'erreur site web commune.eml"
+Content-ID: <f_kzzmk0rh0>
+X-Attachment-Id: f_kzzmk0rh0
+
+Delivered-To: agent@ofrom.be
+Received: by 2002:a02:6053:0:0:0:0:0 with SMTP id d19csp4779166jaf;
+        Tue, 22 Jun 2021 02:14:20 -0700 (PDT)
+X-Received: by 2002:a05:6402:48f:: with SMTP id
+ k15mr3491837edv.262.1624353260552;
+        Tue, 22 Jun 2021 02:14:20 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1624353260; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=CKBY6t5dNwF94uDkif5gnqRTuVtHpEPquHg2j5sqdalNNTrCCrDUeGyNsGQdYCaC0u
+         4lMobezVo5hYEMITl79f3wKCsVORVbP7xLcFebCfSKEZ89DgftNWiKFu1td2SPwCwjxu
+         e+UMXPKEJfSc+TB0hFrmbw3rmA89tzJIZ3SyqYzLrfq6YUd0JkIsPbe71/aPRytTjaT8
+         rv2Ghh6V2LEk5ygdU1lhNaUgTXqUiQIMiaDz95+IHkBKczQHqC/QhqhjDMDTnHNkA6qp
+         Z86WPkAJd4Zn859Y35drcKg9X2dTZ1XMja3G0tgQKYvfKVyp+Q3knkkOD01gDe/Ix89P
+         u09g==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20160816;
+        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
+         :list-id:mailing-list:precedence:mime-version:importance:subject
+         :message-id:reply-to:cc:to:date:from:sender:dkim-signature;
+        bh=QM1jtizudMNy79g+wuuFZyZgvcp0qXHrMZw8IDV0il4=;
+        b=0PCRU4h2NjDV/MjOaVeo2U5aBg1lOdeMo9UZsV2IEQInVyT6g1z48f2n5W3/s6qfKB
+         kud31yE+7aalpoufcMtXcoZPlsH7g4EJ9o7uIVaR3qjdfl/A6CLFo6pw/NhaIs3zwFD9
+         Dgnrea0YnlKsszk4wUG2ygFICcBATBZgAMQ8casDq8Im9s2kk/GesKheOEQCMpQljsby
+         hTIrJyYonlcrJ3mTGvzKdz/mziIlz9LQzyiH/cKAazICqQN7YV3JuqDG7r+m+Kxy2F2X
+         p15rx7nEOX2sZ3qEtQaK3vpplOqQr47DHMvoXMM6ClYRoc6tsHCKmRs/Sw2jWIOZUUg5
+         bKaw==
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@ofrom.be header.s=google header.b=coYEUP3v;
+       arc=pass (i=1 spf=pass spfdomain=commune.be);
+       spf=pass (google.com: domain of
+ support+bncbaabb26ty2damgqeh6o35uq@ofrom.be designates 209.85.220.69 as
+ permitted sender) smtp.mailfrom=support+bncBAABB26TY2DAMGQEH6O35UQ@ofrom.be
+Return-Path: <support+bncBAABB26TY2DAMGQEH6O35UQ@ofrom.be>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com.
+ [209.85.220.69])
+        by mx.google.com with SMTPS id
+ hq42sor3443583ejc.22.2021.06.22.02.14.20
+        for <agent@ofrom.be>
+        (Google Transport Security);
+        Tue, 22 Jun 2021 02:14:20 -0700 (PDT)
+Received-SPF: pass (google.com: domain of
+ support+bncbaabb26ty2damgqeh6o35uq@ofrom.be designates 209.85.220.69 as
+ permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@ofrom.be header.s=google header.b=coYEUP3v;
+       arc=pass (i=1 spf=pass spfdomain=commune.be);
+       spf=pass (google.com: domain of
+ support+bncbaabb26ty2damgqeh6o35uq@ofrom.be designates 209.85.220.69 as
+ permitted sender) smtp.mailfrom=support+bncBAABB26TY2DAMGQEH6O35UQ@ofrom.be
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ofrom.be; s=google;
+        h=sender:from:date:to:cc:reply-to:message-id:subject:importance
+         :mime-version:x-original-sender:x-original-authentication-results
+         :precedence:mailing-list:list-id:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=QM1jtizudMNy79g+wuuFZyZgvcp0qXHrMZw8IDV0il4=;
+        b=coYEUP3vzvFZcs4n+GFpSdQVygqD7eJoO6xkIoJVZgqWBxpdZ4yTWOUcIVfnT7fH9J
+         s2x1OkbOnHWPBmSeFJgAuqqTPnyrub6MS3PXaFCQKo6jQMRpwXYLpkHoqbyKmIiNDU2i
+         CH1T3R/vu5Lwyd5bf04oMZg4n9267U2nX1wMo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=sender:x-gm-message-state:from:date:to:cc:reply-to:message-id
+         :subject:importance:mime-version:x-original-sender
+         :x-original-authentication-results:precedence:mailing-list:list-id
+         :x-spam-checked-in-group:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=QM1jtizudMNy79g+wuuFZyZgvcp0qXHrMZw8IDV0il4=;
+        b=F+8jpGdpGVIfVeRSsb9PY2bUezjRMw72Q5bOyxilK5oBM2+Byl15NrLjeDtcz1UH53
+         lr/iTTMtVfVdKveppDTwHDtPNjAgkF7ASsxCrKgf4s7SwgXBZjOuf0JMSP7sVBYq9EKu
+         ikRUes+Ce72Capr1pRLyBzi4E6uzyFpb0b55iggUbZ1DVwZMFS/xN+WfLD9teZJRipJi
+         h7HIr2DM4X3FGayBVEJo+9y7y0RibZ7BA6/LPI7G9akBMZKGMLy6S9Veq0hwOhtL5oNM
+         L/2cHcP6jD9V3RX0wbYwF9KbnxrSQOQCTB0xpA1tIctzuSnCiWgC7LqI9EV52i8qRsyr
+         oo5Q==
+Sender: support@ofrom.be
+X-Gm-Message-State: AOAM5304fATA0syNFTvPQZSy3nJgolcJS9LdrvPDr4bqcpQcwmPLHY41
+	zCax2yZwUfG6vo+LrVbXCDHJAzuT
+X-Google-Smtp-Source: 
+ ABdhPJxsEWS3qrkwA7zlk3XudaKONGs7A1SR4m+Anr0Yh6+EpNYkxdhiqF+RAZLqYEzKwmgb5N8bPw==
+X-Received: by 2002:aa7:ccc1:: with SMTP id y1mr3528448edt.333.1624353259944;
+        Tue, 22 Jun 2021 02:14:19 -0700 (PDT)
+X-BeenThere: support@ofrom.be
+Received: by 2002:a17:906:9605:: with SMTP id s5ls3209731ejx.2.gmail; Tue, 22
+ Jun 2021 02:14:19 -0700 (PDT)
+X-Received: by 2002:a17:907:d92:: with SMTP id
+ go18mr2962556ejc.317.1624353258351;
+        Tue, 22 Jun 2021 02:14:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1624353258; cv=none;
+        d=google.com; s=arc-20160816;
+        b=N0K5/K6I50RVgvfN4NHzO8eBm/KswJRDdApnyqOaeGiezx0umTGNI7AyWEX3zU+QHx
+         Y9dnmCPdQiP7kl1dVEMCYA+lwY5yoX3XW8IUsZ5I6xBpcfnhBXBPAnaf5mFNx22/6yzV
+         VCGpQmFUwKp3T2eE7HJtkRKEqWaLUQui2IIX609XZWmwO5evQxKP3tVxIOLFVfS6eabl
+         jThxbPonV2tvjN0r1om7GTp+3nlGdcK5mOabWtJNjLf4Mn3RhKm8Fr5CwIp4YI5dIhSX
+         uQx14bau3yiL6D4QwNxTAJIcwhCvyAcR560ipFdpaRMfTZKSbTMYV9xMCt52NbFh2NQX
+         PhQQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20160816;
+        h=mime-version:importance:subject:message-id:reply-to:cc:to:date:from;
+        bh=QM1jtizudMNy79g+wuuFZyZgvcp0qXHrMZw8IDV0il4=;
+        b=GY4di/vHEyvAKO6rk8pGSoiZgaSDOrtALJ3hnDOFmxBcTL0s3ZGy9wIxHBaY6crgAZ
+         M+y9XoD5MnlxWffF3kCgX8lKPNsurf0AKqadHI2FzrctrumrXlzSdLg8O59zbd2efZSl
+         b9IljIB93e3cPD7tXVKHgwgBMJ1nUL4/h2cPiMwQ/FbNfTJUKuBjcHJJC5fQ1z2H0z3w
+         sClJ3vHyO+5A27L7NsiW3jPjBUsUrZgNSi/PRt+0wHzNir1QhXEmmgkEyQWjgeSxbPZo
+         8ENkbI77YuOqTcfdFoc/gkAe2w5YteTaNeo/YK4WrZdbmf1v07Qjr1fkwbuLPffDbTpV
+         v3xQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of agent1@commune.be designates
+ 212.166.2.16 as permitted sender) smtp.mailfrom=agent1@commune.be
+Received: from mail.publiwin.be (mail.publiwin.be. [212.166.2.16])
+        by mx.google.com with ESMTPS id
+ w8si22264626edl.304.2021.06.22.02.14.18
+        for <support@ofrom.be>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 22 Jun 2021 02:14:18 -0700 (PDT)
+Received-SPF: pass (google.com: domain of agent1@commune.be
+ designates 212.166.2.16 as permitted sender) client-ip=212.166.2.16;
+Received: from [109.135.28.228] by commune.be with HTTP;
+ Tue, 22 Jun 2021 11:14:16 +0200
+From: Agent com 1 <agent1@commune.be>
+Date: Tue, 22 Jun 2021 11:14:16 +0200
+X-Mailer: Axigen WebMail
+To: support@ofrom.be
+Cc: "agent2" <agent2@commune.be>, Agent com 3
+ <agent3@commune.be>
+Reply-To: Agent com 1 <agent1@commune.be>
+Message-ID: <1624353256782177290@commune.be>
+Subject: Messages d'erreur site web commune
+Importance: Normal
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+	boundary="===axigen=8672162753142376745785365690574218788041=axigen==="
+X-AxigenVirus-Level: 1
+X-Original-Sender: agent1@commune.be
+X-Original-Authentication-Results: mx.google.com;       spf=pass (google.com:
+ domain of agent1@commune.be designates 212.166.2.16 as permitted
+ sender) smtp.mailfrom=agent1@commune.be
+Precedence: list
+Mailing-list: list support@ofrom.be; contact support+owners@ofrom.be
+List-ID: <support.ofrom.be>
+X-Spam-Checked-In-Group: support@ofrom.be
+X-Google-Group-Id: 757844327681
+List-Post: <https://groups.google.com/a/ofrom.be/group/support/post>,
+ <mailto:support@ofrom.be>
+List-Help: <https://support.google.com/a/ofrom.be/bin/topic.py?topic=25838>,
+ <mailto:support+help@ofrom.be>
+List-Archive: <https://groups.google.com/a/ofrom.be/group/support/>
+List-Subscribe: <https://groups.google.com/a/ofrom.be/group/support/subscribe>,
+ <mailto:support+subscribe@ofrom.be>
+List-Unsubscribe: 
+ <mailto:googlegroups-manage+757844327681+unsubscribe@googlegroups.com>,
+ <https://groups.google.com/a/ofrom.be/group/support/subscribe>
+
+This is a MIME message. You may need a MIME compliant mail user agent.
+--===axigen=8672162753142376745785365690574218788041=axigen===
+
+
+--===axigen=8672162753142376745785365690574218788041=axigen===
+Content-Type: multipart/alternative;
+	boundary="===axigen=5348581957813844783518249063505284737712=axigen==="
+
+This is a MIME message. You may need a MIME compliant mail user agent.
+--===axigen=5348581957813844783518249063505284737712=axigen===
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+
+
+Monsieur Brotelle,=20
+Bonjour,
+
+je suis Agent com 1, en charge du d=C3=A9veloppement du site internet de l=
+a commune de commune.=20
+
+En voulant ajouter un nouvel =C3=A9l=C3=A9ment sur notre site web, plusieur=
+s messages d'erreur s'affichent.=20
+Pourriez-vous me venir en aide s'il vous plait?
+
+Veuillez trouver en pi=C3=A8ces jointes les captures d'=C3=A9cran relatives=
+ =C3=A0 ces messages d'erreur.
+
+D'avance merci,
+Bien =C3=A0 vous,
+
+
+Agent com 1=20
+
+
+=E2=80=8B=E2=80=8B
+Agent com 1=20
+D=C3=A9partement Affaires g=C3=A9n=C3=A9rales =E2=80=93 Service Communicati=
+on
+agent1@commune.be =E2=80=8B
+=20
+
+
+
+Ce message reste informel, toute correspondance del=E2=80=99administration =
+communale de commune, pour =C3=AAtre officielle, doit =C3=AAtrerev=C3=AA=
+tue =C3=A0 la fois de la signature de la Bourgmestre ou du Membre du Coll=
+=C3=A8gecommunal qu=E2=80=99elle d=C3=A9l=C3=A8gue et de celle de la Direct=
+rice G=C3=A9n=C3=A9rale ou de l=E2=80=99Agent(e)qu=E2=80=99elle d=C3=A9l=C3=A8=
+gue, conform=C3=A9ment aux articles L 1132-3, L 1132-4 et L 1132-5 duCode d=
+e la D=C3=A9mocratie Locale et de la D=C3=A9centralisation (C.D.L.D.).=20
+=20
+Ce message et toutes ses annexes sont con=C2=ADdentiels et nes=E2=80=99adre=
+ssent qu=E2=80=99au(x) destinataire(s) auxquels ils sont transmis. Si vous =
+n=E2=80=99=C3=AAtespas destinataire de ce message, veuillez sans d=C3=A9lai=
+ en informer son auteur etproc=C3=A9der =C3=A0 la suppression de ce message=
+ et de toutes ses annexes. Lapublication, l=E2=80=99impression, la reproduc=
+tion, la diffusion et/ou la distributionde ce message et de toutes ses anne=
+xes aupr=C3=A8s de tiers sont formellementinterdites.L=E2=80=99administrati=
+on communale de commune, traite vos donn=C3=A9es enconformit=C3=A9 avec =
+le RGPD et conform=C3=A9ment aux dispositions pr=C3=A9vues dans notrepoliti=
+que de con=C2=ADdentialit=C3=A9 disponible sur notre site internet.
+
+
+=20
+
+
+
+--===axigen=5348581957813844783518249063505284737712=axigen===
+Content-Type: multipart/related;
+	boundary="===axigen=9402654001153258122508900860803685516531=axigen==="
+
+This is a MIME message. You may need a MIME compliant mail user agent.
+--===axigen=9402654001153258122508900860803685516531=axigen===
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+
+<html><head><style id=3D"axi-htmleditor-style" type=3D"text/css">p { margin=
+: 0px; }</style></head><body dir=3D"" style=3D"font-size: 10pt; font-family=
+: &quot;Source Sans Pro&quot;, sans-serif; background-image: none; backgrou=
+nd-repeat: repeat; background-attachment: fixed;"><div class=3D"x-axi-signa=
+ture"><div style=3D"font-family: &quot;Source Sans Pro&quot;;">Monsieur Bro=
+telle, <br>Bonjour,</div><div style=3D"font-family: &quot;Source Sans Pro&q=
+uot;;"><br></div><div>je suis Agent com 1, en charge du d=C3=A9veloppement=
+ du site internet de la commune de commune.&nbsp;</div><div><br></div><d=
+iv>En voulant ajouter un nouvel =C3=A9l=C3=A9ment sur notre site web, plusi=
+eurs messages d'erreur s'affichent.&nbsp;</div><div>Pourriez-vous me venir =
+en aide s'il vous plait?</div><div><br></div><div>Veuillez trouver en pi=C3=A8=
+ces jointes les captures d'=C3=A9cran relatives =C3=A0 ces messages d'erreu=
+r.</div><div><br></div><div>D'avance merci,</div><div><span style=3D"font-f=
+amily: &quot;Source Sans Pro&quot;; font-size: 10pt;">Bien =C3=A0 vous,</sp=
+an></div><div><font face=3D"Source Sans Pro"><br></font></div><div><font fa=
+ce=3D"Source Sans Pro">Agent com 1&nbsp;</font></div><div><span><br></span=
+></div><div class=3D"x-axi-signature" style=3D"; font-size: 10pt; font-fami=
+ly: " source=3D"" sans=3D"" pro",=3D"" sans-serif;"=3D""><span style=3D"fon=
+t-size: 10pt;">=E2=80=8B=E2=80=8B</span><img src=3D"cid:7_1624352402047@loc=
+aldomain"><p class=3D"MsoNormal" style=3D"font-size: 11pt; margin: 0cm; fon=
+t-family: Calibri, sans-serif;"><b><span style=3D"font-size: 10pt;">Agent =
+Com 1&nbsp;</span></b></p><p class=3D"MsoNormal" style=3D"font-size: 11pt; =
+margin: 0cm; font-family: Calibri, sans-serif;"><span style=3D"font-size: 1=
+0pt;">D=C3=A9partement Affaires g=C3=A9n=C3=A9rales =E2=80=93 Service Commu=
+nication<o:p></o:p></span></p><p class=3D"MsoNormal" style=3D"margin: 0cm; =
+font-family: Calibri, sans-serif;"><span style=3D"font-size: 13.3333px;"><s=
+pan id=3D"ext-gen11405"><a href=3D"agent1@commune.be">agent1=
+@commune.be</a>&nbsp;=E2=80=8B</span></span></p><p class=3D"MsoNormal" s=
+tyle=3D"font-size: 11pt; margin: 0cm; font-family: Calibri, sans-serif;"><s=
+pan style=3D"font-size: 10pt;">&nbsp;</span></p><div class=3D"MsoNormal" al=
+ign=3D"center" style=3D"margin: 0cm; font-size: 11pt; font-family: Calibri,=
+ sans-serif; text-align: center;"><span style=3D"font-size: 10pt; font-fami=
+ly: OpenSans-Regular;"><hr size=3D"2" width=3D"100%" align=3D"center"></spa=
+n></div><p class=3D"MsoNormal" style=3D"margin: 0cm; font-size: 11pt; font-=
+family: Calibri, sans-serif;"><span style=3D"font-size: 8pt; font-family: O=
+penSans-Regular; color: rgb(64, 64, 64);">Ce message reste informel, toute =
+correspondance del=E2=80=99administration communale de commune, pour =C3=AA=
+tre officielle, doit =C3=AAtrerev=C3=AAtue =C3=A0 la fois de la signature d=
+e la Bourgmestre ou du Membre du Coll=C3=A8gecommunal qu=E2=80=99elle d=C3=A9=
+l=C3=A8gue et de celle de la Directrice G=C3=A9n=C3=A9rale ou de l=E2=80=99=
+Agent(e)qu=E2=80=99elle d=C3=A9l=C3=A8gue, conform=C3=A9ment aux articles L=
+ 1132-3, L 1132-4 et L 1132-5 duCode de la D=C3=A9mocratie Locale et de la =
+D=C3=A9centralisation (C.D.L.D.).&nbsp;</span><span style=3D"font-family: &=
+quot;Source Sans Pro&quot;, sans-serif;"><o:p></o:p></span></p><p class=3D"=
+MsoNormal" style=3D"margin: 0cm; font-size: 11pt; font-family: Calibri, san=
+s-serif;"><span style=3D"font-size: 8pt; font-family: OpenSans-Regular; col=
+or: rgb(64, 64, 64);">&nbsp;</span><span style=3D"font-family: &quot;Source=
+ Sans Pro&quot;, sans-serif;"><o:p></o:p></span></p><p class=3D"MsoNormal" =
+style=3D"margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><=
+span style=3D"font-size: 8pt; font-family: OpenSans-Regular; color: rgb(64,=
+ 64, 64);">Ce message et toutes ses annexes sont con=C2=ADdentiels et nes=
+=E2=80=99adressent qu=E2=80=99au(x) destinataire(s) auxquels ils sont trans=
+mis. Si vous n=E2=80=99=C3=AAtespas destinataire de ce message, veuillez sa=
+ns d=C3=A9lai en informer son auteur etproc=C3=A9der =C3=A0 la suppression =
+de ce message et de toutes ses annexes. Lapublication, l=E2=80=99impression=
+, la reproduction, la diffusion et/ou la distributionde ce message et de to=
+utes ses annexes aupr=C3=A8s de tiers sont formellementinterdites.L=E2=80=99=
+administration communale de commune, traite vos donn=C3=A9es enconformit=
+=C3=A9 avec le RGPD et conform=C3=A9ment aux dispositions pr=C3=A9vues dans notrepolitique de con=C2=ADdentialit=C3=A9 dis=
+ponible sur notre site internet.</span><span style=3D"font-family: &quot;So=
+urce Sans Pro&quot;, sans-serif;"><o:p></o:p></span></p><br class=3D"Apple-=
+interchange-newline"><table class=3D"MsoNormalTable" border=3D"0" cellspaci=
+ng=3D"0" cellpadding=3D"0" width=3D"450" style=3D"width: 337.5pt; backgroun=
+d: white; border-collapse: collapse;"><tbody><tr><td width=3D"150" rowspan=
+=3D"5" valign=3D"top" style=3D"width: 112.5pt; padding: 0cm;"></td></tr></t=
+body></table><p class=3D"MsoNormal" style=3D"font-size: 11pt; margin: 0cm; =
+font-family: Calibri, sans-serif;"><span style=3D"font-size: 10pt;">&nbsp;<=
+/span></p></div></div></body></html>
+--===axigen=9402654001153258122508900860803685516531=axigen===
+Content-Type: image/png;
+	name="=?utf-8?Q?1624352401933.png?="
+Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+	filename="=?utf-8?Q?1624352401933.png?="
+Content-ID: <7_1624352402047@localdomain>
+
+iVBORw0KGgoAAAANSUhEUgAAALAAAACdCAYAAAAUhfK2AAAbEUlEQVR4Ae1dv48kSVauP2Gxt6qn
+tTu75+xp5hiJkVZ3uyNxtzddvYi+QziggzUOkHAY4WCcdBqc06zVU4N1ztE2VrsHxo6xXYWBxPwB
+II2BiVBLGJiFvsj4sl6+ehEZ+aO6e6peSqXMiox4P7548fLFr8zJZE+O6fH0yfRo+nJP1HE1DgUB
+GO7s3vT17Gi6nh1NLw9Fb9dzTxCA0UbjXc9ms6/2RC1X41AQqI33aLo+Pj4+PhS9Xc89QCCED1Xo
+sJ7Npm9KVHr69OnxfD5/WJLX8zgCO0Xg6Gj6nB4Y1ylmZ2dn7305nz8/nc/fnJ7M1/Oncw81UmB5
++s0hAK9LA37/+P2kVw3GezJfw3hPT+bXNyehc3IEEggcHx+/R+OdHU2zRnl6Mn8bjXc9P5n7UFsC
+U0++QQRms9nZxoBnFynWiHdpvDgjBk7l9XRH4MYQwKRFbcCz2VmK8enJyQUNeH4yf53Kh/Tz8/Mn
+r169erZYLC4Wi4WPKefA8nvDEJDxL8KJFDXEvLUBZzpvMN7FYrHm79WrV97RS4Hq6cMQwHhv7X3v
+TZNe9Q9OTs5ovG2dt+h1acBvh0nopR2BDAKYcaMBHx29/yyV9fTp/JIGnOu8nZ+fH9Pz4uzeN4Wo
+p4+CwOxodkEDTs2+YeyXxotzrvPm3neUanEipQhMj6ZvYcA4p8qcnpw+owHnOm/ufVMIevpOEJDx
+b275JGfdYMS5mTflfZPx9E6UcaKHhwBiXoYPGAu2EEC4QO+b67ydn5+/J2NfjERY9HTa1dXVw9Vq
+VZRXl/X/B46AXD6ZggIdNhpwrvO2WCyeCwPOet/VanW8Wi5fr5bLNX7L5dJn9FIV4OlpBDBtHD1w
+cqJBTh2nOm/wvi9fvrymAbd5X2m8q+Xy7TfffJMce05L73cOGgEs2BHhgznR8OXTL58I75v0ql28
+73K5PKPnDWcPHw7aDnsrL+Pf1PBZY+o4MfPWxfvC08Lj0oCXy2XS8/dWzAseBgL13rfE4vU49sup
+4+QKtbjegbNuSS8NVFdXV89pvKvl8tpDh8OwtZ1oyfAhNXyG4TIRPiQ7WYvF4m1J7Bs7bqHTBiNG
+KLETxZzo/iMgtw+lFq/LqeNU5w3TxDTexWKR977NUQcPHfbfzHanodg+ZIYGcuw3N/PWwft+JUMH
+eOPdaeeU9x6BzfJJe/F6Y+o40XlT3je5CD523K5pwMvlMrlgaO+BdwWHI9DYPpR494OYOjY9NKRQ
+3jfpUTFJQePF+O9wDZzCQSMgtw9Zi9fltqHUzJtasJ70vmGaOM62BSP20OGgbW8U5evtQ4nF63Lq
+ONV5Q4eNnTesQEsJ1phxu7pKbtVPlfd0R2ALAca/qcXrnDpOdd5Kve9qtdp03FarohelbAnrCY6A
+REAun7SGz+S2odSyyRLvqztuCCWkHH7tCPRCgNuHUovXxdSx2Xkr9b6NjpuHDr3qygsZCGy2D20P
+n8ltQ6nOm1ywnop9VcfNV5oZ9eBJPRHg9iFr8bqcOrY6b2q7UHLkodFx85VmPWvKi00wRBbetI63
+reN3b/rzev1DTJMwodOGtQ+pzhu9L9b9prwvJik45uuL1CW6fp1FAAYap4cvOcpAYy05f/TR/X/l
+wp3PPvvshWamvK85HKY6bh46aBD9/waBMJtWvc8Bb1Tnrgp8FqDX73e/973wtsmnX/yY5UHzEp0+
+8FLe19w9sVouL4T39ZVmm+ryKyJQrSLbvMehr8Hqcj/64Y+CAT9+/JgGXJ/vf/Qh1/ribHpfbMoU
+xusrzVhhfq4QCIa7+fhKbVzaEPv8//g7H/Ndv+sP73+wRfuPfvqTYMBff/31+uPv3P8Wsuh6Wa1W
+b6IB+yJ1Dc4h/9+l4dLYP/3002DAn3/++ZbxwvvCcDFtDENmGezm4ESI7Lhh9u2Q68t1jwiEGFe8
+8qk2nJ4xbq484l504B48eLAx0MhHel8Ys6bz4MF3X2BrUPS+vtLMLXgyiavFBnfMtLFZ/z/55JNg
+vKLzVhtp0vuKRvTLX/wibBG6+vbb//VF6m69k3qlmDASy/DGSvvB938QDNjqvJ2ezuvY1/K+Tz7/
+rN7f9ud/9rP/8+/KHbgBb6Z5+w2FbRk1Ptpyb/r66Gj67/HeJcaK+bt//4MXHPu9f//D/9Ll//75
+8+3YVzSsi3/8TTDgf3j1qvbaqQ2iB161+6/+CMYbxm2xRJKdK6LGiQ3E1UzDmVPHnHmLY8tnMMKn
+T3/83+i4wYgt7/uzP/2T2vs+fvx7tQFXjWB7nYXk69d7hsBA48VkQ3LSoOoMTs0PF3LbkLVsktuF
+fvqTP/xWe+YHD767/uff/jYY8F/9xc+V8fLp4Ua8Z2Zqq9PfeGcXqbfpSE7cPoSwQaaLXcdbyybF
+Zs3wvuBqDfFm8uTFr34VjBchhDbu5n83Yon53l3LVzs1K55ezDiL8dcSQNgp1GEFP1ZoLZuk99Wf
+BgCNL774/f/gjNt26LAtr8fEJbX0DuappoS3KzxnyKktQDn1sXzSWrzObUN62aRYsG6+rZ3vNfvb
+Z3/T4n2Fbomdzzm5/d4dRiBu6yke54UBag9aot5m+1DzUc43TrLzJmlxu5D2vsgj3mv29tGjh3/d
+YRHRdR/5pVx+fYcQqF+qJ4akkp53Nn2jRw9KVeH2Id3J47Yh3XnLed/4XrNqxi0uUodRlhoxGmFf
+PUr19Xw3gECnuHeA8UIVdhC14cSPFW513nLeF69BjbFvYydGNOKicEJ3JG8AbmcxJgKdQoeBxgu5
+4fWwplfqIMZ+G2+bbPG+XCpprjSrPX3BEwUYSHn8+h1CQH6PIhkyVEYwOGakZ9QdP75xUnfeuGDd
+jH3jC6lzr0PlaEeLXms8Fd6hKnNRiUCnUYfMxATptZ0ZqkiPx13HuvMmtgttrSZjx63kTeqc8Wsx
+4q3QpU0Xv38HECjvuI3joeDt9fAZ3zipO2/0vggjJFSi42aGDjIvrun1MwZ8aS2G13T8/x1DoIP3
+vdYdrr6qYHRATyLEqeOGB8x63/hC6i6vQzVCiSCHfBL01cnL3RICxbHvSAP+bDDS2/GNk3rmLeV9
+xZeEtsKKHIxogGFoDSvh4obQXH6/d8cRiCMP7cNMiQ+t9FEPw1UwIlmWb5yUnTfxdaGGkcbt8fiS
+0LUvUpcoHuC18Ug1jVl6y6EwxXi7MXyGqWPdeeO33bZi3/gloS6hw1CZvfwdRSCOxZpGW3d2RvS+
+gCHQFeEI3zgpO28p7xs7bmvsMr6jkLpYN4VAQa+8MmxhbENl4/JJ2WmKU8eNkCLpfWPHzV+HOrQm
+9qB8jEXz3lfFqkPVDiGL8Oj8WKHsvKW8b91x89ehDq2G/ShfMrCvh7qGag6ecs0Bp45l540L1mXs
+W3fcPHQYWgX7UT4OJ7V53zXCjLE0Jk9JE1PHRucNX9ZsTOlyxg2viBpLHqfzDiPAsdi6o2YvdGnE
+pUPVjfFvTRNeN7wuVXznTXjfelENX0jtr0MdWgN7VL4o/k18JagvDNXyyc1UdJw6rg0adON2oab3
+rTpu/jrUvsDvY7mS2TcZq46BQRiyEwuB4thvvWzS8r71l4Q8dBijCvaHRtHiHWFsQzXnjB/XUnDq
+WHbeFovFGxn78oXUJSvNhsrn5d8xBFpi39C5k2O1Q9ULi8pFSIJhM9l544J1+WmA+CWhopVmQ+Xz
+8u8YAiUGPKZKiH/l4nVsG5Izb3G7UB37io5b8qUoY8rntN4hBEpm4PRa3aHqYfEOh8/i1HHdebO8
+L74k5KHDUNT3tHzREJp43A+FAYYrGwSmjuXMm/a+sePmK82GAr+v5W/agBE6cEaP24bYeTs/P38o
+P4slOm7P9hV/12sgAjdtwGHILo5oIO6Vnbe4YL1+L1rsuDXW/w5U14vvGwK3YMB1vIttQ+y8YcQh
+et/wWtXYcfPQYd8Mbmx9btKAI6+weD1OHdfGrL1v+JKQrzQbu7r3j95NGnCYso7rifHGSXbetPcN
+XxLylWb7Z2y70OgmDRgzfpwQwdQxO2/S+7Lj5ovUd1Hbe0jzpgw4LJ+Mi9cxdczOGxasY9EOzoA3
+fALWQ4c9tLQdqcR1uS2zcXWs2lcMLJ/k8FkY+43LJuN2oTDyED8B6yvN+oJ8qOVajDeshRiKDYyX
+s28IH0Bvy/viE7C+0mwo1IdXvmQ3MmPXvugg/kVZTB2z8ya9Lzpuvki9L7oHXq5kOSVi5b4wVWFK
+tXgd24bQeYveN2yHDx231eoNzn15eLkDRqBkR8aQBe1h+eRs9hWmjtl5w4J1/AA7Om6516EecNW4
+6iUI8P0M2Vh4wIIeLJ+EF8a2Ic68YdFOMN7V6omvNCupJc+TRIA7JLIGPOCdEFj/AOYJ7/vaQ4dk
+1fiNUgRKOnLw1KX0mA+NAyvQEPeKzlvlfa+unnvoQKT8PAiBapew+F6aubV+s4u4lBniXwyfwXhh
+xIx98V4zDx1KUfR8rQgUxcE9wgg5eQEhFotFCCfCjNtqVb/voVVAz7BTBFBPGI3iWL1khrQwUjXi
+e/Ek/VGuC2fk1vCoXRgCGHysEJ03bBeCB8Zkhb8OtQuKu8/LoVRruJTLDYaMRO1eA/GttmxnrsNo
+RGi5s5mcuAgbNeF9b0QhZ1KMwH4Y8Gx2ljXeGBdbrdRCCp03jP1i6SS87/n5+Rnea+YrzSy0bjdt
+LwwYEBaNRhR6YYQbCB3QecO0cey4+f6227VVk/veGHDJrFzw0gWxMDxwjH0fwgPD+5roeeKtI7A3
+Bhw7cyVfp89+ZgthxqNHj76PxTvsuHnocOt2mhRgbwwYGhZ7YfVtY4kOhuVgvNguBO/row4Snbt3
+vVcG3MELJ4fVwuTFfI7Q4SE8r08X3z2jlRLtlQFDsQ5euH5NlATkpq4RqnAQPlTCvelrnCF/yRpm
+5MOvVF50TFO0q2nz6XNOBsARoB8g5cI171s8qwml2YUuE2ZKWz7GCP42Fu8/gywWP6YFfkfTtTXC
+hDT0e0pwGiIDZKkw3MYM8gXdZrOzNl2CTp288NE0Gw8TpDHPUb5LNey3Fbu3gc7ypbKVVnSsyLek
+L8+4p/lVY+bTNzJf+IqontJPrEeBno2ys+kbNaKUdTSlemm55f82GSBPS+P9qqEDGtTR1MKwbItb
+8B4awNT/2fRNUcuQGve8DsaLz8NSQTUiUrXi6gugFSDpNRwErFSU0ormR3NQqRIXqwKD8R5Nq8aH
+J4hhpEiDB7LkDJ6pqpdrPCEkP2AhXmAOR7PVeECzVC+LP9KGylA9eaq1OBGzhpxVnc9g4Jd4GqXk
+2EqnYqzo3LmthW0R75lQg9XSaBqGYRgF2FOfUlGIR+5RW3tO1bAsHqiYjZfpUDGRGB/v8o2fFp96
+sVZiDL9ELxiWRXsMGepGlpDP4luUFlvw1qOZFW+dU4oWMWzJFOXBRtOkN5Ek+BSBkch0XlN+/m87
+l1R0RbPMGCkf6Lbxtu7T07etUQkeLHp5ywuX6JWq17oBJpwE5c7JkOPP8r3P0r2zwlvPiMEG7KNL
+CVtXeIfHCAG2Ht/UI8VPp+eAFp5obRmJpoX/lK0PVvEJE+JEi7ZO45MLGOp7JXpZBtxVBj4JtAyb
+dNvLa3k7/0cLZ2V3O4ftRI14pjNzUYBAW3GiyNa4zFZcjOkbBTJ/yN8yuNqAxddHM6RCjxtYpp4O
+ubK4x8YM/dry4v7GEW0/HUr0sgwYaVGHUhmiHTVlEPZV9GQt0XcrD1tJNwPmIvnZhVXpW0xaEhhf
+4nHUkrW+vQGnCRoyUJc6c8tFSUUjTwuZcLs2+MyEUI5OXR8tj27SqPkZ8pXoZRlwHbuOIcPR7CLW
+xzV4dalj6th6rkFLjUa0pMPbwHOUPmK1QF0NDuWzFbcDD2xVtNYD/+lBS/NrGjS6EAfH8e+QlrqO
+IzdWAyMty8kQP0tOlhtDhlBXWFjfsKFxHF8DOyjSZEIv2+0MYw6P92pwuijMIN+GQC1/WAFmxd2q
+AVc4WobRolK4XRtPo8IL6mBMD4zG0pU/8hsyUGc4txj21YMHoa9QMKpDGq3nzWO5ALBCBa1OlhaE
+YOn03P99N2DLa+bwsO6xMVi0iJ/V0HLlLD5d00Lc3mgk22FgV5p1/tgDrVsJjavv2QKvZhYvesbA
+caH+tvKUVfNJ/c9VWK6iLXq5TpWVX6flZNF52/7naOX0ypVr49nlPmQIXjg4w+167EKrkTeM7TG2
+KvS0NBp9LjLg2BpL8lLQzSjE9hANQWHetjPHXS3+SINOlqey6HIICjSt+21pDOVK+eXo5Qwxp9eY
+MuTkwz3KAYxH7+BREW2UXf5bRqGVYscHnUl9L/WfRmqFKKy4VFmZHhprbKSWrAS4i0GJJ0pRH0DK
+U3vwng2gQSvjGHJ6jSmDlCd1zfpCCJvK0zs9eJRGvNItPraMQguDAD82iqLxQsbqMGJNC/+7DAOR
+FvhbsuYq2uJd8a+HjsLrBlL5UulsAJY8qTJWOg3DotOm11gyWHLpNMq5EwMms6iwXikW3jOc88gW
+eKQpzwwJ8OjNPUoaMXpinHLj0avXX0k+8rpBa0QDjg2y6kf08CpC/uxqM6mLdU3DsOqgzYCHypCr
+Qykr5YANWU9TmXeUa1ROUK4wRrbAswQJj3LSTExZR28ZO5jpcCOGBXU+yCx5VrzCLGTIw3DEkpUA
+dwkhwEt6djwRtAzIQyytihNj81ur0agLy6fi7SEGHHQQkxDQxzLKlAzADbjCMVn6RYywGq9aWpkZ
+gqO+o58hfFVRs4taENXps4wiJUgwrGa4ch0qoZmGadrWKU7tXUNHDXTYSCo5YRxhSeOYIQT1i7Fk
+bEhxHSxk0Pok1pfUTyViCtmrReB6Pa25lpZ8rDoobZh9ZSD9xtM5JX/1oaDiWVjiO/oZBgjB4a2i
+4vA8nQWLyl82GkW1mPslGk2p4Mgb5GgaTGgUeIpQNsps0UZa0CdhZG2ygEd4YlUy1MYcG9JlyrOR
+bkKHdVV+doFGwrz6DNqQfahefWWAEwF/s9EFPHYwI6dB8P+OgCPgCDgCjoAj4Ag4Ao6AI+AIOAKO
+gCPgCDgCjoAj4Ag4AncPgfiB7fVqufSfY/Du2ABf1Rs/8/okGPJq5WfH4F2xgeJZ1rv32HCJHAFH
+wBFwBBwBR8ARcAQcAUfAEXAEHAFH4DAR+J3JZPKX8fdDBQH+8x7y+WEj8EHECeddHTfBg7I/mkwm
++N3a8ceFnP9uMpn8z2Qy+c/4+7fJZAJDxQ/X8h7ydj1QZpeV2lWeXeX/l4jfLnW9CR7E59eTyQS/
+WzkAIgyvzeBgpMgHD6sPlKUx63ul/yHH+jaBKBV0YD5UNBzALo33JnhIGG7VgGF8MEwYYO6Al0Y+
+KzRA2bYGkKPNey9u+1FEQXZ0Bkb/tGPjvQkeGp5bNWB4AxgOjFPHtFJQeF7ktQ6kW57ZynvIaaWh
+2hCMboKHlu/WDBhGR6+KmAneQR/wuAAFRk5DRTkG7jRs3Mc1fvJAeaThPhTFOdVQwEc/WmWFwLsQ
+LN1pIB/eR17raQHZwEPSgkzgk8ov9eE18pOX1B26SpmZHzqTZwkGWp9cmT48WIYyQReNqZQZ91OY
+EgfSlGeNtYUN8+u8rfUCowVzHCBMY45J4YQKQR7kxX0KKxVHOmnhPg0BAOAeQgyWQyNBGsrrgw1E
+pjMNNCQdCTYURz55H9dIwz15gK+WFzIhr9WAZVleIx/ogxbwoU7kr3UjT+QDDsyv84E+5EC61idX
+BuW68oDckJcyQy6JKflRZtxHXgtT1i3x4Zn1L20D2IOmPii/zIt8yXqBsOg0gQkPgsf/8gyFcd86
+kI771iHp8z4bizYuiw7S8LMqG/RovNZ9tGCAzgMNCwCmvAAbHvNbZ02TeVI6QS7Ir3XFf8iicUNe
+Kx18xuSRwxS8YB8WHjQw6o2zZcA0Xo01aGoaveqFLUoKkqoc5OlrwJK+vAaAVuVZadIIJQ1c52TW
+wMBo0Gilp9H02v7nKl7rRP5aJ/KAcWvdQAMVnDrG4qH5pvjpdDZImW4ZMOgj3Tpo3MAHR+d6IbDa
+a1leOfK4VQPWclImnHMGhfsaSPzHo4ngSVol19qAZBl9D4YLb5riBe+EBiW9c5s+uC8NYxc8pE76
+Gvwggzy0AdMgracvytH+ZMPuVC8wCACLM4jIH4SzYhRLcCqBMlIYplNYVBQ8JRXF2XpMWnSsNNIn
+UHwkSfq81gaMMsgP/siTApk89Jm8dDrogqakRz0pi3W2DDiFJXgCD9DhsQsepA2HBhuRckN/yCAP
+3mca5IdeTLfOuv471QsqFUKkfiCuvUYfA+ajgqDDiEGHtHCWB/KVpLFMiQEDPE0T5SEbGip0BR5W
+HvKRZ1QqykAXXEMGNFDLsMEbea0KlGkSawsDyZ9YMm0XPECb2FAvOjvoDRnkQV2YBizbDBhlgJ8+
+WusFGUDcKgxidO8QWB4QSgvO+xborOiUYVhlStPIl7KmeDBf7gwa0BWGpnVOlZMNEzKnGoBV2Sma
+TLcw4D2ccR+Vz2MXPGC8MFw0Tn1YdqAN2AqNNJ22/8l6oXA5AhYoluCkYYFu0WB+nK0ypWmSDowH
+vIYeNGIAlztwH3KiktoO5EHDaKMp6VgY6PvSgMfmAVkhc8opACfIKA9twKRRgpGkY1036oWEU8KR
+ALwnvLQUYEwDBi3Q13JYlWelUU6cGwrKGx2v6VXbjA35dAWmWBFvyFh6tOmL+9KAx+ZBerpuKD/D
+T/7HWRsw0uDB8Rt6NOqlS2VrAboaMBjrRgBwQAcgWI9dq/KsNA0KnyrgKQ/wk40QDRP89aMR6ZAH
+dEoOys+K4xn4gqc8WAHWPfDFTx5t+moDRtmxebDupS6QE/jgBxnkQf1lGjCmrBpv/O9VLyBY6g1Q
+0XiUkHlXA4YybDDgix/oofJBE0qDpjyQpyRNluE16IE+eUl+rAhUAvKgYel8KF9yQCeURUWy4ngm
+TWJGejAw6G3Jp+sDNDQGpIMz7luyjskD8mt5ITtkxT3IIA/qL9NwjbxoDJbeUofietHAaob6v85P
+Q9D5UunIh3tobagU6W2sMqVpmj//S17gqeWnPEiHPPghn8WXNOUZFYiKzeVHhcnKkeWhP/ni2qJj
+pUkauJ/LMwYP8iMtjZHm3yaTxBsNTZcHP6TJfJonZfLzAATgedo6jClvNICtF3UExkGgxIDhoduM
+fBxpnIoj0BEBhBCI5xAGyMcgrvG4ZQfHCl06svLsjsBuEIARwxPLjgmvET648e4Gd6c6MgIwVPkb
+mbyTcwQcgb1C4P8BZJPQlMkuZvYAAAAASUVORK5CYII=
+
+--===axigen=9402654001153258122508900860803685516531=axigen===--
+
+--===axigen=5348581957813844783518249063505284737712=axigen===--
+
+--===axigen=8672162753142376745785365690574218788041=axigen===
+Content-Type: image/jpeg;
+	name="=?utf-8?Q?Erreur_2.jpg?="
+Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+	filename="=?utf-8?Q?Erreur_2.jpg?="
+
+iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAgtJREFU
+OE+dUzurGkEUPqvrAxshIqIQ7CxiIAoSEAkrlpdUlmkuiNhZWFjnFwRR05kmrYKQIk2aBEERbFRu
+p6CSa0BBUImP9TX5Zq5KXE2TAwd3zvedb85jlOiGMcY+IvzyCP2SJOndDZoIyVoAyT9KpZJSLpfJ
+ZDJRKBQixFwQCWu5VwIgfsrn80qxWCS9Xi/4/X6fhsOhAuwzRO61Irq/A+Px+E2lUjknn7Bms0nz
++TygTebnCwGj0WjBTVc8Hlsul7YrQCugqqpOlq/GIipaLBa38i8rcDgcXz0ez0ULBoOBnE6n6na7
+v0HBePRz5ZJWlm8hkUgonU5HQC6Xa5PNZh/tdvtrHJ8f+T/xO4XvzwJIdLfb7f5oNKJgMEj1ep1W
+qxWFw2FWrVa3mEE3Go2+4ALYBh/oA1wVgljTIB6Ps0gkwhRFYYVCge12O4a+Gd4Dw1tgfr8fdzwZ
+Uu7gz+Am/eFw+J5KpV51u13+YIQgKiFshFqtFmUyGVqv12KIyWRS4KjmrlarNfBpkabTaSMWiwUm
+k4kATwZh0UKjwXn/Nt1+v7dz8v+a2Pt2u73Kx6DEfyEQCJDP5yO+3pOl0+kJ8Ld8mDKSbbwCs9ks
+9n9y9Cm+rVYrYaA0m83OAl6vd4dDHb6QbTbbh1wu934wGBDaESR+u0739Fa4+GazoV6vdxawWCxf
+cPgNV/8A0D/vFqVR8owAAAAASUVORK5CYII=
+
+--===axigen=8672162753142376745785365690574218788041=axigen===
+Content-Type: image/png;
+	name="=?utf-8?Q?Erreur_1.png?="
+Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+	filename="=?utf-8?Q?Erreur_1.png?="
+
+iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBI
+WXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QEdDTUOsDZ/QQAAAB1pVFh0Q29tbWVudAAAAAAAQ3Jl
+YXRlZCB3aXRoIEdJTVBkLmUHAAAB30lEQVQ4y5WTMWsbQRSEv93V3qFCspsUgRRKQJ0KdafCRbAI
+6aPaf8CtSruIrUY/In3+QBp1hiBijJuoMASBqnQSMfjgtHe7e5vGEhZ3BPKqfbAzb+bNruC5Qgg3
+/F99EELYxq6z1qrz8/OTx8dHlFIYY5BSEkJAa40QAoBut8vl5eWPZrP5EfgmAbz3X4GwXq/J8xzn
+HEdHR0gpUUpRliXee7z3bDYbsix7571vADQApJSvgbfT6ZSiKJjNZtzd3dXqllIe9HsL4/H4zcPD
+A4PBgOFwyP39PUopXlhEa01RFPUE/X6fJElIkoTlcolzDq011toDQAjhUNHucHZ29rPf75OmKYvF
+AillBQygta5V8Nl7P7m4uMA5h3OOdrtdkQvs0zhQkOf5byA0Gg2MMSilEEJUpgEYY6oK4jj+4r0X
+k8kEYwyz2Yzb29tagiiK6pc4Go1OjDEkScLp6Snz+bwC3iVRS3B1dbW21r46Pj5mtVodRLhbnrW2
+fgcAvV7vV7vdJssyFosFcRzvp72Mc7vdVhUIId4XRfH9+voa5xwAZVkSRRFFUewnCyEq0e4tZFlW
+djodG0LQzWbz4B3swM+JWa31UinlAPaGnp6ebgBardY//3Capjzf+ySE+PMXVSPbDahuu48AAAAA
+SUVORK5CYII=
+
+--===axigen=8672162753142376745785365690574218788041=axigen===--
+
+
+--000000000000f752c605d8afeaa3--
