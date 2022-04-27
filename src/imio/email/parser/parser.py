@@ -81,9 +81,7 @@ class Parser:
             return message
         if type(payload) is list:
             for part in payload:
-                if (
-                    part.get_content_type() == "message/rfc822"
-                ):  # maybe also check for attachment filename ?
+                if part.get_content_type() == "message/rfc822":  # maybe also check for attachment filename ?
                     self.origin = "Agent forward"
                     return part.get_payload()[0]
         self.origin = "Generic inbox"
