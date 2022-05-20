@@ -115,7 +115,7 @@ class Parser:
         return ret
 
     def attachments(self, pdf_gen, cid_parts_used):
-        if pdf_gen:
+        if pdf_gen and len(cid_parts_used):
             em_im = [part.get('content-id') for part in cid_parts_used]
         else:
             em_im = self.get_embedded_images()
