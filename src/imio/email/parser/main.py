@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from email.mime.text import MIMEText
+from imio.email.parser.utils import load_eml_file  # noqa
 from email2pdf2 import email2pdf2
+
 import mailparser
 import os
 import sys
@@ -42,7 +44,13 @@ def parse_eml():
         return "You have to pass an eml file path"
     if not os.path.exists(sys.argv[2]):
         return "The third parameter is not an existing eml file path '{}'".format(sys.argv[2])
+    # test with mailparser
     msg = mailparser.parse_from_file(sys.argv[2])
+    msg.attachments  # not correct: an eml is not considered as attachment
+    # test with email
+    msg = load_eml_file(sys.argv[2])
+    # parts = email2pdf2.find_all_attachments(msg, [])  not correct
+    email2pdf2.handle_attachments(msg, '.', True, False, [])  # bool= prefix date, ignore_floating_attachments
 
 
 def main():
@@ -50,9 +58,9 @@ def main():
         print("You have to pass a script choice: 1=emailtopdf, 2=parse_eml")
         sys.exit(0)
     if sys.argv[1] == '1':
-        print(emailtopdf())
+        emailtopdf()
     elif sys.argv[1] == '2':
-        print(parse_eml())
+        parse_eml()
 
 
 if __name__ == "__main__":
