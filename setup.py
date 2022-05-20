@@ -43,6 +43,6 @@ setup(
     ],
     entry_points="""
     [console_scripts]
-    emailtopdf = imio.email.parser.main:emailtopdf
+    emailtopdf = imio.email.parser.main:main
     """,
 )

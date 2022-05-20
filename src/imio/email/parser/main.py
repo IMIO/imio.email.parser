@@ -33,7 +33,7 @@ def emailtopdf():
     payload = payload.encode("UTF-8")
     output_directory = os.path.normpath(args.output_directory)
     output_file_name = email2pdf2.get_output_file_name(args, output_directory)
-    print(output_file_name)
+    print("Generated pdf '{}'".format(output_file_name))
     email2pdf2.output_body_pdf(input_email, payload, output_file_name)
 
 
@@ -45,7 +45,7 @@ def parse_eml():
     msg = mailparser.parse_from_file(sys.argv[2])
 
 
-if __name__ == "__main__":
+def main():
     if len(sys.argv) < 2:
         print("You have to pass a script choice: 1=emailtopdf, 2=parse_eml")
         sys.exit(0)
@@ -53,3 +53,7 @@ if __name__ == "__main__":
         print(emailtopdf())
     elif sys.argv[1] == '2':
         print(parse_eml())
+
+
+if __name__ == "__main__":
+    main()
