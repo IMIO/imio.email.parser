@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from email.mime.text import MIMEText
-import email2pdf
+from email2pdf2 import email2pdf2
 import mailparser
 import os
 import sys
@@ -15,25 +15,26 @@ def emailtopdf():
         filename = sys.argv[1]
     elif len(sys.argv) == 3:
         filename = sys.argv[2]
-    proceed, args = email2pdf.handle_args([__file__, '--no-attachments', '--headers', '-i{}'.format(filename)])
-    input_data = email2pdf.get_input_data(args)
-    input_email = email2pdf.get_input_email(input_data)
+    proceed, args = email2pdf2.handle_args([__file__, '--no-attachments', '--headers', '-i{}'.format(filename)])
+    input_data = email2pdf2.get_input_data(args)
+    input_email = email2pdf2.get_input_email(input_data)
     try:
-        payload, parts_already_used = email2pdf.handle_message_body(args, input_email)
-    except email2pdf.FatalException as fe:
+        payload, parts_already_used = email2pdf2.handle_message_body(args, input_email)
+    except email2pdf2.FatalException as fe:
         if fe.value == 'No body parts found; aborting.':
             input_email.attach(MIMEText('<html><body><p></p></body></html>', 'html'))
-            payload, parts_already_used = email2pdf.handle_message_body(args, input_email)
+            payload, parts_already_used = email2pdf2.handle_message_body(args, input_email)
         else:
             raise fe
-    payload = email2pdf.remove_invalid_urls(payload)
+    payload = email2pdf2.remove_invalid_urls(payload)
     if args.headers:
-        header_info = email2pdf.get_formatted_header_info(input_email)
+        header_info = email2pdf2.get_formatted_header_info(input_email)
         payload = header_info + payload
     payload = payload.encode("UTF-8")
     output_directory = os.path.normpath(args.output_directory)
-    output_file_name = email2pdf.get_output_file_name(args, output_directory)
-    email2pdf.output_body_pdf(input_email, payload, output_file_name)
+    output_file_name = email2pdf2.get_output_file_name(args, output_directory)
+    print(output_file_name)
+    email2pdf2.output_body_pdf(input_email, payload, output_file_name)
 
 
 def parse_eml():

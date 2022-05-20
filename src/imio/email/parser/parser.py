@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from email.mime.text import MIMEText
+from email2pdf2 import email2pdf2
 from mailparser import MailParser
 
 import base64
 import email
-import email2pdf
 import logging
 import re
 
@@ -15,15 +15,14 @@ logger = logging.getLogger('imio.email.parser')
 # characters allowed in atom: A-Za-z0-9!#$%&'*+-/=?^_`{|}~
 # RFC 2821 domain: max 255 characters
 _LOCAL_RE = re.compile(r'([A-Za-z0-9!#$%&\'*+\-/=?^_`{|}~]+'
-                     r'(\.[A-Za-z0-9!#$%&\'*+\-/=?^_`{|}~]+)*|'
-                     r'"[^(\|")]*")@[^@]{3,255}$')
+                       r'(\.[A-Za-z0-9!#$%&\'*+\-/=?^_`{|}~]+)*|'
+                       r'"[^(\|")]*")@[^@]{3,255}$')
 
 # RFC 2821 local-part: max 64 characters
 # RFC 2821 domain: sequence of dot-separated labels
 # characters allowed in label: A-Za-z0-9-, first is a letter
 # Even though the RFC does not allow it all-numeric domains do exist
-_DOMAIN_RE = re.compile(r'[^@]{1,64}@[A-Za-z0-9][A-Za-z0-9-]*'
-                                r'(\.[A-Za-z0-9][A-Za-z0-9-]*)+$')
+_DOMAIN_RE = re.compile(r'[^@]{1,64}@[A-Za-z0-9][A-Za-z0-9-]*(\.[A-Za-z0-9][A-Za-z0-9-]*)+$')
 
 
 def is_email_address(address):
@@ -107,9 +106,9 @@ class Parser:
         payload = ''.join(payload)
         ret = []
         for cid in re.findall(r'cid:([\w_@.-]+)', payload, re.I):
-            image_part = email2pdf.find_part_by_content_id(self.message, cid)
+            image_part = email2pdf2.find_part_by_content_id(self.message, cid)
             if image_part is None:
-                image_part = email2pdf.find_part_by_content_type_name(self.message, cid)
+                image_part = email2pdf2.find_part_by_content_type_name(self.message, cid)
             if image_part is not None:
                 ret.append(image_part.get('content-id'))
         return ret
@@ -142,19 +141,19 @@ class Parser:
         return files
 
     def generate_pdf(self, output_path):
-        proceed, args = email2pdf.handle_args([__file__, "--no-attachments", '--headers'])
+        proceed, args = email2pdf2.handle_args([__file__, "--no-attachments", '--headers'])
         try:
-            payload, parts_already_used = email2pdf.handle_message_body(args, self.message)
-        except email2pdf.FatalException as fe:
+            payload, parts_already_used = email2pdf2.handle_message_body(args, self.message)
+        except email2pdf2.FatalException as fe:
             if fe.value == 'No body parts found; aborting.':
                 self.message.attach(MIMEText('<html><body><p></p></body></html>', 'html'))
-                payload, parts_already_used = email2pdf.handle_message_body(args, self.message)
+                payload, parts_already_used = email2pdf2.handle_message_body(args, self.message)
             else:
                 raise fe
-        payload = email2pdf.remove_invalid_urls(payload)
+        payload = email2pdf2.remove_invalid_urls(payload)
         if args.headers:
-            header_info = email2pdf.get_formatted_header_info(self.message)
+            header_info = email2pdf2.get_formatted_header_info(self.message)
             payload = header_info + payload
         payload = payload.encode("UTF-8")
-        email2pdf.output_body_pdf(self.message, payload, output_path)
+        email2pdf2.output_body_pdf(self.message, payload, output_path)
         return payload, parts_already_used
