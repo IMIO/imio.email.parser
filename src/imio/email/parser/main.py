@@ -2,6 +2,7 @@
 
 from email.mime.text import MIMEText
 from imio.email.parser.utils import load_eml_file  # noqa
+from email2pdf2 import cmd
 from email2pdf2 import email2pdf2
 
 import mailparser
@@ -12,9 +13,7 @@ import sys
 def emailtopdf():
     filename = ''
     if len(sys.argv) == 2:
-        if sys.argv[1] in ('1', '2'):
-            return "You have to pass an eml file"
-        filename = sys.argv[1]
+        return "You have to pass an eml file"
     elif len(sys.argv) == 3:
         filename = sys.argv[2]
     proceed, args = email2pdf2.handle_args([__file__, '--no-attachments', '--headers', '-i{}'.format(filename)])
@@ -39,6 +38,13 @@ def emailtopdf():
     email2pdf2.output_body_pdf(input_email, payload, output_file_name)
 
 
+def emailtopdf_main():
+    if len(sys.argv) == 2:
+        return "You have to pass email2pdf2 options, like -i xx.eml --headers --no-attachments"
+    sys.argv.pop(1)  # remove this script option
+    cmd.main()
+
+
 def parse_eml():
     if len(sys.argv) < 3:
         return "You have to pass an eml file path"
@@ -61,6 +67,8 @@ def main():
         emailtopdf()
     elif sys.argv[1] == '2':
         parse_eml()
+    elif sys.argv[1] == '3':
+        emailtopdf_main()
 
 
 if __name__ == "__main__":
