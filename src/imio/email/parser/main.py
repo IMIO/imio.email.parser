@@ -10,10 +10,15 @@ import os
 import sys
 
 
+def stop(msg):
+    print(msg)
+    sys.exit(0)
+
+
 def emailtopdf():
     filename = ''
     if len(sys.argv) == 2:
-        return "You have to pass an eml file"
+        stop("You have to pass an eml file")
     elif len(sys.argv) == 3:
         filename = sys.argv[2]
     proceed, args = email2pdf2.handle_args([__file__, '--no-attachments', '--headers', '-i{}'.format(filename)])
@@ -40,16 +45,16 @@ def emailtopdf():
 
 def emailtopdf_main():
     if len(sys.argv) == 2:
-        return "You have to pass email2pdf2 options, like -i xx.eml --headers --no-attachments"
+        stop("You have to pass email2pdf2 options, like -i xx.eml --headers --no-attachments")
     sys.argv.pop(1)  # remove this script option
     cmd.main()
 
 
 def parse_eml():
     if len(sys.argv) < 3:
-        return "You have to pass an eml file path"
+        stop("You have to pass an eml file path")
     if not os.path.exists(sys.argv[2]):
-        return "The third parameter is not an existing eml file path '{}'".format(sys.argv[2])
+        stop("The third parameter is not an existing eml file path '{}'".format(sys.argv[2]))
     # test with mailparser
     msg = mailparser.parse_from_file(sys.argv[2])
     msg.attachments  # not correct: an eml is not considered as attachment
@@ -61,8 +66,7 @@ def parse_eml():
 
 def main():
     if len(sys.argv) < 2:
-        print("You have to pass a script choice: 1=emailtopdf, 2=parse_eml")
-        sys.exit(0)
+        stop("You have to pass a script choice: 1=emailtopdf, 2=parse_eml, 3=emailtopdf_main")
     if sys.argv[1] == '1':
         emailtopdf()
     elif sys.argv[1] == '2':
