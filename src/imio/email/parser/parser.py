@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from email.mime.text import MIMEText
+from email.utils import getaddresses
 from email2pdf2 import email2pdf2
 from mailparser import MailParser
 
@@ -66,6 +67,9 @@ class Parser:
         self.parsed_message = MailParser(self.message)
         self.dev_mode = dev_mode
         self.mail_id = mail_id
+        self.is_default_policy = False
+        if isinstance(message, email.message.EmailMessage):
+            self.is_default_policy = True
 
     def _extract_relevant_message(self, message):
         """
@@ -88,15 +92,26 @@ class Parser:
 
     @property
     def headers(self):
-        headers = {
-            "From": correct_addresses(self.parsed_message.from_),
-            "To": correct_addresses(self.parsed_message.to),
-            "Cc": correct_addresses(self.parsed_message.cc),
-            "Subject": self.parsed_message.subject,
-            "Origin": self.origin,
-        }
-        if self.origin == 'Agent forward':
-            headers['Agent'] = correct_addresses(MailParser(self.initial_message).from_)
+        if self.is_default_policy:
+            headers = {
+                "From": correct_addresses(getaddresses([self.message.get('from')])),
+                "To": correct_addresses(getaddresses([self.message.get('to')])),
+                "Cc": correct_addresses(getaddresses([self.message.get('cc')])),
+                "Subject": self.message.get('subject'),
+                "Origin": self.origin,
+            }
+            if self.origin == 'Agent forward':
+                headers['Agent'] = correct_addresses(getaddresses([self.initial_message.get('from')]))
+        else:
+            headers = {
+                "From": correct_addresses(self.parsed_message.from_),
+                "To": correct_addresses(self.parsed_message.to),
+                "Cc": correct_addresses(self.parsed_message.cc),
+                "Subject": self.parsed_message.subject,
+                "Origin": self.origin,
+            }
+            if self.origin == 'Agent forward':
+                headers['Agent'] = correct_addresses(MailParser(self.initial_message).from_)
         return headers
 
     def get_embedded_images(self):
