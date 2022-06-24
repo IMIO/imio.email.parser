@@ -11,6 +11,8 @@ Changelog
   [sgeulette]
 - Corrected attachments disposition (check really embedded content ids)
   [sgeulette]
+- Worked with EmailMessage
+  [sgeulette]
 
 0.1 (2022-02-17)
 ----------------

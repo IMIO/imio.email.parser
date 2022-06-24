@@ -2,17 +2,13 @@
 
 from email.mime.text import MIMEText
 from imio.email.parser.utils import load_eml_file  # noqa
+from imio.email.parser.utils import stop  # noqa
 from email2pdf2 import cmd
 from email2pdf2 import email2pdf2
 
 import mailparser
 import os
 import sys
-
-
-def stop(msg):
-    print(msg)
-    sys.exit(0)
 
 
 def emailtopdf():

@@ -3,6 +3,7 @@
 from email.mime.text import MIMEText
 from email.utils import getaddresses
 from email2pdf2 import email2pdf2
+from imio.email.parser.utils import attachment_infos  # noqa
 from mailparser import MailParser
 
 import base64
@@ -134,7 +135,14 @@ class Parser:
         else:
             em_im = self.get_embedded_images()
         files = []
-        for attachment in self.parsed_message.attachments:
+
+        if self.is_default_policy:
+            attachments = [attachment_infos(at) for at in self.message.iter_attachments()]
+        else:
+            attachments = self.parsed_message.attachments
+        # [{tup[0]: tup[1] for tup in at.items() if tup[0] != 'payload'} for at in attachments]
+
+        for attachment in attachments:
             # 'content-disposition': 'inline; filename="image001.jpg"'
             # 'content-disposition': 'attachment; filename="Permis de la Parcelle X00.pdf"'
             if attachment["binary"]:
