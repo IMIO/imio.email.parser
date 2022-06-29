@@ -147,8 +147,10 @@ class Parser:
             # 'content-disposition': 'attachment; filename="Permis de la Parcelle X00.pdf"'
             if attachment["binary"]:
                 raw_file = base64.b64decode(attachment["payload"])
+            elif isinstance(attachment['payload'], bytes):
+                raw_file = attachment["payload"]
             else:
-                raw_file = attachment["payload"].encode("utf-8")
+                raw_file = attachment["payload"].encode("utf-8")  # to bytes
             filename = attachment["filename"].replace(u'\r', u'').replace(u'\n', u'')
             disp = attachment.get('content-disposition', '').split(';')[0]
             if disp not in ('inline', 'attachment'):

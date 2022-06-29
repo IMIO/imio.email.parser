@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
+from email import generator
+from io import BytesIO
+
 from email2pdf2.email2pdf2 import get_input_email
 from mailparser.utils import decode_header_part
 from mailparser.utils import ported_string
+from mailparser.utils import random_string
 from pathvalidate import sanitize_filename
 
 import base64
 import mimetypes
 import os
 import sys
-
-from mailparser.utils import random_string
 
 
 def load_eml_file(filename, encoding='utf8', as_msg=True):
@@ -36,8 +38,15 @@ def attachment_infos(attach):
     charset = attach.get_content_charset('utf-8')
     charset_raw = attach.get_content_charset()
     binary = False
-    if transfer_encoding == "base64" or (transfer_encoding == "quoted-printable" and
-                                         "application" in mail_content_type):
+    if mail_content_type == 'message/rfc822':
+        fp = BytesIO()
+        gen = generator.BytesGenerator(fp)
+        gen.flatten(attach)
+        fp.seek(0)
+        payload = fp.read()
+        fp.close()
+    elif transfer_encoding == "base64" or (transfer_encoding == "quoted-printable" and
+                                           "application" in mail_content_type):
         payload = attach.get_payload(decode=False)
         binary = True
     elif "uuencode" in transfer_encoding:
