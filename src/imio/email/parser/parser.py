@@ -97,7 +97,7 @@ class Parser:
             headers = {
                 "From": correct_addresses(getaddresses([self.message.get('from')])),
                 "To": correct_addresses(getaddresses([self.message.get('to')])),
-                "Cc": correct_addresses(getaddresses([self.message.get('cc')])),
+                "Cc": correct_addresses(getaddresses(self.message.get('cc') and [self.message.get('cc')] or [])),
                 "Subject": self.message.get('subject'),
                 "Origin": self.origin,
             }
