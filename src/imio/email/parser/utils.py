@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from email import generator
+from email import iterators
 from io import BytesIO
 
 from email2pdf2.email2pdf2 import get_input_email
@@ -39,9 +40,10 @@ def attachment_infos(attach):
     charset_raw = attach.get_content_charset()
     binary = False
     if mail_content_type == 'message/rfc822':
+        # iterators._structure(attach)
         fp = BytesIO()
         gen = generator.BytesGenerator(fp)
-        gen.flatten(attach)
+        gen.flatten(attach)  # TODO attach or attach.get_payload() ?
         fp.seek(0)
         payload = fp.read()
         fp.close()

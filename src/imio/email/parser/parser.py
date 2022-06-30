@@ -95,14 +95,15 @@ class Parser:
     def headers(self):
         if self.is_default_policy:
             headers = {
-                "From": correct_addresses(getaddresses([self.message.get('from')])),
-                "To": correct_addresses(getaddresses([self.message.get('to')])),
+                "From": correct_addresses(getaddresses(self.message.get('from') and [self.message.get('from')] or [])),
+                "To": correct_addresses(getaddresses(self.message.get('to') and [self.message.get('to')] or [])),
                 "Cc": correct_addresses(getaddresses(self.message.get('cc') and [self.message.get('cc')] or [])),
                 "Subject": self.message.get('subject'),
                 "Origin": self.origin,
             }
             if self.origin == 'Agent forward':
-                headers['Agent'] = correct_addresses(getaddresses([self.initial_message.get('from')]))
+                headers['Agent'] = correct_addresses(getaddresses(self.initial_message.get('from') and
+                                                                  [self.initial_message.get('from')] or []))
         else:
             headers = {
                 "From": correct_addresses(self.parsed_message.from_),
