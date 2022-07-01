@@ -43,7 +43,10 @@ def attachment_infos(attach):
         # iterators._structure(attach)
         fp = BytesIO()
         gen = generator.BytesGenerator(fp)
-        gen.flatten(attach)  # TODO attach or attach.get_payload() ?
+        content = attach.get_payload()
+        if isinstance(content, list) and len(content) == 1:
+            content = content[0]
+        gen.flatten(content)
         fp.seek(0)
         payload = fp.read()
         fp.close()
