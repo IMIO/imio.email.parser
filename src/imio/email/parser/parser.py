@@ -4,6 +4,7 @@ from email.mime.text import MIMEText
 from email.utils import getaddresses
 from email2pdf2 import email2pdf2
 from imio.email.parser.utils import attachment_infos  # noqa
+from imio.email.parser.utils import structure  # noqa
 from mailparser import MailParser
 
 import base64

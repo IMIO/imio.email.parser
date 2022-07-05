@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 from email import generator
 from email import iterators
-from io import BytesIO
-
 from email2pdf2.email2pdf2 import get_input_email
+from io import BytesIO
 from mailparser.utils import decode_header_part
 from mailparser.utils import ported_string
 from mailparser.utils import random_string
@@ -40,7 +39,7 @@ def attachment_infos(attach):
     charset_raw = attach.get_content_charset()
     binary = False
     if mail_content_type == 'message/rfc822':
-        # iterators._structure(attach)
+        # structure(attach)
         fp = BytesIO()
         gen = generator.BytesGenerator(fp)
         content = attach.get_payload()
@@ -79,3 +78,7 @@ def stop(msg, logger=None):
     else:
         print(msg)
     sys.exit(0)
+
+
+def structure(msg):
+    iterators._structure(msg)
