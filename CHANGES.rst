@@ -13,6 +13,8 @@ Changelog
   [sgeulette]
 - Worked with EmailMessage
   [sgeulette]
+- Added specific handling for Apple Mail forward
+  [sgeulette]
 
 0.1 (2022-02-17)
 ----------------

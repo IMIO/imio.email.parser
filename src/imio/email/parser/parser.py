@@ -85,10 +85,20 @@ class Parser:
             self.origin = "Server forward"
             return message
         if type(payload) is list:
+            # current transfer
             for part in payload:
                 if part.get_content_type() == "message/rfc822":  # maybe also check for attachment filename ?
                     self.origin = "Agent forward"
                     return part.get_payload()[0]
+            # apple mail transfer (combined with the used signature)
+            if 'Apple Mail' in message.get('X-Mailer', ''):
+                for part in payload:
+                    if part.get_content_type() == 'multipart/mixed':
+                        for spart in part.get_payload():
+                            spart.as_string()
+                            if spart.get_content_type() == "message/rfc822":  # maybe check for attachment filename ?
+                                self.origin = "Agent forward"
+                                return spart.get_payload()[0]
         self.origin = "Generic inbox"
         return message
 
