@@ -95,7 +95,6 @@ class Parser:
                 for part in payload:
                     if part.get_content_type() == 'multipart/mixed':
                         for spart in part.get_payload():
-                            spart.as_string()
                             if spart.get_content_type() == "message/rfc822":  # maybe check for attachment filename ?
                                 self.origin = "Agent forward"
                                 return spart.get_payload()[0]
