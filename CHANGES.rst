@@ -15,6 +15,8 @@ Changelog
   [sgeulette]
 - Added specific handling for Apple Mail forward
   [sgeulette]
+- Added specific handling for IBM Notes forward
+  [sgeulette]
 
 0.1 (2022-02-17)
 ----------------

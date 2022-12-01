@@ -5,6 +5,7 @@ from email.utils import getaddresses
 from email2pdf2 import email2pdf2
 from imio.email.parser.utils import attachment_infos  # noqa
 from imio.email.parser.utils import structure  # noqa
+from imio.email.parser import email_policy  # noqa
 from mailparser import MailParser
 
 import base64
@@ -90,6 +91,13 @@ class Parser:
                 if part.get_content_type() == "message/rfc822":  # maybe also check for attachment filename ?
                     self.origin = "Agent forward"
                     return part.get_payload()[0]
+            # ibm notes in base64
+            if 'IBM Notes' in message.get('X-Mailer', ''):
+                for part in payload:
+                    if part.get_content_type() == 'application/octet-stream' and \
+                            part.get('Content-Transfer-Encoding') == 'base64':
+                        self.origin = "Agent forward"
+                        return email.message_from_bytes(base64.b64decode(part.get_payload()), policy=email_policy)
             # apple mail transfer (combined with the used signature)
             if 'Apple Mail' in message.get('X-Mailer', ''):
                 for part in payload:
