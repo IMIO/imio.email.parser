@@ -17,6 +17,8 @@ Changelog
   [sgeulette]
 - Added specific handling for IBM Notes forward
   [sgeulette]
+- Added specific handling for automatic exchange forward
+  [sgeulette]
 
 0.1 (2022-02-17)
 ----------------
