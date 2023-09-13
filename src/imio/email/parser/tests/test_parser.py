@@ -46,14 +46,31 @@ class TestParser(unittest.TestCase):
 
     def test_correct_addresses(self):
         to_tests = [
-            ('xx.yy@domain.com', [('', 'xx.yy@domain.com')], [('', 'xx.yy@domain.com')]),
-            (' <xx.yy@domain.com>', [('', 'xx.yy@domain.com')], [('', 'xx.yy@domain.com')]),
-            ('"xx yy" <xx.yy@domain.com>', [('xx yy', 'xx.yy@domain.com')], [('xx yy', 'xx.yy@domain.com')]),
-            ("'xx yy' <xx.yy@domain.com>", [("'xx yy'", 'xx.yy@domain.com')], [("'xx yy'", 'xx.yy@domain.com')]),
-            ('"xx, yy" <xx.yy@domain.com>', [('xx, yy', 'xx.yy@domain.com')], [('xx, yy', 'xx.yy@domain.com')]),
-            ('xx, yy <xx.yy@domain.com>', [('', 'xx'), ('yy', 'xx.yy@domain.com')], [('xx, yy', 'xx.yy@domain.com')]),
-            ('xx, yy,  zz <xx.yy@domain.com>', [('', 'xx'), ('', 'yy'), ('zz', 'xx.yy@domain.com')],
-             [('xx, yy, zz', 'xx.yy@domain.com')]),
+            ('xx.yy@DOMAIN.com', [('', 'xx.yy@DOMAIN.com')], [('', 'xx.yy@domain.com')]),
+            (' <xx.yy@DOMAIN.com>', [('', 'xx.yy@DOMAIN.com')], [('', 'xx.yy@domain.com')]),
+            ('"xx YY" <xx.yy@DOMAIN.com>', [('xx YY', 'xx.yy@DOMAIN.com')], [('xx YY', 'xx.yy@domain.com')]),
+            ("'xx YY' <xx.yy@DOMAIN.com>", [("'xx YY'", 'xx.yy@DOMAIN.com')], [("'xx YY'", 'xx.yy@domain.com')]),
+            ('xx YY <xx.yy@DOMAIN.com>', [('xx YY', 'xx.yy@DOMAIN.com')], [('xx YY', 'xx.yy@domain.com')]),
+            ('"xx, YY" <xx.yy@DOMAIN.com>', [('xx, YY', 'xx.yy@DOMAIN.com')], [('xx, YY', 'xx.yy@domain.com')]),
+            ('xx, YY <xx.yy@DOMAIN.com>', [('', 'xx'), ('YY', 'xx.yy@DOMAIN.com')], [('xx, YY', 'xx.yy@domain.com')]),
+            ('xx, YY,  zz <xx.yy@DOMAIN.com>', [('', 'xx'), ('', 'YY'), ('zz', 'xx.yy@DOMAIN.com')],
+             [('xx, YY, zz', 'xx.yy@domain.com')]),
+            # multi values
+            ('xx.yy@DOMAIN.com, aa.bb@SITE.com', [('', 'xx.yy@DOMAIN.com'), ('', 'aa.bb@SITE.com')],
+             [('', 'xx.yy@domain.com'), ('', 'aa.bb@site.com')]),
+            ('"xx YY" <xx.yy@DOMAIN.com>, aa.bb@SITE.com', [('xx YY', 'xx.yy@DOMAIN.com'), ('', 'aa.bb@SITE.com')],
+             [('xx YY', 'xx.yy@domain.com'), ('', 'aa.bb@site.com')]),
+            ('aa.bb@SITE.com, "xx YY" <xx.yy@DOMAIN.com>', [('', 'aa.bb@SITE.com'), ('xx YY', 'xx.yy@DOMAIN.com')],
+             [('', 'aa.bb@site.com'), ('xx YY', 'xx.yy@domain.com')]),
+            ('"xx YY" <xx.yy@DOMAIN.com>, "aa BB" <aa.bb@SITE.com>',
+             [('xx YY', 'xx.yy@DOMAIN.com'), ('aa BB', 'aa.bb@SITE.com')],
+             [('xx YY', 'xx.yy@domain.com'), ('aa BB', 'aa.bb@site.com')]),
+            ('xx, YY,  zz <xx.yy@DOMAIN.com>, aa BB <aa.bb@SITE.com>',
+             [('', 'xx'), ('', 'YY'), ('zz', 'xx.yy@DOMAIN.com'), ('aa BB', 'aa.bb@SITE.com')],
+             [('xx, YY, zz', 'xx.yy@domain.com'), ('aa BB', 'aa.bb@site.com')]),
+            ('xx, YY,  zz <xx.yy@DOMAIN.com>, aa, BB <aa.bb@SITE.com>',
+             [('', 'xx'), ('', 'YY'), ('zz', 'xx.yy@DOMAIN.com'), ('', 'aa'), ('BB', 'aa.bb@SITE.com')],
+             [('xx, YY, zz', 'xx.yy@domain.com'), ('aa, BB', 'aa.bb@site.com')]),
         ]
         for test in to_tests:
             adr = test[0]

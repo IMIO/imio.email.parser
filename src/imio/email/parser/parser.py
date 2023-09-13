@@ -36,14 +36,16 @@ def is_email_address(address):
 
 
 def correct_addresses(lst):
-    """Correct badly handled email. See test_parser..."""
+    """Correct badly handled email. See test_parser...
+    Lowercased email."""
     if len(lst) == 1:
-        return lst
+        return [(lst[0][0], lst[0][1].lower())]
     new_lst = []
     new_parts = []
     for tup in lst:
         # not a correct address
         if is_email_address(tup[1]):
+            tup = (tup[0], tup[1].lower())
             if new_parts:
                 if tup[0]:
                     new_parts.append(tup[0])

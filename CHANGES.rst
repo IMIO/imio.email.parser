@@ -19,6 +19,8 @@ Changelog
   [sgeulette]
 - Added specific handling for automatic exchange forward
   [sgeulette]
+- Get lowercased email addresses
+  [sgeulette]
 
 0.1 (2022-02-17)
 ----------------
