@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-0.2 (unreleased)
-----------------
+0.2.0 (2024-10-04)
+------------------
 
 - Removed newline characters from attachement filename causing exception when creating file later in Plone.
   [sgeulette]
