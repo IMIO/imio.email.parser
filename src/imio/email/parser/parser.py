@@ -13,20 +13,20 @@ import email
 import logging
 import re
 
-logger = logging.getLogger('imio.email.parser')
+logger = logging.getLogger("imio.email.parser")
 
 # RFC 2822 local-part: dot-atom or quoted-string
 # characters allowed in atom: A-Za-z0-9!#$%&'*+-/=?^_`{|}~
 # RFC 2821 domain: max 255 characters
-_LOCAL_RE = re.compile(r'([A-Za-z0-9!#$%&\'*+\-/=?^_`{|}~]+'
-                       r'(\.[A-Za-z0-9!#$%&\'*+\-/=?^_`{|}~]+)*|'
-                       r'"[^(\|")]*")@[^@]{3,255}$')
+_LOCAL_RE = re.compile(
+    r"([A-Za-z0-9!#$%&\'*+\-/=?^_`{|}~]+" r"(\.[A-Za-z0-9!#$%&\'*+\-/=?^_`{|}~]+)*|" r'"[^(\|")]*")@[^@]{3,255}$'
+)
 
 # RFC 2821 local-part: max 64 characters
 # RFC 2821 domain: sequence of dot-separated labels
 # characters allowed in label: A-Za-z0-9-, first is a letter
 # Even though the RFC does not allow it all-numeric domains do exist
-_DOMAIN_RE = re.compile(r'[^@]{1,64}@[A-Za-z0-9][A-Za-z0-9-]*(\.[A-Za-z0-9][A-Za-z0-9-]*)+$')
+_DOMAIN_RE = re.compile(r"[^@]{1,64}@[A-Za-z0-9][A-Za-z0-9-]*(\.[A-Za-z0-9][A-Za-z0-9-]*)+$")
 
 
 def is_email_address(address):
@@ -51,7 +51,7 @@ def correct_addresses(lst):
                     new_parts.append(tup[0])
                 else:
                     logger.warning("part 0 not in tup {} for addresses {}".format(tup, lst))
-                new_lst.append((', '.join(new_parts), tup[1]))
+                new_lst.append((", ".join(new_parts), tup[1]))
                 new_parts = []
             else:
                 new_lst.append(tup)
@@ -84,7 +84,7 @@ class Parser:
         :type message: email.message.Message
         """
         payload = message.get_payload()
-        if message.get("X-Forwarded-For") or message.get("X-Forwarded-To") or message.get('Resent-From'):
+        if message.get("X-Forwarded-For") or message.get("X-Forwarded-To") or message.get("Resent-From"):
             self.origin = "Server forward"
             return message
         if type(payload) is list:
@@ -94,16 +94,18 @@ class Parser:
                     self.origin = "Agent forward"
                     return part.get_payload()[0]
             # ibm notes in base64
-            if 'IBM Notes' in message.get('X-Mailer', ''):
+            if "IBM Notes" in message.get("X-Mailer", ""):
                 for part in payload:
-                    if part.get_content_type() == 'application/octet-stream' and \
-                            part.get('Content-Transfer-Encoding') == 'base64':
+                    if (
+                        part.get_content_type() == "application/octet-stream"
+                        and part.get("Content-Transfer-Encoding") == "base64"
+                    ):
                         self.origin = "Agent forward"
                         return email.message_from_bytes(base64.b64decode(part.get_payload()), policy=email_policy)
             # apple mail transfer (combined with the used signature)
-            if 'Apple Mail' in message.get('X-Mailer', ''):
+            if "Apple Mail" in message.get("X-Mailer", ""):
                 for part in payload:
-                    if part.get_content_type() == 'multipart/mixed':
+                    if part.get_content_type() == "multipart/mixed":
                         for spart in part.get_payload():
                             if spart.get_content_type() == "message/rfc822":  # maybe check for attachment filename ?
                                 self.origin = "Agent forward"
@@ -115,15 +117,16 @@ class Parser:
     def headers(self):
         if self.is_default_policy:
             headers = {
-                "From": correct_addresses(getaddresses(self.message.get('from') and [self.message.get('from')] or [])),
-                "To": correct_addresses(getaddresses(self.message.get('to') and [self.message.get('to')] or [])),
-                "Cc": correct_addresses(getaddresses(self.message.get('cc') and [self.message.get('cc')] or [])),
-                "Subject": self.message.get('subject'),
+                "From": correct_addresses(getaddresses(self.message.get("from") and [self.message.get("from")] or [])),
+                "To": correct_addresses(getaddresses(self.message.get("to") and [self.message.get("to")] or [])),
+                "Cc": correct_addresses(getaddresses(self.message.get("cc") and [self.message.get("cc")] or [])),
+                "Subject": self.message.get("subject"),
                 "Origin": self.origin,
             }
-            if self.origin == 'Agent forward':
-                headers['Agent'] = correct_addresses(getaddresses(self.initial_message.get('from') and
-                                                                  [self.initial_message.get('from')] or []))
+            if self.origin == "Agent forward":
+                headers["Agent"] = correct_addresses(
+                    getaddresses(self.initial_message.get("from") and [self.initial_message.get("from")] or [])
+                )
         else:
             headers = {
                 "From": correct_addresses(self.parsed_message.from_),
@@ -132,27 +135,27 @@ class Parser:
                 "Subject": self.parsed_message.subject,
                 "Origin": self.origin,
             }
-            if self.origin == 'Agent forward':
-                headers['Agent'] = correct_addresses(MailParser(self.initial_message).from_)
+            if self.origin == "Agent forward":
+                headers["Agent"] = correct_addresses(MailParser(self.initial_message).from_)
         return headers
 
     def get_embedded_images(self):
         payload = self.parsed_message.text_html
         if not payload:
             payload = self.parsed_message.text_plain
-        payload = ''.join(payload)
+        payload = "".join(payload)
         ret = []
-        for cid in re.findall(r'cid:([\w_@.-]+)', payload, re.I):
+        for cid in re.findall(r"cid:([\w_@.-]+)", payload, re.I):
             image_part = email2pdf2.find_part_by_content_id(self.message, cid)
             if image_part is None:
                 image_part = email2pdf2.find_part_by_content_type_name(self.message, cid)
             if image_part is not None:
-                ret.append(image_part.get('content-id'))
+                ret.append(image_part.get("content-id"))
         return ret
 
     def attachments(self, pdf_gen, cid_parts_used):
         if pdf_gen and len(cid_parts_used):
-            em_im = [part.get('content-id') for part in cid_parts_used]
+            em_im = [part.get("content-id") for part in cid_parts_used]
         else:
             em_im = self.get_embedded_images()
         files = []
@@ -168,31 +171,42 @@ class Parser:
             # 'content-disposition': 'attachment; filename="Permis de la Parcelle X00.pdf"'
             if attachment["binary"]:
                 raw_file = base64.b64decode(attachment["payload"])
-            elif isinstance(attachment['payload'], bytes):
+            elif isinstance(attachment["payload"], bytes):
                 raw_file = attachment["payload"]
             else:
                 raw_file = attachment["payload"].encode("utf-8")  # to bytes
-            filename = attachment["filename"].replace(u'\r', u'').replace(u'\n', u'')
-            disp = attachment.get('content-disposition', '').split(';')[0]
-            if disp not in ('inline', 'attachment'):
-                logger.error("{}: attachment with filename '{}' with unknown disposition '{}'".format(
-                             self.mail_id, filename, attachment.get('content-disposition', '')))
-            if disp == 'inline' and attachment['content-id'] not in em_im:
+            filename = attachment["filename"].replace(u"\r", u"").replace(u"\n", u"")
+            disp = attachment.get("content-disposition", "").split(";")[0]
+            if disp not in ("inline", "attachment"):
+                logger.error(
+                    "{}: attachment with filename '{}' with unknown disposition '{}'".format(
+                        self.mail_id, filename, attachment.get("content-disposition", "")
+                    )
+                )
+            if disp == "inline" and attachment["content-id"] not in em_im:
                 if self.dev_mode:
-                    logger.warning("{}: inline attachment with filename '{}' not found in embedded".format(
-                                   self.mail_id, filename))
-                disp = 'attachment'
-            files.append({"filename": filename, "content": raw_file, 'len': len(raw_file), 'disp': disp,
-                          'type': attachment['mail_content_type']})  # , 'cid': attachment['content-id']})
+                    logger.warning(
+                        "{}: inline attachment with filename '{}' not found in embedded".format(self.mail_id, filename)
+                    )
+                disp = "attachment"
+            files.append(
+                {
+                    "filename": filename,
+                    "content": raw_file,
+                    "len": len(raw_file),
+                    "disp": disp,
+                    "type": attachment["mail_content_type"],
+                }
+            )  # , 'cid': attachment['content-id']})
         return files
 
     def generate_pdf(self, output_path):
-        proceed, args = email2pdf2.handle_args([__file__, "--no-attachments", '--headers'])
+        proceed, args = email2pdf2.handle_args([__file__, "--no-attachments", "--headers"])
         try:
             payload, parts_already_used = email2pdf2.handle_message_body(args, self.message)
         except email2pdf2.FatalException as fe:
-            if fe.value == 'No body parts found; aborting.':
-                self.message.attach(MIMEText('<html><body><p></p></body></html>', 'html'))
+            if fe.value == "No body parts found; aborting.":
+                self.message.attach(MIMEText("<html><body><p></p></body></html>", "html"))
                 payload, parts_already_used = email2pdf2.handle_message_body(args, self.message)
             else:
                 raise fe

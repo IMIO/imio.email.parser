@@ -14,7 +14,7 @@ import os
 import sys
 
 
-def load_eml_file(filename, encoding='utf8', as_msg=True):
+def load_eml_file(filename, encoding="utf8", as_msg=True):
     """Read eml file"""
     with open(filename, "r", encoding=encoding) as input_handle:
         data = input_handle.read()
@@ -24,21 +24,21 @@ def load_eml_file(filename, encoding='utf8', as_msg=True):
 
 
 def attachment_infos(attach):
-    content_id = ported_string(attach.get('content-id'))
-    content_disposition = ported_string(attach.get('content-disposition'))
+    content_id = ported_string(attach.get("content-id"))
+    content_disposition = ported_string(attach.get("content-disposition"))
     mail_content_type = ported_string(attach.get_content_type())
     filename = decode_header_part(attach.get_filename())
     if not filename:
         ext = mimetypes.guess_extension(mail_content_type)
         if content_id:
-            filename = '{}{}'.format(sanitize_filename(content_id), ext)
+            filename = "{}{}".format(sanitize_filename(content_id), ext)
         else:
-            filename = '{}{}'.format(random_string(), ext)
-    transfer_encoding = ported_string(attach.get('content-transfer-encoding', '')).lower()
-    charset = attach.get_content_charset('utf-8')
+            filename = "{}{}".format(random_string(), ext)
+    transfer_encoding = ported_string(attach.get("content-transfer-encoding", "")).lower()
+    charset = attach.get_content_charset("utf-8")
     charset_raw = attach.get_content_charset()
     binary = False
-    if mail_content_type == 'message/rfc822':
+    if mail_content_type == "message/rfc822":
         # structure(attach)
         fp = BytesIO()
         gen = generator.BytesGenerator(fp)
@@ -49,13 +49,14 @@ def attachment_infos(attach):
         fp.seek(0)
         payload = fp.read()
         fp.close()
-    elif transfer_encoding == "base64" or (transfer_encoding == "quoted-printable" and
-                                           "application" in mail_content_type):
+    elif transfer_encoding == "base64" or (
+        transfer_encoding == "quoted-printable" and "application" in mail_content_type
+    ):
         payload = attach.get_payload(decode=False)
         binary = True
     elif "uuencode" in transfer_encoding:
         # Re-encode in base64
-        payload = base64.b64encode(attach.get_payload(decode=True)).decode('ascii')
+        payload = base64.b64encode(attach.get_payload(decode=True)).decode("ascii")
         binary = True
         transfer_encoding = "base64"
     else:
@@ -69,7 +70,8 @@ def attachment_infos(attach):
         "content-id": content_id,
         "content-disposition": content_disposition,
         "charset": charset_raw,
-        "content_transfer_encoding": transfer_encoding}
+        "content_transfer_encoding": transfer_encoding,
+    }
 
 
 def stop(msg, logger=None):

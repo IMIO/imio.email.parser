@@ -12,19 +12,19 @@ import sys
 
 
 def emailtopdf():
-    filename = ''
+    filename = ""
     if len(sys.argv) == 2:
         stop("You have to pass an eml file")
     elif len(sys.argv) == 3:
         filename = sys.argv[2]
-    proceed, args = email2pdf2.handle_args([__file__, '--no-attachments', '--headers', '-i{}'.format(filename)])
+    proceed, args = email2pdf2.handle_args([__file__, "--no-attachments", "--headers", "-i{}".format(filename)])
     input_data = email2pdf2.get_input_data(args)
     input_email = email2pdf2.get_input_email(input_data)
     try:
         payload, parts_already_used = email2pdf2.handle_message_body(args, input_email)
     except email2pdf2.FatalException as fe:
-        if fe.value == 'No body parts found; aborting.':
-            input_email.attach(MIMEText('<html><body><p></p></body></html>', 'html'))
+        if fe.value == "No body parts found; aborting.":
+            input_email.attach(MIMEText("<html><body><p></p></body></html>", "html"))
             payload, parts_already_used = email2pdf2.handle_message_body(args, input_email)
         else:
             raise fe
@@ -57,17 +57,17 @@ def parse_eml():
     # test with email
     msg = load_eml_file(sys.argv[2])
     # parts = email2pdf2.find_all_attachments(msg, [])  not correct
-    email2pdf2.handle_attachments(msg, '.', True, False, [])  # bool= prefix date, ignore_floating_attachments
+    email2pdf2.handle_attachments(msg, ".", True, False, [])  # bool= prefix date, ignore_floating_attachments
 
 
 def main():
     if len(sys.argv) < 2:
         stop("You have to pass a script choice: 1=emailtopdf, 2=parse_eml, 3=emailtopdf_main")
-    if sys.argv[1] == '1':
+    if sys.argv[1] == "1":
         emailtopdf()
-    elif sys.argv[1] == '2':
+    elif sys.argv[1] == "2":
         parse_eml()
-    elif sys.argv[1] == '3':
+    elif sys.argv[1] == "3":
         emailtopdf_main()
 
 
