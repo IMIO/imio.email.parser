@@ -21,15 +21,21 @@ setup(
     license="GPL",
     author="Nicolas Demonté",
     author_email="support@imio.be",
-    description="",
+    description="This parser extracts forwarded attached email, embedded images and attachments. "
+    "It also generates a PDF from the email.",
+    keywords="email parser pdf attachment",
     long_description=long_description,
     classifiers=[
-        "Environment :: Web Environment",
+        "Environment :: Console",
+        "Environment :: No Input/Output (Daemon)",
+        "Development Status :: 5 - Production/Stable",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.10",
         "Operating System :: OS Independent",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
     ],
+    python_requires=">=3.9, <3.10",
     install_requires=[
         "mail-parser",
         "beautifulsoup4>=4.6.3",
