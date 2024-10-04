@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-
 from email2pdf2 import email2pdf2
+from email.message import EmailMessage
 from email.mime.text import MIMEText
 from email.utils import getaddresses
 from imio.email.parser import email_policy  # noqa
@@ -9,6 +9,7 @@ from imio.email.parser.utils import structure  # noqa
 from mailparser import MailParser
 
 import base64
+import copy
 import email
 import logging
 import re
@@ -203,18 +204,27 @@ class Parser:
 
     def generate_pdf(self, output_path):
         proceed, args = email2pdf2.handle_args([__file__, "--no-attachments", "--headers"])
+        copied_message = copy.deepcopy(self.message)
         try:
             payload, parts_already_used = email2pdf2.handle_message_body(args, self.message)
         except email2pdf2.FatalException as fe:
             if fe.value == "No body parts found; aborting.":
-                self.message.attach(MIMEText("<html><body><p></p></body></html>", "html"))
-                payload, parts_already_used = email2pdf2.handle_message_body(args, self.message)
+                self.add_body(copied_message, "<html><body><p></p></body></html>")
+                payload, parts_already_used = email2pdf2.handle_message_body(args, copied_message)
             else:
                 raise fe
         payload = email2pdf2.remove_invalid_urls(payload)
         if args.headers:
-            header_info = email2pdf2.get_formatted_header_info(self.message)
+            header_info = email2pdf2.get_formatted_header_info(copied_message)
             payload = header_info + payload
         payload = payload.encode("UTF-8")
-        email2pdf2.output_body_pdf(self.message, payload, output_path)
+        email2pdf2.output_body_pdf(copied_message, payload, output_path)
         return payload, parts_already_used
+
+    def add_body(self, message, body):
+        if message.is_multipart():
+            alt_msg = EmailMessage()
+            alt_msg.set_content(body, subtype="html")
+            message.attach(alt_msg)
+        else:
+            message.set_content(body, subtype="html")

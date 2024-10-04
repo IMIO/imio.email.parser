@@ -23,6 +23,8 @@ Changelog
   [sgeulette]
 - Blacked and isorted files
   [sgeulette]
+- Corrected body add when missing and worked on a copy of the message in that part
+  [sgeulette]
 
 0.1 (2022-02-17)
 ----------------
