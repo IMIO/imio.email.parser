@@ -21,7 +21,7 @@ Changelog
   [sgeulette]
 - Get lowercased email addresses
   [sgeulette]
-- Blacked files
+- Blacked and isorted files
   [sgeulette]
 
 0.1 (2022-02-17)

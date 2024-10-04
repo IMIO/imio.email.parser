@@ -37,7 +37,6 @@ setup(
         "html5lib",
         "lxml",
         "pathvalidate",
-        #        "pdfminer3k",  not sure it's needed. Or try pdfminer.six for python2
         "pypdf2",
         "python-magic",
         "reportlab",
