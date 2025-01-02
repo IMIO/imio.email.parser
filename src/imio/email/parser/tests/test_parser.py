@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-
 from email.utils import getaddresses
+from imio.email.parser import email_policy
 from imio.email.parser.parser import correct_addresses
 from imio.email.parser.parser import Parser
 
-import mailparser
+import email
 import os
 import unittest
 
@@ -13,7 +13,8 @@ def get_eml_message(filename, test_dir=True):
     """Get the disk eml message and return a parsed message object"""
     if test_dir:
         filename = os.path.join(os.path.dirname(__file__), "files", filename)
-    return mailparser.parse_from_file(filename)
+    with open(filename) as fp:
+        return email.message_from_file(fp, policy=email_policy)
 
 
 class TestParser(unittest.TestCase):
@@ -39,8 +40,7 @@ class TestParser(unittest.TestCase):
         for dic in to_tests:
             name = dic["fn"]
             # with self.subTest(name=name): errors not returned in zc.recipe.testrunner
-            oparsed = get_eml_message(name)
-            omsg = oparsed.message
+            omsg = get_eml_message(name)
             iparsed = Parser(omsg, False, "1")
             self.assertEqual(iparsed.origin, dic["orig"], name)
             self.assertListEqual([part.get_content_type() for part in omsg.get_payload()], dic["opl"], name)
@@ -117,8 +117,7 @@ class TestParser(unittest.TestCase):
         for dic in to_tests:
             name = dic["fn"]
             # with self.subTest(name=name): errors not returned in zc.recipe.testrunner
-            oparsed = get_eml_message(dic["fn"])
-            omsg = oparsed.message
+            omsg = get_eml_message(dic["fn"])
             iparsed = Parser(omsg, False, "1")
             payload, cid_parts_used = iparsed.generate_pdf("/tmp/01.pdf")
             ats = iparsed.attachments(True, cid_parts_used)

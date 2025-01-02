@@ -5,8 +5,8 @@ Changelog
 0.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Used standard email parser in tests.
+  [sgeulette]
 
 0.2.0 (2024-10-04)
 ------------------
