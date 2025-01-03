@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 from email2pdf2 import email2pdf2
 from email.message import EmailMessage
-from email.mime.text import MIMEText
 from email.utils import getaddresses
 from imio.email.parser import email_policy  # noqa
 from imio.email.parser.utils import attachment_infos  # noqa
 from imio.email.parser.utils import structure  # noqa
-from mailparser import MailParser
+from mailparser.utils import ported_string
+from mailparser.utils import decode_header_part
+from mailparser.utils import random_string
+from mailparser.mailparser import MailParser
 
 import base64
 import copy
@@ -160,46 +162,97 @@ class Parser:
             em_im = [part.get("content-id") for part in cid_parts_used]
         else:
             em_im = self.get_embedded_images()
+
+        parts = []
         files = []
+        for p in self.message.get_payload():
+            parts.append(p)
 
-        if self.is_default_policy:
-            attachments = [attachment_infos(at) for at in self.message.iter_attachments()]
-        else:
-            attachments = self.parsed_message.attachments
-        # [{tup[0]: tup[1] for tup in at.items() if tup[0] != 'payload'} for at in attachments]
+        i = 0
+        while parts:
+            p = parts.pop(0)
+            if p.is_multipart():
+                if p.get_content_type() != "message/rfc822":
+                    parts.extend(p.get_payload())
+                    continue
 
-        for attachment in attachments:
-            # 'content-disposition': 'inline; filename="image001.jpg"'
-            # 'content-disposition': 'attachment; filename="Permis de la Parcelle X00.pdf"'
-            if attachment["binary"]:
-                raw_file = base64.b64decode(attachment["payload"])
-            elif isinstance(attachment["payload"], bytes):
-                raw_file = attachment["payload"]
-            else:
-                raw_file = attachment["payload"].encode("utf-8")  # to bytes
-            filename = attachment["filename"].replace(u"\r", u"").replace(u"\n", u"")
-            disp = attachment.get("content-disposition", "").split(";")[0]
-            if disp not in ("inline", "attachment"):
-                logger.error(
-                    "{}: attachment with filename '{}' with unknown disposition '{}'".format(
-                        self.mail_id, filename, attachment.get("content-disposition", "")
-                    )
-                )
-            if disp == "inline" and attachment["content-id"] not in em_im:
-                if self.dev_mode:
-                    logger.warning(
-                        "{}: inline attachment with filename '{}' not found in embedded".format(self.mail_id, filename)
-                    )
-                disp = "attachment"
-            files.append(
-                {
+                content_id = ported_string(p.get('content-id'))
+                filename = decode_header_part(p.get_filename()) or content_id[1:-1]+'.eml'
+                raw_file = p.as_string().encode("utf-8")
+                mail_content_type = ported_string(p.get_content_type())
+                content_disposition = ported_string(p.get('content-disposition')).split(";")[0]
+                files.append({
                     "filename": filename,
                     "content": raw_file,
                     "len": len(raw_file),
-                    "disp": disp,
-                    "type": attachment["mail_content_type"],
-                }
-            )  # , 'cid': attachment['content-id']})
+                    "disp": content_disposition,
+                    "type": mail_content_type,
+                })
+            else:
+                filename = decode_header_part(p.get_filename())
+                content_id = ported_string(p.get('content-id'))
+                mail_content_type = ported_string(p.get_content_type())
+                content_disposition = ported_string(
+                    p.get('content-disposition')).split(";")[0]
+
+                if not filename:
+                    content_subtype = ported_string(p.get_content_subtype())
+                    if content_id and content_subtype not in ("html", "plain"):
+                        filename = content_id
+                    elif content_subtype in ("rtf"):
+                        filename = "{}.rtf".format(random_string())
+                    elif content_disposition == "attachment":
+                        filename = "{}.txt".format(random_string())
+                    else:
+                        continue
+
+                # this is an attachment
+                if content_disposition not in ("inline", "attachment"):
+                    logger.error(
+                        "{}: attachment with filename '{}' with unknown disposition '{}'".format(
+                            self.mail_id, filename, p.get("content-disposition", "")
+                        )
+                    )
+                if content_disposition == "inline" and content_id not in em_im:
+                    if self.dev_mode:
+                        logger.warning(
+                            "{}: inline attachment with filename '{}' not found in embedded".format(self.mail_id,
+                                                                                                    filename)
+                        )
+                    content_disposition = "attachment"
+
+                transfer_encoding = ported_string(
+                    p.get('content-transfer-encoding', '')).lower()
+                if transfer_encoding == "base64" or (
+                        transfer_encoding == "quoted-\
+                   printable" and "application" in mail_content_type):
+                    payload = p.get_payload(decode=False)
+                    binary = True
+                elif "uuencode" in transfer_encoding:
+                    # Re-encode in base64
+                    payload = base64.b64encode(
+                        p.get_payload(decode=True)).decode('ascii')
+                    binary = True
+                else:
+                    charset = p.get_content_charset('utf-8')
+                    payload = ported_string(
+                        p.get_payload(decode=True), encoding=charset)
+                    binary = False
+
+                if binary:
+                    raw_file = base64.b64decode(payload)
+                elif isinstance(payload, bytes):
+                    raw_file = payload
+                else:
+                    raw_file = payload.encode("utf-8")  # to bytes
+                files.append({
+                    "filename": filename,
+                    "content": raw_file,
+                    "len": len(raw_file),
+                    "disp": content_disposition,
+                    "type": mail_content_type,
+                })
+            i += 1
         return files
 
     def generate_pdf(self, output_path):

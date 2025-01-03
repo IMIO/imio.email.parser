@@ -104,14 +104,18 @@ class TestParser(unittest.TestCase):
         to_tests = [
             {
                 "fn": "01_email_containing_eml.eml",
-                "disps": ["inline", "attachment", "attachment"],
-                "attachs": ["image.png", "directory_icon.png", "accuse.odt"],
+                "disps": ['attachment', 'attachment', 'inline'],
+                "attachs": ['directory_icon.png', 'accuse.odt', 'image.png'],
             },
-            {"fn": "02_email_containing_eml_containing_eml.eml", "disps": [], "attachs": []},
+            {
+                "fn": "02_email_containing_eml_containing_eml.eml",
+                "disps": ['attachment'],
+                "attachs": ['0EFCF667B71EA94AAEB80D9D3E4EADE7@eurprd05.prod.outlook.com.eml']
+            },
             {
                 "fn": "03_email_with_false_inline.eml",
-                "disps": ["inline", "attachment", "attachment"],
-                "attachs": ["1624352401933.png", "Erreur 2.jpg", "Erreur 1.png"],
+                "disps": ['attachment', 'attachment', 'inline'],
+                "attachs": ['Erreur 2.jpg', 'Erreur 1.png', '1624352401933.png'],
             },
         ]
         for dic in to_tests:
