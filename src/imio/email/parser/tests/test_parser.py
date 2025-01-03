@@ -104,8 +104,8 @@ class TestParser(unittest.TestCase):
         to_tests = [
             {
                 "fn": "01_email_containing_eml.eml",
-                "disps": ['attachment', 'attachment', 'inline'],
-                "attachs": ['directory_icon.png', 'accuse.odt', 'image.png'],
+                "disps": ['attachment', 'attachment'],
+                "attachs": ['directory_icon.png', 'accuse.odt'],
             },
             {
                 "fn": "02_email_containing_eml_containing_eml.eml",

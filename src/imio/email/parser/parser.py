@@ -245,6 +245,14 @@ class Parser:
                     raw_file = payload
                 else:
                     raw_file = payload.encode("utf-8")  # to bytes
+
+                if content_disposition == "inline" and len(raw_file) < 1000:
+                    if self.dev_mode:
+                        logger.warning(
+                            "{}: inline attachment with filename '{}' is too small, skipping...".format(self.mail_id, filename)
+                        )
+                    continue
+
                 files.append({
                     "filename": filename,
                     "content": raw_file,
