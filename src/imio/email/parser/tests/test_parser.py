@@ -104,18 +104,18 @@ class TestParser(unittest.TestCase):
         to_tests = [
             {
                 "fn": "01_email_containing_eml.eml",
-                "disps": ['attachment', 'attachment'],
-                "attachs": ['directory_icon.png', 'accuse.odt'],
+                "disps": ["inline", "attachment", "attachment"],
+                "attachs": ["image.png", "directory_icon.png", "accuse.odt"],
             },
             {
                 "fn": "02_email_containing_eml_containing_eml.eml",
-                "disps": ['attachment'],
-                "attachs": ['0EFCF667B71EA94AAEB80D9D3E4EADE7@eurprd05.prod.outlook.com.eml']
+                "disps": ["attachment"],
+                "attachs": ["0EFCF667B71EA94AAEB80D9D3E4EADE7@eurprd05.prod.outlook.com.eml"],
             },
             {
                 "fn": "03_email_with_false_inline.eml",
-                "disps": ['attachment', 'attachment', 'inline'],
-                "attachs": ['Erreur 2.jpg', 'Erreur 1.png', '1624352401933.png'],
+                "disps": ["inline", "attachment", "attachment"],
+                "attachs": ["1624352401933.png", "Erreur 2.jpg", "Erreur 1.png"],
             },
         ]
         for dic in to_tests:
@@ -123,10 +123,7 @@ class TestParser(unittest.TestCase):
             # with self.subTest(name=name): errors not returned in zc.recipe.testrunner
             omsg = get_eml_message(dic["fn"])
             iparsed = Parser(omsg, False, "1")
-            payload, cid_parts_used = iparsed.generate_pdf("/tmp/01.pdf")
-            ats = iparsed.attachments(True, cid_parts_used)
-            self.assertListEqual([at["filename"] for at in ats], dic["attachs"], name)
-            self.assertListEqual([at["disp"] for at in ats], dic["disps"], name)
-            ats = iparsed.attachments(False, cid_parts_used)
+            # payload, cid_parts_used = iparsed.generate_pdf("/tmp/01.pdf")
+            ats = iparsed.attachments()
             self.assertListEqual([at["filename"] for at in ats], dic["attachs"], name)
             self.assertListEqual([at["disp"] for at in ats], dic["disps"], name)
