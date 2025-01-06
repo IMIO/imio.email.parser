@@ -1,0 +1,339 @@
+MIME-Version: 1.0
+Date: Mon, 6 Jan 2025 10:48:51 +0100
+Message-ID: <CAPfdsfdLFqGSU8Fvd-uFfOfLT0rVT0m4TL6kULYyqiZUXHJkQ@mail.gmail.com>
+Subject: test
+From: Agent <agent@mail.com>
+To: docs_box@mail.be
+Content-Type: multipart/mixed; boundary="0000000000002fcaa8062b0689d7"
+
+--0000000000002fcaa8062b0689d7
+Content-Type: multipart/alternative; boundary="0000000000002fcaa6062b0689d5"
+
+--0000000000002fcaa6062b0689d5
+Content-Type: text/plain; charset="UTF-8"
+
+forward agent
+
+--0000000000002fcaa6062b0689d5
+Content-Type: text/html; charset="UTF-8"
+
+<div dir="ltr">forward agent<br></div>
+
+--0000000000002fcaa6062b0689d5--
+--0000000000002fcaa8062b0689d7
+Content-Type: message/rfc822; 
+	name="Email contenant inline, annexe et eml.eml"
+Content-Disposition: attachment; 
+	filename="Email contenant inline, annexe et eml.eml"
+X-Attachment-Id: f_m5kuz9i20
+Content-ID: <f_m5kuz9i20>
+
+Delivered-To: perso@mail.com
+Received: by 2002:a05:6200:615:b0:583:43e9:e6cc with SMTP id g21csp3391049qny;
+        Mon, 6 Jan 2025 01:45:55 -0800 (PST)
+X-Received: by 2002:a05:6402:35d6:b0:5d0:f9f1:cd73 with SMTP id 4fb4d7f45d1cf-5d81ddf3befmr54690289a12.13.1736156754909;
+        Mon, 06 Jan 2025 01:45:54 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1736156754; cv=none;
+        d=google.com; s=arc-20240605;
+        b=gO2ptNOSp/EVONfJ6X/lzj8DpF/NioYRG92YC9xedoxPc7JCMqWK6dDMDPFKPRBkjd
+         348PNOIvesJbXVKas/spal9nbNW4Q1n4v3Ijnj4lkUCblMMfn/KVaqltHNga8XoKp74l
+         O8cXstbxOdbIq7ueMebinJ3cL2bmdHNcokJmg7NdVXkhFFijgsEYK1yzUBOLMbFLN7p5
+         ngcZOH4gEtmqYgPX+q56wVR8KIS+lFfYij4BLp9fVLiE5Jj6G9TORTBWO68vKr9rcJ5E
+         TIjCcC19vojmyrjIsGY4vZzatbpsL7ASv3p9RWBxyWyUwLrza1fOCuNieqcl6AJjxv1r
+         c0OA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=jCBPBO9QBi+IwJKm+bgEFoXpdJyro/U59JniZDS2GZE=;
+        fh=+5En8t7rGK9ALAlirV60mWM+A3jWjxgJkXJlS+gWnyw=;
+        b=Jr7caYZ2+N7x/juHSR53hbMuMY2J2j/VmHrd0r5Q5td4o+o8iWULtzx2f9QuhVOGCo
+         77IhV6Jp+Y+bviazLYGWCseN6o0hkw0o4ZvGMEa2V5usWxzQ+1/ZEo8UXDYct34I65nz
+         yCdygCWziGRP8HyjUoRayIaLRFcMfN/nrSC7gzP5EQHsByAGYj3+H/Y3p3wf6A2B7Mvn
+         phA+9TMY/4I3078cMvdte+SwgUNzQkCWh7cxkYJTRUQVPXWAqsyWNvaIBiWBybUKohrS
+         9C13ie6dFmtoF+kSfdqV/h+NBIsjVtjG/dkmNtaLpVUNr9AizxRsvLZ7WJOkH65bNUpi
+         4oaQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@imio.be header.s=google header.b=Dfg+Jo3Y;
+       spf=pass (google.com: domain of stephan.mio@mail.be designates 209.85.220.41 as permitted sender) smtp.mailfrom=stephan.mio@mail.be;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=imio.be;
+       dara=pass header.i=@gmail.com
+Return-Path: <stephan.mio@mail.be>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 4fb4d7f45d1cf-5d80674e0c5sor12502199a12.1.2025.01.06.01.45.54
+        for <perso@mail.com>
+        (Google Transport Security);
+        Mon, 06 Jan 2025 01:45:54 -0800 (PST)
+Received-SPF: pass (google.com: domain of stephan.mio@mail.be designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@imio.be header.s=google header.b=Dfg+Jo3Y;
+       spf=pass (google.com: domain of stephan.mio@mail.be designates 209.85.220.41 as permitted sender) smtp.mailfrom=stephan.mio@mail.be;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=imio.be;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=imio.be; s=google; t=1736156754; x=1736761554; dara=google.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=jCBPBO9QBi+IwJKm+bgEFoXpdJyro/U59JniZDS2GZE=;
+        b=Dfg+Jo3YyGw/luXO6Ax4n7vDAWBCfAy6WeXO36CXNW2Ch+u1LJfFpYcqTxI3YthUWz
+         3nN8Up+SEj1hIPaxXubI+IO6XPO4eDaFacQaTGIQkJNUXHyet6Ss6WRHG+Y4HP0I4y2W
+         NlolRpf7vjdo+bDHk7+9GLviofiv3dDA/5uX0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736156754; x=1736761554;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jCBPBO9QBi+IwJKm+bgEFoXpdJyro/U59JniZDS2GZE=;
+        b=bycKbwOWJ53IrOX353q+eTXj8s8Qt90KL50/yKAbtLWLyxCMHToEUrLqf9S8f3sUkB
+         GoCZPQqojcMaHTDdmy0kOGiqb79PAhnHqm1ORSr77COE8L9uYKMqDxN7WYNwLDrm7CGi
+         KOH3JQbmkCIGv4agEH1wFa05fcIoc0E76PmaInvgUKU7QT5k5BIWaguD+2eldWGfuJEE
+         7RpSQWMgVbZKTxq4Z3oEPocx5j6mLu4tAP57baPUwYmO85HI+Xnm/C2lPYVMuSY35kEv
+         1FTgzNoMFtu+819RUoeLI8c2thk+XLlTLu/dyzc+nUYXbFLjvF1P2Iac7TK9WtEeaKF4
+         TGiA==
+X-Gm-Message-State: AOJu0YwzFh6BHys4NTP6nx43tK7uEtUNw3ZG3bVuW6G8nA37yE+dAqsF
+	YajMKYN87mPZTtzqBNAEFoxsNZks1+cY522Nc/XVJXOblds8f4G+saI+dgOKrzvV2i8E/6byLbK
+	G4UeQLxRUzfiZ/vN/Ei+6O+hwTrYYomxr6TBow/2iHbGatnlXV9k=
+X-Gm-Gg: ASbGnctkMqZxIgtG6sqn/OUUKWe+MCoDzD3mZJDipcFv+6vn6cMApmZ53oAZbe/Z4xU
+	7A+B16VTpdmJCtZ3ssoj3QshhPc+W5FAhSvRS
+X-Google-Smtp-Source: AGHT+IFTa9aIMG5V6GcW2+lVnyL8YgzZfMX0OJSt8GD8EQqqwBA2qjzjKP3rimMHwO7WbdCz3q2OysDFJeYoPguVpfk=
+X-Received: by 2002:a05:6402:350b:b0:5d3:bb6f:2675 with SMTP id
+ 4fb4d7f45d1cf-5d81de5e2e8mr56416238a12.34.1736156753875; Mon, 06 Jan 2025
+ 01:45:53 -0800 (PST)
+MIME-Version: 1.0
+From: =?UTF-8?Q?St=C3=A9phan_Mio?= <stephan.mio@mail.be>
+Date: Mon, 6 Jan 2025 10:45:37 +0100
+Message-ID: <CAMU0dk5tbmtuphoHpG+WU5XBC5evC6m3J_6j0fcfoJ5UMRh4Ug@mail.gmail.com>
+Subject: Email contenant inline, annexe et eml
+To: =?UTF-8?Q?St=C3=A9phan_Perso?= <perso@mail.com>
+Content-Type: multipart/mixed; boundary="00000000000097202c062b067e47"
+
+--00000000000097202c062b067e47
+Content-Type: multipart/related; boundary="00000000000097202c062b067e46"
+
+--00000000000097202c062b067e46
+Content-Type: multipart/alternative; boundary="00000000000097202b062b067e45"
+
+--00000000000097202b062b067e45
+Content-Type: text/plain; charset="UTF-8"
+
+Autre inline
+[image: organization_icon.png]
+
+--00000000000097202b062b067e45
+Content-Type: text/html; charset="UTF-8"
+
+<div dir="ltr">Autre inline <br><img src="cid:ii_m5kuur6b1" alt="organization_icon.png" width="16" height="16"><br><br></div>
+
+--00000000000097202b062b067e45--
+--00000000000097202c062b067e46
+Content-Type: image/png; name="organization_icon.png"
+Content-Disposition: inline; filename="organization_icon.png"
+Content-Transfer-Encoding: base64
+Content-ID: <ii_m5kuur6b1>
+X-Attachment-Id: ii_m5kuur6b1
+
+iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QAOQCWAJa1gJO7AAAACXBI
+WXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QEdCg4IYKgjyQAAAB1pVFh0Q29tbWVudAAAAAAAQ3Jl
+YXRlZCB3aXRoIEdJTVBkLmUHAAABHUlEQVQ4y6WSQUoEMRBFX7UtyIAEUREX3sADiBgQZl3oOTyL
+B3E5kAM4oBsRXCmIW5FxoVhxozjjtJsMhCYtDVO7/Pp5FSoflixpC03THMUYz4BBu+ecOxeR61yr
+O8C7qnqcCyGEMTBrG6sOQCxBgWlfQO8qAWaAWxaMmY289433vjGzxy5fnTa/HmO8BSZdO0iQSfYj
+JyLyKQmwEmN8V9VeTw8hjJ1zQxGZ12YmIvJrZg/AYQjhDvgGvlR1mC5cAa/AnqoeABsiMjezqgZu
+zGwbeEoDntMiN7OhP8ALsJPOH2Y2ApyY2WUpNAXtQlVPgbXcV3WEpqQ1+eVFuLqC5AqQQcH3Vv0z
+sU9NZbGMBHEp85OWcRXYB+6BrbzxB0owdfcjcu30AAAAAElFTkSuQmCC
+--00000000000097202c062b067e46--
+--00000000000097202c062b067e47
+Content-Type: text/plain; charset="US-ASCII"; name="=?UTF-8?B?dGV4dGVfc2ltcGxlIMOpw6nDqS50eHQ=?="
+Content-Disposition: attachment; filename="=?UTF-8?B?dGV4dGVfc2ltcGxlIMOpw6nDqS50eHQ=?="
+Content-Transfer-Encoding: base64
+Content-ID: <f_m5kuvmyq2>
+X-Attachment-Id: f_m5kuvmyq2
+
+Q2VjaSBlc3QgdW4gZmljaGllciBkJ2V4ZW1wbGUgY29udGVuYW50IGR1IHRleHRlIHNpbXBsZS4K
+--00000000000097202c062b067e47
+Content-Type: message/rfc822; name="Email avec inline et annexe.eml"
+Content-Disposition: attachment; filename="Email avec inline et annexe.eml"
+Content-ID: <f_m5kutfys0>
+X-Attachment-Id: f_m5kutfys0
+
+Delivered-To: stephan.mio@mail.be
+Received: by 2002:a05:6f02:8348:b0:7c:3dd0:f44f with SMTP id a8csp11965257rcf;
+        Mon, 6 Jan 2025 01:43:06 -0800 (PST)
+X-Received: by 2002:a05:620a:44c4:b0:7b6:d2bb:25c4 with SMTP id af79cd13be357-7b9ba83e797mr9954206485a.62.1736156585975;
+        Mon, 06 Jan 2025 01:43:05 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1736156585; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Ae0RZWX1Jy7EwNnbEt7A5MsbzHx7NaeXt/7c9wbGshcdOq7jJCC5NSGh/z1BEVPAyk
+         JNr+YxIaCokLFwVnNVPNAHBTJ2FAUoYRguTPnKyAC258R5gZjY4YAs+9tLUaxpMgy3Uy
+         M8tcJ2buq390o04sbgzTx6u+XApkDwEDjmGosZ/UOwl3DHHwH1YpjJvI1nYSOitOs4Jg
+         CSsMMeMvqhhmSVoAYkzNr7h+NI0HRZQpTdm+p91P3wd6l8qYnsoC4ewrDK3LXPUfq51I
+         TK/hSKPwiA2JF5qVgKJDc4ElCFoIV8sS2IWE7dP+hlm1wWeTlbELAVkNvJcPMK0RijCc
+         BnTA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=AR0CZu9QWNOWl4Pm6sixeRkKxfO+P18CqH+UGpc97pU=;
+        fh=q4Qm8tWrTNmM3t8ewr3WlJc7vrq8O5B0YNkdg3D34Q4=;
+        b=is4BhUOP8b08ChxRfjc12NVPVinzfaNv/3oWdzIFZNHnG+X3OhHrD50rqBMSRwBRW/
+         g9ggM+WlqYRYmSriku/FqOADL1cfpt8yjTjoglLfuWpP2jeIF/J1oQXjiHDoaR9IW3vB
+         Whc847sAU9VsY6ptt1sr+LYm3BxY5wrRBopcuubohs4rmlIigK9UcA3pewWiDtfhKu1V
+         pAg+Nks1l6YknPqt4N4ggnUzg8NQxFlko40xR8u6DrMi4AiHp0kxlImNWZXtzVAPoH27
+         eK74iZoSYirCViI0s/Ul7EBrGWeMOF0oPqQvJGLItErzKZxuTJyN3Cn6ZmNluMZ2D9kB
+         0jgg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=UF6LvZDG;
+       spf=pass (google.com: domain of perso@mail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=perso@mail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=neutral header.i=@imio.be
+Return-Path: <perso@mail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id af79cd13be357-7b9ac378f68sor2871029285a.5.2025.01.06.01.43.05
+        for <stephan.mio@mail.be>
+        (Google Transport Security);
+        Mon, 06 Jan 2025 01:43:05 -0800 (PST)
+Received-SPF: pass (google.com: domain of perso@mail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=UF6LvZDG;
+       spf=pass (google.com: domain of perso@mail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=perso@mail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=neutral header.i=@imio.be
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736156585; x=1736761385; darn=imio.be;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=AR0CZu9QWNOWl4Pm6sixeRkKxfO+P18CqH+UGpc97pU=;
+        b=UF6LvZDG7i20olQySFtG1DRLnP86bx2GoAitXRzCOwhEA10Vr3NykRX8U3d4IWsD4z
+         WOnoj/k/dEoZ2gBqXfA9Wc5vPFtLKs4OtrLgzTcf8rIzaW7m/fexMGXSPNhQ9GMw/pti
+         fYF+2ntYWgVijdLOCNghSvvhRVWbeVqkcX3LXTCyROK90wE42Y9M35w/3SeH40ZwBRna
+         R/32JrG5cPHbeLYzNBf7J6DJPO3ooxcxkyPLpSpeHy4/9idvLJiiP0m4a4VZJWJGp+At
+         fg49V6S4HwkWijOsBsrsmQC8rgeTxWDH/SmBD/CHQSj9dHO72kBRAooaJmIzBHH6rIUm
+         KF8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736156585; x=1736761385;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AR0CZu9QWNOWl4Pm6sixeRkKxfO+P18CqH+UGpc97pU=;
+        b=NTPj3TckxnnuECiT88GjhV5o5ZVBF3dqjqR5DdmdBqoYIZyUCpgsN1jSCWZzzslRu1
+         +d7eVM+N3qLO2HoSa1sD4Hz308M/xadVEJEXxzNndNfo8+EwywhKdJtQkWNT5WMrANp8
+         +zjWEHodBBuMGmIVON1oQH7xnXcV2/WkL1xqufot+HlBLq7UF/ZChW/Jdy7ri7Hm2hpz
+         nIwbB5P4CVjmH08ucABFYXKloz3ZfNL7DHRyaMIZIPx3Hh6MrJT+otoDbkZE7OaPHCSE
+         pmybHn9dkOkL5omcZcMYyKX9oDg90fBvG96REKGDDf3v1Q+V5ZvVqJW3/vacKKSw0Mrz
+         SnBA==
+X-Gm-Message-State: AOJu0YxtG3jsy6nbAmjUsQWtKs5hJb0szoD0eYXdR3/i9JFp4EuNAxNf
+	EqAkzQMyTMB0A2DN6plg9D/tuUIoLu99gTGrfSErpVXFQJaszBxrTuzAwhKk1ma9Ovlp1Z9Sb9w
+	pocSFlZ6k0gd43ffNRp2IgDHvfOnXzHbT
+X-Gm-Gg: ASbGncsIYJPcEMPBfzbjYyfqT0/Oq1UauzNqSsCsLp9DeB81t2t999Ne0EvBNOmho7u
+	AACUpxbbDoJh+ipsZqjPKr6Mkwi5LgdtOAjVg
+X-Google-Smtp-Source: AGHT+IFNHl5gY7DjB9j15Hgm2nbkBvDSXzkh9Tre+Yb3UdleJ+aCm7aZ3VKuJaZyAL8Nh4FfIR7iDaAd5NdsozYyziA=
+X-Received: by 2002:a05:620a:248e:b0:7b6:d089:274c with SMTP id
+ af79cd13be357-7b9ba7be6d0mr7151623585a.34.1736156585441; Mon, 06 Jan 2025
+ 01:43:05 -0800 (PST)
+MIME-Version: 1.0
+From: Stephan Perso <perso@mail.com>
+Date: Mon, 6 Jan 2025 10:42:54 +0100
+Message-ID: <CAPpwjctLCJx6=gSeWAeVLv0Myh_PJZqba3Vm75xaV+jqxNF_Qw@mail.gmail.com>
+Subject: Email avec inline et annexe
+To: Stephan Mio <stephan.mio@mail.be>
+Content-Type: multipart/mixed; boundary="0000000000008d1611062b06746a"
+
+--0000000000008d1611062b06746a
+Content-Type: multipart/related; boundary="0000000000008d1610062b067469"
+
+--0000000000008d1610062b067469
+Content-Type: multipart/alternative; boundary="0000000000008d160d062b067468"
+
+--0000000000008d160d062b067468
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Bonjour,
+mon ic=C3=B4ne
+[image: information.png]
+
+--0000000000008d160d062b067468
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Bonjour,</div><div>mon ic=C3=B4ne <br><img src=3D"cid=
+:ii_m5kuqtx10" alt=3D"information.png" width=3D"48" height=3D"48"><br><br><=
+/div></div>
+
+--0000000000008d160d062b067468--
+--0000000000008d1610062b067469
+Content-Type: image/png; name="information.png"
+Content-Disposition: inline; filename="information.png"
+Content-Transfer-Encoding: base64
+Content-ID: <ii_m5kuqtx10>
+X-Attachment-Id: ii_m5kuqtx10
+
+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
+--0000000000008d1610062b067469--
+--0000000000008d1611062b06746a
+Content-Type: text/plain; charset="US-ASCII"; name="texte_simple.txt"
+Content-Disposition: attachment; filename="texte_simple.txt"
+Content-Transfer-Encoding: base64
+Content-ID: <f_m5kusjqf1>
+X-Attachment-Id: f_m5kusjqf1
+
+Q2VjaSBlc3QgdW4gZmljaGllciBkJ2V4ZW1wbGUgY29udGVuYW50IGR1IHRleHRlIHNpbXBsZS4K
+--0000000000008d1611062b06746a--
+
+--00000000000097202c062b067e47--
+
+--0000000000002fcaa8062b0689d7--

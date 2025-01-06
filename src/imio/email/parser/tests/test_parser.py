@@ -21,20 +21,18 @@ class TestParser(unittest.TestCase):
     def test_extract_relevant_message(self):
         to_tests = [
             {
-                "fn": "01_email_containing_eml.eml",
+                "fn": "01_email_with_inline_and_annexes.eml",
                 "orig": "Agent forward",
                 "opl": ["multipart/alternative", "message/rfc822"],
                 "opl1": ["multipart/mixed"],
-                "ipl": ["multipart/related", "image/png", "application/vnd.oasis.opendocument.text"],
-                "msg_s": "Bonjour,\n\nVoici une phrase avec un petit logo [image: image.png] collé dans le texte.",
+                "msg_s": "Grande image\n[image: LibreOffice_ubuntu.png]\nPetite image\n[image: contact.png]",
             },
             {
-                "fn": "02_email_containing_eml_containing_eml.eml",
+                "fn": "02_email_with_inline_annex_eml.eml",
                 "orig": "Agent forward",
                 "opl": ["multipart/alternative", "message/rfc822"],
                 "opl1": ["multipart/mixed"],
-                "ipl": ["text/plain", "message/rfc822"],
-                "msg_s": "Dear user,",
+                "msg_s": "Autre inline\n[image: organization_icon.png]",
             },
         ]
         for dic in to_tests:
@@ -103,11 +101,20 @@ class TestParser(unittest.TestCase):
     def test_attachments(self):
         to_tests = [
             {
-                "fn": "01_email_containing_eml.eml",
-                "disps": ["inline", "attachment", "attachment"],
-                "attachs": ["image.png", "directory_icon.png", "accuse.odt"],
+                "fn": "01_email_with_inline_and_annexes.eml",
+                "disps": ["inline", "inline", "attachment", "attachment"],
+                "attachs": [
+                    "LibreOffice_ubuntu.png",
+                    "contact.png",
+                    "accuse.odt",
+                    "Capture du 2016-12-12 10-56-00.png",
+                ],
             },
-            {"fn": "02_email_containing_eml_containing_eml.eml", "disps": [], "attachs": []},
+            {
+                "fn": "02_email_with_inline_annex_eml.eml",
+                "disps": ["inline", "attachment", "attachment"],
+                "attachs": ["organization_icon.png", "texte_simple ééé.txt", "Email avec inline et annexe.eml"],
+            },
             {
                 "fn": "03_email_with_false_inline.eml",
                 "disps": ["inline", "attachment", "attachment"],
@@ -119,10 +126,7 @@ class TestParser(unittest.TestCase):
             # with self.subTest(name=name): errors not returned in zc.recipe.testrunner
             omsg = get_eml_message(dic["fn"])
             iparsed = Parser(omsg, False, "1")
-            payload, cid_parts_used = iparsed.generate_pdf("/tmp/01.pdf")
-            ats = iparsed.attachments(True, cid_parts_used)
-            self.assertListEqual([at["filename"] for at in ats], dic["attachs"], name)
-            self.assertListEqual([at["disp"] for at in ats], dic["disps"], name)
-            ats = iparsed.attachments(False, cid_parts_used)
+            # payload, cid_parts_used = iparsed.generate_pdf("/tmp/01.pdf")
+            ats = iparsed.attachments()
             self.assertListEqual([at["filename"] for at in ats], dic["attachs"], name)
             self.assertListEqual([at["disp"] for at in ats], dic["disps"], name)
