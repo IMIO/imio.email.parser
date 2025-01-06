@@ -1,0 +1,6 @@
+01_email_with_inline_and_annexes:
+	Original email with 1 big inline image, 1 little inline image and 2 annexes: 1 big image and 1 file
+02_email_containing_eml_containing_eml:
+	Original email with 1 annex: 1 eml
+03_email_with_false_inline:
+	Original email with 1 inline image and 2 annexes: 2 little images
