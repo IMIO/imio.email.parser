@@ -113,6 +113,17 @@ class Parser:
                             if spart.get_content_type() == "message/rfc822":  # maybe check for attachment filename ?
                                 self.origin = "Agent forward"
                                 return spart.get_payload()[0]
+            # owa eml in base64
+            for part in payload:
+                if (
+                    part.get_content_type() == "application/octet-stream"
+                    and part.get_content_disposition() == "attachment"
+                    and part.get_filename().endswith(".eml")
+                    and part.get("Content-Transfer-Encoding") == "base64"
+                ):
+                    self.origin = "Agent forward"
+                    return email.message_from_bytes(base64.b64decode(part.get_payload()), policy=email_policy)
+
         self.origin = "Generic inbox"
         return message
 

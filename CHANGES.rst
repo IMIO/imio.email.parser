@@ -7,6 +7,10 @@ Changelog
 
 - Used standard email parser in tests.
   [sgeulette]
+- Handled correctly rfc822 attachment (attached eml)
+  [sgeulette]
+- Handled correctly owa transfer
+  [sgeulette]
 
 0.2.0 (2024-10-04)
 ------------------
