@@ -28,11 +28,11 @@ class TestParser(unittest.TestCase):
                 "msg_s": "Grande image\n[image: LibreOffice_ubuntu.png]\nPetite image\n[image: contact.png]",
             },
             {
-                "fn": "02_email_containing_eml_containing_eml.eml",
+                "fn": "02_email_with_inline_annex_eml.eml",
                 "orig": "Agent forward",
                 "opl": ["multipart/alternative", "message/rfc822"],
                 "opl1": ["multipart/mixed"],
-                "msg_s": "Dear user,",
+                "msg_s": "Autre inline\n[image: organization_icon.png]",
             },
         ]
         for dic in to_tests:
@@ -111,9 +111,9 @@ class TestParser(unittest.TestCase):
                 ],
             },
             {
-                "fn": "02_email_containing_eml_containing_eml.eml",
-                "disps": ["attachment"],
-                "attachs": ["0EFCF667B71EA94AAEB80D9D3E4EADE7@eurprd05.prod.outlook.com.eml"],
+                "fn": "02_email_with_inline_annex_eml.eml",
+                "disps": ["inline", "attachment", "attachment"],
+                "attachs": ["organization_icon.png", "texte_simple ééé.txt", "Email avec inline et annexe.eml"],
             },
             {
                 "fn": "03_email_with_false_inline.eml",
