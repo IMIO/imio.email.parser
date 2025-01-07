@@ -8,6 +8,9 @@ from imio.email.parser.utils import structure  # noqa
 from mailparser.mailparser import MailParser
 from mailparser.utils import decode_header_part
 from mailparser.utils import ported_string
+from PIL import Image
+from bs4 import BeautifulSoup
+import io
 
 import base64
 import copy
@@ -71,6 +74,7 @@ class Parser:
         :type message: email.message.Message
         """
         self.initial_message = message
+        message = self._resize_inline_images(message)
         self.message = self._extract_relevant_message(message)
         self.parsed_message = MailParser(self.message)
         self.dev_mode = dev_mode
@@ -78,6 +82,103 @@ class Parser:
         self.is_default_policy = False
         if isinstance(message, email.message.EmailMessage):
             self.is_default_policy = True
+        self._attachments = None
+
+    def _resize_inline_images(self, message):
+        """
+        Resize large inline images in the message body and returns the message.
+        """
+        def resize_image(data, image_width, image_height, format):
+            """
+            Resize an image using PIL and return the resized image as a base64-encoded string.
+
+            Args:
+                data (str): Base64-encoded string of the input image.
+                image_width (int): Desired width of the resized image.
+                image_height (int): Desired height of the resized image.
+                format (str): Format to save the resized image (e.g., 'JPEG', 'PNG').
+
+            Returns:
+                str: Base64-encoded string of the resized image.
+            """
+            buffer = io.BytesIO()
+            img = Image.open(io.BytesIO(data))
+            new_img = img.resize((image_width, image_height))
+            try:
+                new_img.save(buffer, format=format)
+            except OSError:
+                new_img = new_img.convert('RGB')
+                new_img.save(buffer, format=format)
+            return buffer.getvalue()
+
+        def calculate_dimensions(original_width, original_height, max_width=800, max_height=600):
+            """
+            Calculate dimensions to resize an image within a maximum width and height
+            while maintaining the aspect ratio.
+
+            Args:
+                original_width (int): Original width of the image.
+                original_height (int): Original height of the image.
+                max_width (int): Maximum width for the resized image. Default is 800.
+                max_height (int): Maximum height for the resized image. Default is 600.
+
+            Returns:
+                tuple: New width and height for the resized image.
+            """
+            # Determine the aspect ratio
+            aspect_ratio = original_width / original_height
+
+            # Start with the original dimensions
+            new_width, new_height = original_width, original_height
+
+            # Scale down by width if it exceeds the max width
+            if new_width > max_width:
+                new_width = max_width
+                new_height = int(new_width / aspect_ratio)
+
+            # Scale down by height if it exceeds the max height
+            if new_height > max_height:
+                new_height = max_height
+                new_width = int(new_height * aspect_ratio)
+
+            return new_width, new_height
+
+        for part in message.walk():
+            if part.get_content_type().startswith('image/') and part.get('Content-Disposition', '').startswith('inline'):
+                # Decode, resize, and re-encode the image
+                original_data = part.get_payload()
+                data = base64.b64decode(original_data)
+                original_image_width = Image.open(io.BytesIO(data)).width
+                original_image_height = Image.open(io.BytesIO(data)).height
+                image_width, image_height = calculate_dimensions(original_image_width, original_image_height)
+                resized_data = resize_image(data, image_width, image_height, format=part.get_content_subtype())
+
+                # Replace the image content in the new message
+                part.set_content(
+                    resized_data,
+                    filename=part.get_filename(),
+                    maintype=part.get_content_maintype(),
+                    subtype=part.get_content_subtype(),
+                    disposition=part.get('Content-Disposition'),
+                    cte="base64",
+                    cid=part.get('Content-ID'),
+                )
+            elif part.get_content_type() == "text/html":
+                html_part = part.get_content()
+                soup = BeautifulSoup(html_part, "html.parser")
+                for img_tag in soup.find_all("img"):
+                    if img_tag.get("src") and img_tag.get("width") and img_tag.get("height"):
+                        original_image_width = int(img_tag.get("width"))
+                        original_image_height = int(img_tag.get("height"))
+                        image_width, image_height = calculate_dimensions(original_image_width, original_image_height)
+                        img_tag["width"] = str(image_width)
+                        img_tag["height"] = str(image_height)
+                part.set_content(
+                    soup.prettify(),
+                    subtype=part.get_content_subtype(),
+                )
+
+        return message
 
     def _extract_relevant_message(self, message):
         """
@@ -238,6 +339,9 @@ class Parser:
         return attachments
 
     def attachments(self):
+        if self._attachments is not None:
+            return self._attachments
+
         em_im = self.get_embedded_images()
         files = []
         for attachment in self.mailparser_attachments():
@@ -272,6 +376,8 @@ class Parser:
                     "type": attachment["mail_content_type"],
                 }
             )  # , 'cid': attachment['content-id']})
+
+        self._attachments = files
         return files
 
     def generate_pdf(self, output_path):
