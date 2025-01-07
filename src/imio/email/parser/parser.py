@@ -69,12 +69,13 @@ def correct_addresses(lst):
 
 
 class Parser:
-    def __init__(self, message, dev_mode, mail_id):
+    def __init__(self, message, dev_mode, mail_id, resize_inline_images=False):
         """
         :type message: email.message.Message
         """
         self.initial_message = message
-        message = self._resize_inline_images(message)
+        if resize_inline_images:
+            message = self._resize_inline_images(message)
         self.message = self._extract_relevant_message(message)
         self.parsed_message = MailParser(self.message)
         self.dev_mode = dev_mode
