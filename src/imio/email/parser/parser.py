@@ -69,13 +69,11 @@ def correct_addresses(lst):
 
 
 class Parser:
-    def __init__(self, message, dev_mode, mail_id, resize_inline_images=False):
+    def __init__(self, message, dev_mode, mail_id):
         """
         :type message: email.message.Message
         """
         self.initial_message = message
-        if resize_inline_images:
-            message = self._resize_inline_images(message)
         self.message = self._extract_relevant_message(message)
         self.parsed_message = MailParser(self.message)
         self.dev_mode = dev_mode
@@ -144,7 +142,7 @@ class Parser:
 
             return new_width, new_height
 
-        for part in message.walk():
+        for part in self.walk(message):
             if part.get_content_type().startswith('image/') and part.get('Content-Disposition', '').startswith('inline'):
                 # Decode, resize the image
                 original_data = part.get_payload()
@@ -381,7 +379,7 @@ class Parser:
 
     def generate_pdf(self, output_path):
         proceed, args = email2pdf2.handle_args([__file__, "--no-attachments", "--headers"])
-        copied_message = copy.deepcopy(self.message)
+        copied_message = self._resize_inline_images(copy.deepcopy(self.message))
         try:
             payload, parts_already_used = email2pdf2.handle_message_body(args, self.message)
         except email2pdf2.FatalException as fe:
