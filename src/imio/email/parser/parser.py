@@ -146,7 +146,7 @@ class Parser:
 
         for part in message.walk():
             if part.get_content_type().startswith('image/') and part.get('Content-Disposition', '').startswith('inline'):
-                # Decode, resize, and re-encode the image
+                # Decode, resize the image
                 original_data = part.get_payload()
                 data = base64.b64decode(original_data)
                 original_image_width = Image.open(io.BytesIO(data)).width
@@ -164,16 +164,14 @@ class Parser:
                     cte="base64",
                     cid=part.get('Content-ID'),
                 )
+                logger.info(f"Resized inline image '{part.get_filename()}' from {original_image_width}x{original_image_height} to {image_width}x{image_height}")
             elif part.get_content_type() == "text/html":
                 html_part = part.get_content()
                 soup = BeautifulSoup(html_part, "html.parser")
                 for img_tag in soup.find_all("img"):
-                    if img_tag.get("src") and img_tag.get("width") and img_tag.get("height"):
-                        original_image_width = int(img_tag.get("width"))
-                        original_image_height = int(img_tag.get("height"))
-                        image_width, image_height = calculate_dimensions(original_image_width, original_image_height)
-                        img_tag["width"] = str(image_width)
-                        img_tag["height"] = str(image_height)
+                    if img_tag.get("src"):
+                        max_width = img_tag.get("width", "100%")
+                        img_tag["style"] = f"max-width: {max_width}; width: auto; height: auto;"
                 part.set_content(
                     soup.prettify(),
                     subtype=part.get_content_subtype(),
