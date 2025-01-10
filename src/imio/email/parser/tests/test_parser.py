@@ -120,6 +120,11 @@ class TestParser(unittest.TestCase):
                 "disps": ["inline", "attachment", "attachment"],
                 "attachs": ["1624352401933.png", "Erreur 2.jpg", "Erreur 1.png"],
             },
+            {
+                "fn": "04_email_with_pdf_attachment.eml",
+                "disps": ["attachment"],
+                "attachs": ["pdf-example-bookmarks-1-2.pdf"],
+            },
         ]
         for dic in to_tests:
             name = dic["fn"]
