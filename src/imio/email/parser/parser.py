@@ -142,38 +142,53 @@ class Parser:
 
             return new_width, new_height
 
-        for part in self.walk(message):
-            if part.get_content_type().startswith('image/') and part.get('Content-Disposition', '').startswith('inline'):
-                # Decode, resize the image
-                original_data = part.get_payload()
-                data = base64.b64decode(original_data)
-                original_image_width = Image.open(io.BytesIO(data)).width
-                original_image_height = Image.open(io.BytesIO(data)).height
-                image_width, image_height = calculate_dimensions(original_image_width, original_image_height)
-                resized_data = resize_image(data, image_width, image_height, format=part.get_content_subtype())
+        inline_cids = []
+        for at in self.attachments:
+            if at["type"].startswith('image/') and at["disp"] == 'inline':
+                inline_cids.append(at["cid"].strip('<>'))
 
-                # Replace the image content in the new message
-                part.set_content(
-                    resized_data,
-                    filename=part.get_filename(),
-                    maintype=part.get_content_maintype(),
-                    subtype=part.get_content_subtype(),
-                    disposition=part.get('Content-Disposition'),
-                    cte="base64",
-                    cid=part.get('Content-ID'),
-                )
-                logger.info(f"Resized inline image '{part.get_filename()}' from {original_image_width}x{original_image_height} to {image_width}x{image_height}")
-            elif part.get_content_type() == "text/html":
-                html_part = part.get_content()
-                soup = BeautifulSoup(html_part, "html.parser")
-                for img_tag in soup.find_all("img"):
-                    if img_tag.get("src"):
-                        current_width = img_tag.get("width", "auto")
-                        img_tag["style"] = f"max-width: 100%; width: {current_width}; height: auto;"
-                part.set_content(
-                    soup.prettify(),
-                    subtype=part.get_content_subtype(),
-                )
+        # Find all inline images in the message by CID and resize them
+        for cid in inline_cids:
+            part = email2pdf2.find_part_by_content_id(message, cid)
+
+            # Decode, resize the image
+            data = base64.b64decode(part.get_payload())
+            original_image_width = Image.open(io.BytesIO(data)).width
+            original_image_height = Image.open(io.BytesIO(data)).height
+            image_width, image_height = calculate_dimensions(original_image_width, original_image_height)
+            resized_data = resize_image(data, image_width, image_height, format=part.get_content_subtype())
+
+            # Replace the image content in the new message
+            part.set_content(
+                resized_data,
+                filename=part.get_filename(),
+                maintype=part.get_content_maintype(),
+                subtype=part.get_content_subtype(),
+                disposition=part.get('Content-Disposition'),
+                cte="base64",
+                cid=part.get('Content-ID'),
+            )
+            logger.info(f"Resized inline image '{part.get_filename()}' from {original_image_width}x{original_image_height} to {image_width}x{image_height}")
+
+        # Update the HTML part of the message with the resized images
+        html_part = None
+        for part in message.walk():
+            if part.get_content_type() == "text/html":
+                html_part = part
+                break
+        if html_part is None:
+            logger.error("No HTML part found in the message body, cannot resize inline images")
+        soup = BeautifulSoup(html_part.get_content(), "html.parser")
+        for img_tag in soup.find_all("img"):
+            if not img_tag.get("src") or img_tag.get("src").replace("cid:", "") not in inline_cids:
+                logger.warning(f"Inline image with CID '{img_tag.get('src').replace('cid:', '')}' not found in attachments")
+                continue
+            current_width = img_tag.get("width", "auto")
+            img_tag["style"] = f"max-width: 100%; width: {current_width}; height: auto;"
+        html_part.set_content(
+            soup.prettify(),
+            subtype=part.get_content_subtype(),
+        )
 
         return message
 
@@ -335,6 +350,7 @@ class Parser:
                 )
         return attachments
 
+    @property
     def attachments(self):
         if self._attachments is not None:
             return self._attachments
@@ -371,8 +387,9 @@ class Parser:
                     "len": len(raw_file),
                     "disp": disp,
                     "type": attachment["mail_content_type"],
+                    "cid": attachment["content-id"],
                 }
-            )  # , 'cid': attachment['content-id']})
+            )
 
         self._attachments = files
         return files
