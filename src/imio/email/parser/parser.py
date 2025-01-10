@@ -168,8 +168,8 @@ class Parser:
                 soup = BeautifulSoup(html_part, "html.parser")
                 for img_tag in soup.find_all("img"):
                     if img_tag.get("src"):
-                        max_width = img_tag.get("width", "100%")
-                        img_tag["style"] = f"max-width: {max_width}; width: auto; height: auto;"
+                        current_width = img_tag.get("width", "auto")
+                        img_tag["style"] = f"max-width: 100%; width: {current_width}; height: auto;"
                 part.set_content(
                     soup.prettify(),
                     subtype=part.get_content_subtype(),
@@ -381,7 +381,7 @@ class Parser:
         proceed, args = email2pdf2.handle_args([__file__, "--no-attachments", "--headers"])
         copied_message = self._resize_inline_images(copy.deepcopy(self.message))
         try:
-            payload, parts_already_used = email2pdf2.handle_message_body(args, self.message)
+            payload, parts_already_used = email2pdf2.handle_message_body(args, copied_message)
         except email2pdf2.FatalException as fe:
             if fe.value == "No body parts found; aborting.":
                 self.add_body(copied_message, "<html><body><p></p></body></html>")
