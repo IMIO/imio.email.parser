@@ -171,24 +171,18 @@ class Parser:
             logger.info(f"Resized inline image '{part.get_filename()}' from {original_image_width}x{original_image_height} to {image_width}x{image_height}")
 
         # Update the HTML part of the message with the resized images
-        html_part = None
         for part in message.walk():
-            if part.get_content_type() == "text/html":
-                html_part = part
-                break
-        if html_part is None:
-            logger.error("No HTML part found in the message body, cannot resize inline images")
-        soup = BeautifulSoup(html_part.get_content(), "html.parser")
-        for img_tag in soup.find_all("img"):
-            if not img_tag.get("src") or img_tag.get("src").replace("cid:", "") not in inline_cids:
-                logger.warning(f"Inline image with CID '{img_tag.get('src').replace('cid:', '')}' not found in attachments")
+            if part.get_content_type() != "text/html":
                 continue
-            current_width = img_tag.get("width", "auto")
-            img_tag["style"] = f"max-width: 100%; width: {current_width}; height: auto;"
-        html_part.set_content(
-            soup.prettify(),
-            subtype=part.get_content_subtype(),
-        )
+            html_part = part
+            soup = BeautifulSoup(html_part.get_content(), "html.parser")
+            for img_tag in soup.find_all("img"):
+                if not img_tag.get("src") or img_tag.get("src").replace("cid:", "") not in inline_cids:
+                    logger.warning(f"Inline image with CID '{img_tag.get('src').replace('cid:', '')}' not found in attachments")
+                    continue
+                current_width = img_tag.get("width", "auto")
+                img_tag["style"] = f"max-width: 100%; width: {current_width}; height: auto;"
+            html_part.set_content(soup.prettify(), subtype="html")
 
         return message
 
