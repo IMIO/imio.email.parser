@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from bs4 import BeautifulSoup
 from email2pdf2 import email2pdf2
 from email.message import EmailMessage
 from email.utils import getaddresses
@@ -9,12 +10,11 @@ from mailparser.mailparser import MailParser
 from mailparser.utils import decode_header_part
 from mailparser.utils import ported_string
 from PIL import Image
-from bs4 import BeautifulSoup
-import io
 
 import base64
 import copy
 import email
+import io
 import logging
 import re
 
@@ -87,6 +87,7 @@ class Parser:
         """
         Resize large inline images in the message body and returns the message.
         """
+
         def resize_image(data, image_width, image_height, format):
             """
             Resize an image using PIL and return the resized image as a base64-encoded string.
@@ -106,7 +107,7 @@ class Parser:
             try:
                 new_img.save(buffer, format=format)
             except OSError:
-                new_img = new_img.convert('RGB')
+                new_img = new_img.convert("RGB")
                 new_img.save(buffer, format=format)
             return buffer.getvalue()
 
@@ -144,8 +145,8 @@ class Parser:
 
         inline_cids = []
         for at in self.attachments:
-            if at["type"].startswith('image/') and at["disp"] == 'inline':
-                inline_cids.append(at["cid"].strip('<>'))
+            if at["type"].startswith("image/") and at["disp"] == "inline":
+                inline_cids.append(at["cid"].strip("<>"))
 
         # Find all inline images in the message by CID and resize them
         for cid in inline_cids:
@@ -164,11 +165,13 @@ class Parser:
                 filename=part.get_filename(),
                 maintype=part.get_content_maintype(),
                 subtype=part.get_content_subtype(),
-                disposition=part.get('Content-Disposition'),
+                disposition=part.get("Content-Disposition"),
                 cte="base64",
-                cid=part.get('Content-ID'),
+                cid=part.get("Content-ID"),
             )
-            logger.info(f"Resized inline image '{part.get_filename()}' from {original_image_width}x{original_image_height} to {image_width}x{image_height}")
+            logger.info(
+                f"Resized inline image '{part.get_filename()}' from {original_image_width}x{original_image_height} to {image_width}x{image_height}"
+            )
 
         # Update the HTML part of the message with the resized images
         for part in message.walk():
@@ -178,7 +181,9 @@ class Parser:
             soup = BeautifulSoup(html_part.get_content(), "html.parser")
             for img_tag in soup.find_all("img"):
                 if not img_tag.get("src") or img_tag.get("src").replace("cid:", "") not in inline_cids:
-                    logger.warning(f"Inline image with CID '{img_tag.get('src').replace('cid:', '')}' not found in attachments")
+                    logger.warning(
+                        f"Inline image with CID '{img_tag.get('src').replace('cid:', '')}' not found in attachments"
+                    )
                     continue
                 current_width = img_tag.get("width", "auto")
                 img_tag["style"] = f"max-width: 100%; width: {current_width}; height: auto;"
