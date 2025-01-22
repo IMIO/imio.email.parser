@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from bs4 import BeautifulSoup
 from email2pdf2 import email2pdf2
 from email.message import EmailMessage
 from email.utils import getaddresses
@@ -9,12 +8,10 @@ from imio.email.parser.utils import structure  # noqa
 from mailparser.mailparser import MailParser
 from mailparser.utils import decode_header_part
 from mailparser.utils import ported_string
-from PIL import Image
 
 import base64
 import copy
 import email
-import io
 import logging
 import re
 
@@ -82,114 +79,6 @@ class Parser:
         if isinstance(message, email.message.EmailMessage):
             self.is_default_policy = True
         self._attachments = None
-
-    def _resize_inline_images(self, message):
-        """
-        Resize large inline images in the message body and returns the message.
-        """
-
-        def resize_image(data, image_width, image_height, format):
-            """
-            Resize an image using PIL and return the resized image as a base64-encoded string.
-
-            Args:
-                data (str): Base64-encoded string of the input image.
-                image_width (int): Desired width of the resized image.
-                image_height (int): Desired height of the resized image.
-                format (str): Format to save the resized image (e.g., 'JPEG', 'PNG').
-
-            Returns:
-                str: Base64-encoded string of the resized image.
-            """
-            buffer = io.BytesIO()
-            img = Image.open(io.BytesIO(data))
-            new_img = img.resize((image_width, image_height))
-            try:
-                new_img.save(buffer, format=format)
-            except OSError:
-                new_img = new_img.convert("RGB")
-                new_img.save(buffer, format=format)
-            return buffer.getvalue()
-
-        def calculate_dimensions(original_width, original_height, max_width=800, max_height=600):
-            """
-            Calculate dimensions to resize an image within a maximum width and height
-            while maintaining the aspect ratio.
-
-            Args:
-                original_width (int): Original width of the image.
-                original_height (int): Original height of the image.
-                max_width (int): Maximum width for the resized image. Default is 800.
-                max_height (int): Maximum height for the resized image. Default is 600.
-
-            Returns:
-                tuple: New width and height for the resized image.
-            """
-            # Determine the aspect ratio
-            aspect_ratio = original_width / original_height
-
-            # Start with the original dimensions
-            new_width, new_height = original_width, original_height
-
-            # Scale down by width if it exceeds the max width
-            if new_width > max_width:
-                new_width = max_width
-                new_height = int(new_width / aspect_ratio)
-
-            # Scale down by height if it exceeds the max height
-            if new_height > max_height:
-                new_height = max_height
-                new_width = int(new_height * aspect_ratio)
-
-            return new_width, new_height
-
-        inline_cids = []
-        for at in self.attachments:
-            if at["type"].startswith("image/") and at["disp"] == "inline":
-                inline_cids.append(at["cid"].strip("<>"))
-
-        # Find all inline images in the message by CID and resize them
-        for cid in inline_cids:
-            part = email2pdf2.find_part_by_content_id(message, cid)
-
-            # Decode, resize the image
-            data = base64.b64decode(part.get_payload())
-            original_image_width = Image.open(io.BytesIO(data)).width
-            original_image_height = Image.open(io.BytesIO(data)).height
-            image_width, image_height = calculate_dimensions(original_image_width, original_image_height)
-            resized_data = resize_image(data, image_width, image_height, format=part.get_content_subtype())
-
-            # Replace the image content in the new message
-            part.set_content(
-                resized_data,
-                filename=part.get_filename(),
-                maintype=part.get_content_maintype(),
-                subtype=part.get_content_subtype(),
-                disposition=part.get("Content-Disposition"),
-                cte="base64",
-                cid=part.get("Content-ID"),
-            )
-            logger.info(
-                f"Resized inline image '{part.get_filename()}' from {original_image_width}x{original_image_height} to {image_width}x{image_height}"
-            )
-
-        # Update the HTML part of the message with the resized images
-        for part in message.walk():
-            if part.get_content_type() != "text/html":
-                continue
-            html_part = part
-            soup = BeautifulSoup(html_part.get_content(), "html.parser")
-            for img_tag in soup.find_all("img"):
-                if not img_tag.get("src") or img_tag.get("src").replace("cid:", "") not in inline_cids:
-                    logger.warning(
-                        f"Inline image with CID '{img_tag.get('src').replace('cid:', '')}' not found in attachments"
-                    )
-                    continue
-                current_width = img_tag.get("width", "auto")
-                img_tag["style"] = f"max-width: 100%; width: {current_width}; height: auto;"
-            html_part.set_content(soup.prettify(), subtype="html")
-
-        return message
 
     def _extract_relevant_message(self, message):
         """
@@ -393,9 +282,11 @@ class Parser:
         self._attachments = files
         return files
 
-    def generate_pdf(self, output_path):
+    def generate_pdf(self, output_path, message=None):
         proceed, args = email2pdf2.handle_args([__file__, "--no-attachments", "--headers"])
-        copied_message = self._resize_inline_images(copy.deepcopy(self.message))
+        if message is None:
+            message = self.message
+        copied_message = copy.deepcopy(message)
         try:
             payload, parts_already_used = email2pdf2.handle_message_body(args, copied_message)
         except email2pdf2.FatalException as fe:
