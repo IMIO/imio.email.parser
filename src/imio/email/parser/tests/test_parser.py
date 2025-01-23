@@ -104,7 +104,7 @@ class TestParser(unittest.TestCase):
                 "fn": "01_email_with_inline_and_annexes.eml",
                 "disps": ["inline", "inline", "attachment", "attachment"],
                 "attachs": [
-                    "LibreOffice_ubuntu.png",
+                    "2-1-page-daccueil.png",
                     "contact.png",
                     "accuse.odt",
                     "Capture du 2016-12-12 10-56-00.png",
@@ -127,6 +127,6 @@ class TestParser(unittest.TestCase):
             omsg = get_eml_message(dic["fn"])
             iparsed = Parser(omsg, False, "1")
             # payload, cid_parts_used = iparsed.generate_pdf("/tmp/01.pdf")
-            ats = iparsed.attachments()
+            ats = iparsed.attachments
             self.assertListEqual([at["filename"] for at in ats], dic["attachs"], name)
             self.assertListEqual([at["disp"] for at in ats], dic["disps"], name)
