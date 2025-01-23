@@ -78,6 +78,7 @@ class Parser:
         self.is_default_policy = False
         if isinstance(message, email.message.EmailMessage):
             self.is_default_policy = True
+        self._attachments = None
 
     def _extract_relevant_message(self, message):
         """
@@ -248,7 +249,11 @@ class Parser:
                 )
         return attachments
 
+    @property
     def attachments(self):
+        if self._attachments is not None:
+            return self._attachments
+
         em_im = self.get_embedded_images()
         files = []
         for attachment in self.mailparser_attachments():
@@ -281,15 +286,20 @@ class Parser:
                     "len": len(raw_file),
                     "disp": disp,
                     "type": attachment["mail_content_type"],
+                    "cid": attachment["content-id"],
                 }
-            )  # , 'cid': attachment['content-id']})
+            )
+
+        self._attachments = files
         return files
 
-    def generate_pdf(self, output_path):
+    def generate_pdf(self, output_path, message=None):
         proceed, args = email2pdf2.handle_args([__file__, "--no-attachments", "--headers"])
-        copied_message = copy.deepcopy(self.message)
+        if message is None:
+            message = self.message
+        copied_message = copy.deepcopy(message)
         try:
-            payload, parts_already_used = email2pdf2.handle_message_body(args, self.message)
+            payload, parts_already_used = email2pdf2.handle_message_body(args, copied_message)
         except email2pdf2.FatalException as fe:
             if fe.value == "No body parts found; aborting.":
                 self.add_body(copied_message, "<html><body><p></p></body></html>")
