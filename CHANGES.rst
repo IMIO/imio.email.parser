@@ -11,6 +11,8 @@ Changelog
   [sgeulette]
 - Handled correctly owa transfer
   [sgeulette]
+- Added message parameter to `parser.generate_pdf`
+  [sgeulette]
 
 0.2.0 (2024-10-04)
 ------------------

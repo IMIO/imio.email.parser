@@ -10,17 +10,7 @@ from pathvalidate import sanitize_filename
 
 import base64
 import mimetypes
-import os
 import sys
-
-
-def load_eml_file(filename, encoding="utf8", as_msg=True):
-    """Read eml file"""
-    with open(filename, "r", encoding=encoding) as input_handle:
-        data = input_handle.read()
-        if as_msg:
-            return get_input_email(data)
-        return data
 
 
 def attachment_infos(attach):
@@ -72,6 +62,15 @@ def attachment_infos(attach):
         "charset": charset_raw,
         "content_transfer_encoding": transfer_encoding,
     }
+
+
+def load_eml_file(filename, encoding="utf8", as_msg=True):
+    """Read eml file"""
+    with open(filename, "r", encoding=encoding) as input_handle:
+        data = input_handle.read()
+        if as_msg:
+            return get_input_email(data)
+        return data
 
 
 def stop(msg, logger=None):
