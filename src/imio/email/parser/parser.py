@@ -3,7 +3,7 @@ from email2pdf2 import email2pdf2
 from email.message import EmailMessage
 from email.utils import getaddresses
 from imio.email.parser import email_policy  # noqa
-from imio.email.parser.utils import attachment_infos  # noqa
+from imio.email.parser.utils import decode_quopri  # noqa
 from imio.email.parser.utils import structure  # noqa
 from mailparser.mailparser import MailParser
 from mailparser.utils import decode_header_part
@@ -266,6 +266,9 @@ class Parser:
             else:
                 raw_file = attachment["payload"].encode("utf-8")  # to bytes
             filename = attachment["filename"].replace("\r", "").replace("\n", "")
+            # handle quoted printable filename
+            if filename[0] == "=" and filename[-1] == "=":
+                filename = decode_quopri(filename)
             disp = attachment.get("content-disposition", "").split(";")[0]
             if disp not in ("inline", "attachment"):
                 logger.error(

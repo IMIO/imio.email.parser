@@ -10,10 +10,13 @@ from pathvalidate import sanitize_filename
 
 import base64
 import mimetypes
+import quopri
+import re
 import sys
 
 
 def attachment_infos(attach):
+    """Was used on message.iter_attachments(). No more !"""
     content_id = ported_string(attach.get("content-id"))
     content_disposition = ported_string(attach.get("content-disposition"))
     mail_content_type = ported_string(attach.get_content_type())
@@ -62,6 +65,21 @@ def attachment_infos(attach):
         "charset": charset_raw,
         "content_transfer_encoding": transfer_encoding,
     }
+
+
+def decode_quopri(encoded_string):
+    """Decode eventually quoted-printable encoded string"""
+    match = re.match(r"=(?P<encoding>[^Qq]*)[Qq](?P<encoded>.*)=$", encoded_string)
+    if not match:
+        return encoded_string
+    encoding = match.group("encoding").lower()
+    encoded_part = match.group("encoded")
+    decoded_bytes = quopri.decodestring(encoded_part)
+    try:
+        return decoded_bytes.decode(encoding)
+    except LookupError:
+        # Si l'encodage n'est pas reconnu, on suppose UTF-8 par défaut
+        return decoded_bytes.decode("utf-8")
 
 
 def load_eml_file(filename, encoding="utf8", as_msg=True):

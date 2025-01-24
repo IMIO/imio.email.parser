@@ -13,6 +13,8 @@ Changelog
   [sgeulette]
 - Added message parameter to `parser.generate_pdf`
   [sgeulette]
+- Handled quoted-printable filename
+  [sgeulette]
 
 0.2.0 (2024-10-04)
 ------------------
