@@ -35,7 +35,7 @@ setup(
         "Operating System :: OS Independent",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
     ],
-    python_requires=">=3.9, <3.10",
+    python_requires=">=3.10, <3.11",
     install_requires=[
         "mail-parser",
         "beautifulsoup4>=4.6.3",
