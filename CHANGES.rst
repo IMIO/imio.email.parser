@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.2.1 (unreleased)
+0.3.0 (2025-02-18)
 ------------------
 
 - Used standard email parser in tests.
