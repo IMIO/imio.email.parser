@@ -38,11 +38,27 @@ def is_email_address(address):
     return False
 
 
+def strip_dq(s):
+    """Remove the same number of starting and ending double quotes from a string."""
+    if not s:
+        return s
+    start_quotes = 0
+    while start_quotes < len(s) and s[start_quotes] == '"':
+        start_quotes += 1
+    end_quotes = 0
+    while end_quotes < len(s) - start_quotes and s[-(end_quotes + 1)] == '"':
+        end_quotes += 1
+    quotes_to_remove = min(start_quotes, end_quotes)
+    if quotes_to_remove > 0:
+        return s[quotes_to_remove:-quotes_to_remove] if quotes_to_remove < len(s) else ""
+    return s
+
+
 def correct_addresses(lst):
     """Correct badly handled email. See test_parser...
     Lowercased email."""
     if len(lst) == 1:
-        return [(lst[0][0], lst[0][1].lower())]
+        return [(strip_dq(lst[0][0]), lst[0][1].lower())]
     new_lst = []
     new_parts = []
     for tup in lst:
@@ -57,7 +73,7 @@ def correct_addresses(lst):
                 new_lst.append((", ".join(new_parts), tup[1]))
                 new_parts = []
             else:
-                new_lst.append(tup)
+                new_lst.append((strip_dq(tup[0]), tup[1]))
         else:
             if tup[0]:
                 logger.warning("part 0 in tup {} for addresses {}".format(tup, lst))

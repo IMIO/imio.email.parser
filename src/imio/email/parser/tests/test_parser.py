@@ -51,9 +51,15 @@ class TestParser(unittest.TestCase):
             ("xx.yy@DOMAIN.com", [("", "xx.yy@DOMAIN.com")], [("", "xx.yy@domain.com")]),
             (" <xx.yy@DOMAIN.com>", [("", "xx.yy@DOMAIN.com")], [("", "xx.yy@domain.com")]),
             ('"xx YY" <xx.yy@DOMAIN.com>', [("xx YY", "xx.yy@DOMAIN.com")], [("xx YY", "xx.yy@domain.com")]),
+            ('"\\"xx YY\\"" <xx.yy@DOMAIN.com>', [('"xx YY"', "xx.yy@DOMAIN.com")], [("xx YY", "xx.yy@domain.com")]),
             ("'xx YY' <xx.yy@DOMAIN.com>", [("'xx YY'", "xx.yy@DOMAIN.com")], [("'xx YY'", "xx.yy@domain.com")]),
             ("xx YY <xx.yy@DOMAIN.com>", [("xx YY", "xx.yy@DOMAIN.com")], [("xx YY", "xx.yy@domain.com")]),
             ('"xx, YY" <xx.yy@DOMAIN.com>', [("xx, YY", "xx.yy@DOMAIN.com")], [("xx, YY", "xx.yy@domain.com")]),
+            (
+                '"aa BB" <aa.bb@SITE.com>, "\\"xx YY\\"" <xx.yy@DOMAIN.com>',
+                [("aa BB", "aa.bb@SITE.com"), ('"xx YY"', "xx.yy@DOMAIN.com")],
+                [("aa BB", "aa.bb@site.com"), ("xx YY", "xx.yy@domain.com")],
+            ),
             ("xx, YY <xx.yy@DOMAIN.com>", [("", "xx"), ("YY", "xx.yy@DOMAIN.com")], [("xx, YY", "xx.yy@domain.com")]),
             (
                 "xx, YY,  zz <xx.yy@DOMAIN.com>",

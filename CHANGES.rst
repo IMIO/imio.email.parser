@@ -5,8 +5,8 @@ Changelog
 0.3.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Improved `parser.correct_addresses`.
+  [sgeulette]
 
 0.3.0 (2025-02-18)
 ------------------
