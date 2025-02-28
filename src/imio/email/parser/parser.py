@@ -66,12 +66,15 @@ def correct_addresses(lst):
 
 
 class Parser:
-    def __init__(self, message, dev_mode, mail_id):
+    def __init__(self, message, dev_mode, mail_id, extract=True):
         """
         :type message: email.message.Message
         """
         self.initial_message = message
-        self.message = self._extract_relevant_message(message)
+        if extract:
+            self.message = self._extract_relevant_message(message)
+        else:
+            self.message = message
         self.parsed_message = MailParser(self.message)
         self.dev_mode = dev_mode
         self.mail_id = mail_id
