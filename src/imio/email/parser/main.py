@@ -17,15 +17,15 @@ def emailtopdf():
         stop("You have to pass an eml file")
     elif len(sys.argv) == 3:
         filename = sys.argv[2]
-    proceed, args = email2pdf2.handle_args([__file__, "--no-attachments", "--headers", "-i{}".format(filename)])
+    _, args = email2pdf2.handle_args([__file__, "--no-attachments", "--headers", "-i{}".format(filename)])
     input_data = email2pdf2.get_input_data(args)
     input_email = email2pdf2.get_input_email(input_data)
     try:
-        payload, parts_already_used = email2pdf2.handle_message_body(args, input_email)
+        payload, _ = email2pdf2.handle_message_body(args, input_email)
     except email2pdf2.FatalException as fe:
         if fe.value == "No body parts found; aborting.":
             input_email.attach(MIMEText("<html><body><p></p></body></html>", "html"))
-            payload, parts_already_used = email2pdf2.handle_message_body(args, input_email)
+            payload, _ = email2pdf2.handle_message_body(args, input_email)
         else:
             raise fe
     payload = email2pdf2.remove_invalid_urls(payload)
