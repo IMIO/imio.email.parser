@@ -8,7 +8,7 @@ import PyPDF2
 import unittest
 
 
-EML_TEST_FILES_PATH = "../../devel/imio.email.parser/src/imio/email/parser/tests/files"
+EML_TEST_FILES_PATH = os.path.join(os.path.dirname(__file__), "files")
 
 
 class TestMain(unittest.TestCase):
