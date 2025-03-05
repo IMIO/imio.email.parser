@@ -141,3 +141,13 @@ class TestParser(unittest.TestCase):
             ats = iparsed.attachments
             self.assertListEqual([at["filename"] for at in ats], dic["attachs"], name)
             self.assertListEqual([at["disp"] for at in ats], dic["disps"], name)
+
+    def test_add_body(self):
+        message = get_eml_message("01_email_with_inline_and_annexes.eml")
+        parser = Parser(message, False, "1")
+        self.assertEqual(len(message.get_payload()), 2)
+
+        parser.add_body(message, "hello world")
+        self.assertEqual(len(message.get_payload()), 3)
+        self.assertEqual(message.get_payload(2).get_content(), "hello world\n")
+        self.assertEqual(message.get_payload(2).get_content_type(), "text/html")
