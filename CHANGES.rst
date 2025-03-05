@@ -7,6 +7,8 @@ Changelog
 
 - Improved `parser.correct_addresses`.
   [sgeulette]
+- Increased test coverage.
+  [cadam]
 
 0.3.0 (2025-02-18)
 ------------------
