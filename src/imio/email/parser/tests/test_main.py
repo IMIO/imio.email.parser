@@ -15,7 +15,7 @@ class TestMain(unittest.TestCase):
     @patch("sys.argv", ["main.py", "1", f"{EML_TEST_FILES_PATH}/01_email_with_inline_and_annexes.eml"])
     def test_emailtopdf(self):
         self.assertEqual(main(), None)
-        list_of_files = glob.glob("*.pdf")  # * means all if need specific format then *.csv
+        list_of_files = glob.glob("*.pdf")
         latest_file = max(list_of_files, key=os.path.getctime)
         file_creation_time = os.path.getctime(latest_file)
         self.assertTrue((datetime.now().timestamp() - file_creation_time) < 5)
