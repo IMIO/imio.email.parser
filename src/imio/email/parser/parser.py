@@ -13,6 +13,7 @@ import base64
 import copy
 import email
 import logging
+import os
 import re
 
 
@@ -291,7 +292,7 @@ class Parser:
             # handle quoted printable filename
             if filename[0] == "=" and filename[-1] == "=":
                 filename = decode_quopri(filename)
-            if "." not in filename:
+            if os.path.splitext(filename)[1] == "" and attachment["mail_content_subtype"]:
                 filename += "." + attachment["mail_content_subtype"]
             disp = attachment.get("content-disposition", "").split(";")[0]
             if disp not in ("inline", "attachment"):

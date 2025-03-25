@@ -6,3 +6,5 @@
 	Original email with 1 inline image and 2 annexes: 2 little images
 04_email_with_pdf_attachment.eml:
 	Original email with 1 pdf attachment
+05_email_with_unamed_attachments.eml:
+	Original email with 2 unamed attachments
