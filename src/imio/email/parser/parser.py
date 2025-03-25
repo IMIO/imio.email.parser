@@ -13,6 +13,7 @@ import base64
 import copy
 import email
 import logging
+import os
 import re
 
 
@@ -243,6 +244,7 @@ class Parser:
                             "payload": payload,
                             "binary": binary,
                             "mail_content_type": mail_content_type,
+                            "mail_content_subtype": content_subtype,
                             "content-id": content_id,
                             "content-disposition": content_disposition,
                             "charset": charset_raw,
@@ -262,6 +264,7 @@ class Parser:
                         "payload": raw_file,
                         "binary": False,
                         "mail_content_type": mail_content_type,
+                        "mail_content_subtype": content_subtype,
                         "content-id": content_id,
                         "content-disposition": content_disposition,
                     }
@@ -285,9 +288,12 @@ class Parser:
             else:
                 raw_file = attachment["payload"].encode("utf-8")  # to bytes
             filename = attachment["filename"].replace("\r", "").replace("\n", "")
+            filename = filename.replace("<", "").replace(">", "")
             # handle quoted printable filename
             if filename[0] == "=" and filename[-1] == "=":
                 filename = decode_quopri(filename)
+            if os.path.splitext(filename)[1] == "" and attachment["mail_content_subtype"]:
+                filename += "." + attachment["mail_content_subtype"]
             disp = attachment.get("content-disposition", "").split(";")[0]
             if disp not in ("inline", "attachment"):
                 logger.error(
