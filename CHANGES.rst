@@ -9,6 +9,8 @@ Changelog
   [sgeulette]
 - Increased test coverage.
   [cadam]
+- Fixed attachment filename parsing.
+  [cadam]
 
 0.3.0 (2025-02-18)
 ------------------
