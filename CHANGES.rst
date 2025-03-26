@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.3.1 (unreleased)
+0.3.1 (2025-03-26)
 ------------------
 
 - Improved `parser.correct_addresses`.
