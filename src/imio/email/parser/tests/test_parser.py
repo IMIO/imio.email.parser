@@ -34,6 +34,13 @@ class TestParser(unittest.TestCase):
                 "opl1": ["multipart/mixed"],
                 "msg_s": "Autre inline\n[image: organization_icon.png]",
             },
+            {
+                "fn": "06_email_with_base64_rfc822_attachment.eml",
+                "orig": "Agent forward",
+                "opl": ["multipart/alternative", "message/rfc822"],
+                "opl1": ["text/plain"],
+                "msg_s": "Cordialement,",
+            },
         ]
         for dic in to_tests:
             name = dic["fn"]
