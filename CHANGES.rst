@@ -2,12 +2,11 @@ Changelog
 =========
 
 
-0.3.2 (unreleased)
+0.3.2 (2025-05-16)
 ------------------
 
 - Fixed base64-encoded rfc822 attachment not decoded.
   [chris-adam]
-
 
 0.3.1 (2025-03-26)
 ------------------
