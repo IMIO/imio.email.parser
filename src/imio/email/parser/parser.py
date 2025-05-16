@@ -116,7 +116,7 @@ class Parser:
             for part in payload:
                 if part.get_content_type() == "message/rfc822":  # maybe also check for attachment filename ?
                     self.origin = "Agent forward"
-                    if part.get("Content-Transfer-Encoding") == "base64":
+                    if part.get("Content-Transfer-Encoding") == "base64":  # bluemind in base64
                         return email.message_from_bytes(
                             base64.b64decode(part.get_payload()[0].as_string()), policy=email_policy
                         )
