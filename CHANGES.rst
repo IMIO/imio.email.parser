@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.3.3 (unreleased)
+------------------
+
+- Formatted Date header.
+  [chris-adam]
 
 0.3.2 (2025-05-16)
 ------------------
