@@ -1,17 +1,11 @@
 Changelog
 =========
 
-0.3.3 (unreleased)
+0.3.3 (2025-07-01)
 ------------------
 
-- Formatted Date header.
+- Formatted Date header following timezone.
   [chris-adam]
-
-0.3.3 (unreleased)
-------------------
-
-- Nothing changed yet.
-
 
 0.3.2 (2025-05-16)
 ------------------
