@@ -48,6 +48,7 @@ setup(
         "reportlab",
         "requests",
         "six",
+        "tzlocal",
     ],
     entry_points="""
     [console_scripts]

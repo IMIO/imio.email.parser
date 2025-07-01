@@ -4,6 +4,7 @@ from email.message import EmailMessage
 from email.utils import getaddresses
 from imio.email.parser import email_policy  # noqa
 from imio.email.parser.utils import decode_quopri  # noqa
+from imio.email.parser.utils import format_date
 from imio.email.parser.utils import structure  # noqa
 from mailparser.mailparser import MailParser
 from mailparser.utils import decode_header_part
@@ -92,6 +93,7 @@ class Parser:
             self.message = self._extract_relevant_message(message)
         else:
             self.message = message
+        format_date(self.message, in_place=True)
         self.parsed_message = MailParser(self.message)
         self.dev_mode = dev_mode
         self.mail_id = mail_id
