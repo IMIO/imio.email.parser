@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.3.4 (unreleased)
+0.3.4 (2026-08-05)
 ------------------
 
 - Added TNEF (Outlook rich text) support. (DMS-1232)
