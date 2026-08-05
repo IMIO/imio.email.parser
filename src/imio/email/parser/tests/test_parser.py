@@ -53,6 +53,27 @@ class TestParser(unittest.TestCase):
             self.assertListEqual([part.get_content_type() for part in part1.get_payload()], dic["opl1"], name)
             self.assertTrue(iparsed.parsed_message.body.startswith(dic["msg_s"]), name)
 
+    def test_extract_tnef_message(self):
+        """Outlook rich text transfer: the forwarded email is packed in a winmail.dat part."""
+        omsg = get_eml_message("07_email_with_tnef_winmail.eml")
+        parsed = Parser(omsg, False, "1")
+        self.assertEqual(parsed.origin, "Agent forward")
+        # headers of the forwarded email, rebuilt from the tnef transport headers
+        self.assertListEqual(parsed.headers["From"], [("Thierry Dupon", "helpdesk@support-test.example.n")])
+        self.assertListEqual(
+            parsed.headers["To"], [("Stephann Miolet (Testcomm1)", "stephan.miolet@testcommun.be")]
+        )
+        self.assertEqual(parsed.headers["Subject"], "SUP-54800 Transfert mail dans ia.Docs")
+        # the transferring agent still comes from the envelope, not from the tnef part
+        self.assertListEqual(parsed.headers["Agent"], [("Stephann Miolet", "stephan.miolet@testcommun.be")])
+        self.assertEqual(parsed.message.get_content_type(), "text/html")
+        self.assertTrue("".join(parsed.parsed_message.text_html).startswith("<!DOCTYPE html>"))
+
+    def test_extract_tnef_message_without_attached_email(self):
+        """A winmail.dat without an attached email is not a transfer: behaviour is unchanged."""
+        omsg = get_eml_message("08_email_with_tnef_no_embedded.eml")
+        self.assertEqual(Parser(omsg, False, "1").origin, "Generic inbox")
+
     def test_correct_addresses(self):
         to_tests = [
             ("xx.yy@DOMAIN.com", [("", "xx.yy@DOMAIN.com")], [("", "xx.yy@domain.com")]),

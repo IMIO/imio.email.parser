@@ -3,6 +3,7 @@ from email2pdf2 import email2pdf2
 from email.message import EmailMessage
 from email.utils import getaddresses
 from imio.email.parser import email_policy  # noqa
+from imio.email.parser import tnef
 from imio.email.parser.utils import decode_quopri  # noqa
 from imio.email.parser.utils import format_date
 from imio.email.parser.utils import structure  # noqa
@@ -89,6 +90,8 @@ class Parser:
         :type message: email.message.Message
         """
         self.initial_message = message
+        self.mail_id = mail_id
+        self.origin = None
         if extract:
             self.message = self._extract_relevant_message(message)
         else:
@@ -96,7 +99,6 @@ class Parser:
         format_date(self.message, in_place=True)
         self.parsed_message = MailParser(self.message)
         self.dev_mode = dev_mode
-        self.mail_id = mail_id
         self.is_default_policy = False
         if isinstance(message, email.message.EmailMessage):
             self.is_default_policy = True
@@ -150,6 +152,13 @@ class Parser:
                 ):
                     self.origin = "Agent forward"
                     return email.message_from_bytes(base64.b64decode(part.get_payload()), policy=email_policy)
+            # outlook rich text format: the whole mail is packed in a winmail.dat tnef part
+            for part in payload:
+                if part.get_content_type() in tnef.CONTENT_TYPES:
+                    forwarded = tnef.extract_forwarded_message(part.get_payload(decode=True), self.mail_id)
+                    if forwarded is not None:
+                        self.origin = "Agent forward"
+                        return forwarded
 
         self.origin = "Generic inbox"
         return message
@@ -209,10 +218,10 @@ class Parser:
             filename = decode_header_part(p.get_filename())
             content_id = ported_string(p.get("content-id"))
             content_disposition = ported_string(p.get("content-disposition"))
+            content_subtype = ported_string(p.get_content_subtype())
             if not p.is_multipart():
                 charset = p.get_content_charset("utf-8")
                 charset_raw = p.get_content_charset()
-                content_subtype = ported_string(p.get_content_subtype())
 
                 is_attachment = False
                 if filename:

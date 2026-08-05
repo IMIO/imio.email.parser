@@ -48,6 +48,7 @@ setup(
         "reportlab",
         "requests",
         "six",
+        "tnefparse",
         "tzlocal",
     ],
     entry_points="""
