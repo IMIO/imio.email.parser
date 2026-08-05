@@ -4,8 +4,8 @@ Changelog
 0.3.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Added TNEF (Outlook rich text) support. (DMS-1232)
+  [chris-adam]
 
 0.3.3 (2025-07-01)
 ------------------

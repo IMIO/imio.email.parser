@@ -1,0 +1,24 @@
+From: Agent Test <agent@example.org>
+To: "'docs@example.org'" <docs@example.org>
+Subject: TR: test rich text forward
+Date: Wed, 5 Aug 2026 11:57:31 +0000
+Message-ID: <tnef-test@example.org>
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: <tnef-test@example.org>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="_000_TNEFTEST_"
+
+--_000_TNEFTEST_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Voici l'email transf=E9r=E9.
+
+--_000_TNEFTEST_
+Content-Type: application/ms-tnef; name="winmail.dat"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="winmail.dat"
+
+eJ8+IgEAAQiABwAYAAAASVBNLk1pY3Jvc29mdCBNYWlsLk5vdGUAAAABBIABAAoAAABGd2Q6IHRl
+c3QAAAA=
+--_000_TNEFTEST_--

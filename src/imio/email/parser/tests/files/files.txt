@@ -8,3 +8,7 @@
 	Original email with 1 pdf attachment
 05_email_with_unamed_attachments.eml:
 	Original email with 2 unamed attachments
+07_email_with_tnef_winmail.eml:
+	Outlook rich text (TNEF) transfer: body and forwarded email are packed in a winmail.dat part instead of being MIME parts. Identities replaced by equal length placeholders to keep the binary MAPI length prefixes valid.
+08_email_with_tnef_no_embedded.eml:
+	Outlook rich text (TNEF) email whose winmail.dat contains no attached email: must stay a generic inbox mail
