@@ -4,7 +4,8 @@ Changelog
 0.3.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Added timestamps to logger (DMS-1203).
+  [chris-adam]
 
 
 0.3.4 (2026-08-05)
