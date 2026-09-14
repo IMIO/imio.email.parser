@@ -3,8 +3,8 @@ from imio.email.parser.tests.test_parser import get_eml_message
 from imio.email.parser.utils import decode_quopri  # noqa: F401
 from imio.email.parser.utils import format_date
 from unittest.mock import patch
+from zoneinfo import ZoneInfo
 
-import pytz
 import unittest
 
 
@@ -41,11 +41,11 @@ class TestUtils(unittest.TestCase):
 
         # Test with different local timezones
         with patch("tzlocal.get_localzone") as mock_localtime:
-            mock_localtime.return_value = pytz.timezone('Europe/Brussels')
+            mock_localtime.return_value = ZoneInfo("Europe/Brussels")
             self.assertEqual(format_date(msg), "06-01-2025 05:51:01")
-            mock_localtime.return_value = pytz.timezone('UTC')
+            mock_localtime.return_value = ZoneInfo("UTC")
             self.assertEqual(format_date(msg), "06-01-2025 04:51:01")
-            mock_localtime.return_value = pytz.timezone('US/Eastern')
+            mock_localtime.return_value = ZoneInfo("America/New_York")
             self.assertEqual(format_date(msg), "05-01-2025 23:51:01")
 
         # Test with no timezone
@@ -58,11 +58,11 @@ class TestUtils(unittest.TestCase):
         msg.replace_header("Date", "Mon, 06 Aug 2025 09:51:01 +0000")
         self.assertEqual(format_date(msg), "06-08-2025 11:51:01")
         with patch("tzlocal.get_localzone") as mock_localtime:
-            mock_localtime.return_value = pytz.timezone('Europe/Brussels')
+            mock_localtime.return_value = ZoneInfo("Europe/Brussels")
             self.assertEqual(format_date(msg), "06-08-2025 11:51:01")
-            mock_localtime.return_value = pytz.timezone('UTC')
+            mock_localtime.return_value = ZoneInfo("UTC")
             self.assertEqual(format_date(msg), "06-08-2025 09:51:01")
-            mock_localtime.return_value = pytz.timezone('US/Eastern')
+            mock_localtime.return_value = ZoneInfo("America/New_York")
             self.assertEqual(format_date(msg), "06-08-2025 05:51:01")
 
         # An invalid date will leave it untouched

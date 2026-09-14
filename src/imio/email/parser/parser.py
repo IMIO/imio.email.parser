@@ -96,7 +96,6 @@ class Parser:
             self.message = self._extract_relevant_message(message)
         else:
             self.message = message
-        format_date(self.message, in_place=True)
         self.parsed_message = MailParser(self.message)
         self.dev_mode = dev_mode
         self.is_default_policy = False
@@ -341,6 +340,7 @@ class Parser:
         if message is None:
             message = self.message
         copied_message = copy.deepcopy(message)
+        format_date(copied_message, in_place=True)
         try:
             payload, parts_already_used = email2pdf2.handle_message_body(args, copied_message)
         except email2pdf2.FatalException as fe:

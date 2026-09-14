@@ -6,6 +6,11 @@ Changelog
 
 - Added timestamps to logger (DMS-1203).
   [chris-adam]
+- Fixed `Date` header emptied when writing an eml: the formatted date is now only set on the copy
+  used to generate the pdf.
+  [chris-adam]
+- Replaced `pytz` by stdlib `zoneinfo` in tests.
+  [chris-adam]
 
 
 0.3.4 (2026-08-05)
