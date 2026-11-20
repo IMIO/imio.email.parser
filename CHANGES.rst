@@ -11,6 +11,10 @@ Changelog
   [chris-adam]
 - Replaced `pytz` by stdlib `zoneinfo` in tests.
   [chris-adam]
+- Imported `MailParser` from the `mailparser` package root, to support mail-parser 4.
+  [chris-adam]
+- Allowed Python 3.12.
+  [chris-adam]
 
 
 0.3.4 (2026-08-05)
