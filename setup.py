@@ -32,10 +32,11 @@ setup(
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.12",
         "Operating System :: OS Independent",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
     ],
-    python_requires=">=3.10, <3.11",
+    python_requires=">=3.10",
     install_requires=[
         "mail-parser",
         "beautifulsoup4>=4.6.3",
