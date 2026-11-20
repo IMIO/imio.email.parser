@@ -7,7 +7,7 @@ from imio.email.parser import tnef
 from imio.email.parser.utils import decode_quopri  # noqa
 from imio.email.parser.utils import format_date
 from imio.email.parser.utils import structure  # noqa
-from mailparser.mailparser import MailParser
+from mailparser import MailParser
 from mailparser.utils import decode_header_part
 from mailparser.utils import ported_string
 
